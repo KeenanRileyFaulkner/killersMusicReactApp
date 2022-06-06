@@ -3,5 +3,11 @@
 @tailwind utilities;
 
 @layer components {
-  
+  .menuNav {
+      @apply absolute text-white w-[250px] h-screen mt-3.5 scale-0 bg-black-static opacity-80
+  }
+
+  .showMenu {
+      @apply scale-100;
+  }
 }
