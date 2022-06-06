@@ -7,7 +7,7 @@ const NavBar = () => {
     return (
         <div className='bg-black-static w-screen fixed h-16 flex flex-row items-center justify-between overflow-visible shadow-xl'>
             <Menu />
-            <h2 className='text-white font-work-sans font-semibold text-3xl justify-self-center m-auto hover:cursor-pointer hover:text-gray-200'>
+            <h2 className='text-white font-work-sans font-extrabold text-3xl justify-self-center m-auto hover:cursor-pointer hover:text-gray-200'>
                 THE KILLERS
             </h2>
         </div>
@@ -26,7 +26,7 @@ const Menu = () => {
           <button onClick={handleToggle} className='text-white'>{
               menuOpen ? 
                 (<AiOutlineClose size='30' className='text-white mx-4 my-auto justify-self-flexstart' />)
-                : (<HiOutlineMenu size='30' className='text-white mx-4 my-auto justify-self-flexstart'/>)
+                : (<HiOutlineMenu size='30' className='text-white hover:text-gray-200 mx-4 my-auto justify-self-flexstart'/>)
             }
           </button>
           <ul className={`menuNav ${menuOpen ? "showMenu" : ""} border-t-2`}>
@@ -40,7 +40,7 @@ const Menu = () => {
 
 const MenuItem = ({itemName}) => {
     return (
-        <li className='py-8 pl-5 font-work-sans font-medium text-lg border-b-2 border-white'>{itemName}</li>
+        <li className='py-8 pl-5 font-work-sans font-medium text-2xl border-b-2 border-white'>{itemName}</li>
     );
 }
 
