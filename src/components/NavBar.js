@@ -1,6 +1,12 @@
 import { HiOutlineMenu } from 'react-icons/hi';
 import { AiOutlineClose } from 'react-icons/ai';
+import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
 import { useState } from 'react';
+
+const albumNames = ['HOT FUSS', "SAM'S TOWN", 'SAWDUST', 'DAY & AGE', 
+    'BATTLE BORN', 'WONDERFUL WONDERFUL', 'IMPLODING THE MIRAGE', 'PRESSURE MACHINE'];
+
+const links = ['SHOWTIME', 'MUSIC', 'VIDEOS', 'PHOTOS', 'MERCH'];
 
 const NavBar = () => {
     
@@ -12,7 +18,7 @@ const NavBar = () => {
             </h2>
         </div>
     );
-}
+};
 
 const Menu = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -29,19 +35,56 @@ const Menu = () => {
                 : (<HiOutlineMenu size='30' className='text-white hover:text-gray-200 mx-4 my-auto justify-self-flexstart'/>)
             }
           </button>
-          <ul className={`menuNav ${menuOpen ? "showMenu" : ""} border-t-2`}>
-              <MenuItem itemName='Hot Fuss' />
-              <MenuItem itemName="Sam's Town" />
-              <MenuItem itemName='Day & Age' />
+          <ul className={`menuNav ${menuOpen ? "showMenu" : ""}`}>
+              <MenuDropdown header='ALBUMS' selections={albumNames} />
+              <MenuDropdown header='LINKS' selections={links}/>
           </ul>
         </nav>
-      )
-}
-
-const MenuItem = ({itemName}) => {
-    return (
-        <li className='py-8 pl-5 font-work-sans font-medium text-2xl border-b-2 border-white'>{itemName}</li>
     );
-}
+};
+
+const MenuDropdown = ({ header, selections }) => {
+    const [expanded, setExpanded] = useState(true);
+
+    return (
+        <li className='menuDropdown'>
+            <div className='dropdown' onClick={() => setExpanded(!expanded)}>
+                <div className='dropdownHeader'>
+                    <div className='additionalChevronStyles'>
+                        <ChevronIcon expanded={expanded} />
+                    </div>
+                    <h5 className='ml-2 hover:cursor-default'>
+                        {header}
+                    </h5>
+                </div>
+                
+                
+                <ul className='menuItem'>
+                    {expanded && selections &&
+                        selections.map((selection) => 
+                            <MenuItem selection={selection}/>
+                        )
+                    }
+                </ul>
+            </div>
+        </li>
+    );
+};
+
+const ChevronIcon = ({ expanded }) => {
+    return expanded ? (
+        <FaChevronDown size='14' className='chevClass hover:cursor-pointer' />
+    ) : (
+        <FaChevronRight size='14' className='chevClass hover:cursor-pointer' />
+    );
+};
+
+const MenuItem = ({ selection }) => (
+    <div>
+        <h5 className='text-white text-sm font-work-sans font-medium my-2 hover:cursor-pointer'>
+            {selection}
+        </h5>
+    </div>
+);
 
 export default NavBar;
