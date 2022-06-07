@@ -2,7 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  overflow: hidden;
+}
+
 @layer components {
+  .page-container {
+    @apply flex flex-col;
+  }
+  
   .menuNav {
       @apply absolute text-white w-[250px] h-screen mt-3.5 scale-x-0 bg-black-static opacity-80
        transition-all duration-75 origin-top-left;
@@ -36,5 +44,14 @@
   .menuItem {
     @apply col-start-1 col-end-3
     ml-[33px];
+  }
+
+  .contentContainer {
+    @apply h-screen w-screen bg-pm-band-photo bg-cover bg-no-repeat bg-[center_64px] bg-fixed
+    overflow-hidden flex flex-row justify-center items-center flex-wrap pt-20 overflow-y-auto;
+  }
+
+  .albumLink {
+    @apply h-[250px] w-[250px] bg-cover mx-3 my-3 flex items-center justify-center;
   }
 }

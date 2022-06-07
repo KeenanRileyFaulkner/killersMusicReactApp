@@ -11,7 +11,7 @@ const links = ['SHOWTIME', 'MUSIC', 'VIDEOS', 'PHOTOS', 'MERCH'];
 const NavBar = () => {
     
     return (
-        <div className='bg-black-static w-screen fixed h-16 flex flex-row items-center justify-between overflow-visible shadow-xl'>
+        <div className='bg-black-static w-screen fixed h-16 flex flex-row items-center justify-between shadow-xl'>
             <Menu />
             <h2 className='text-white font-work-sans font-extrabold text-3xl justify-self-center m-auto hover:cursor-pointer hover:text-gray-200'>
                 THE KILLERS
@@ -29,7 +29,8 @@ const Menu = () => {
 
     return (
         <nav className="menu">
-          <button onClick={handleToggle} className='text-white'>{
+          <button onClick={handleToggle} className='text-white'>
+            {
               menuOpen ? 
                 (<AiOutlineClose size='30' className='text-white mx-4 my-auto justify-self-flexstart' />)
                 : (<HiOutlineMenu size='30' className='text-white hover:text-gray-200 mx-4 my-auto justify-self-flexstart'/>)
@@ -44,7 +45,7 @@ const Menu = () => {
 };
 
 const MenuDropdown = ({ header, selections }) => {
-    const [expanded, setExpanded] = useState(true);
+    const [expanded, setExpanded] = useState(false);
 
     return (
         <li className='menuDropdown'>
