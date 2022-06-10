@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlineArrowDown } from 'react-icons/ai';
 import { MdPauseCircleFilled } from 'react-icons/md';
-import { FaPlayCircle, FaPauseCircle } from 'react-icons/fa';
+import { FaPlayCircle } from 'react-icons/fa';
 import { useState } from 'react';
 
 const Content = () => {
