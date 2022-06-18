@@ -7,6 +7,7 @@ import albums from './albums';
 const Content = () => {
     return (
         <div className='contentContainer'>
+            {/* This seems so redundant. Is there a better way? */}
             <AlbumLink color={`${albums[0].color}`} image={`${albums[0].image}`} />
             <AlbumLink color={`${albums[1].color}`} image={`${albums[1].image}`} />
             <AlbumLink color={`${albums[2].color}`} image={`${albums[2].image}`} />
@@ -33,14 +34,6 @@ const AlbumLink = ({ color='bg-gray-800', image='bg-logo'}) => {
                     <FaPlayCircle size='50' className='text-white opacity-70' />
                 )}
             </button>
-        </div>
-    );
-}
-
-const generateAlbumLink = (elem) => {
-    return (
-        <div>
-            <AlbumLink color={`${elem.color}`} image={`${elem.image}`} />
         </div>
     );
 }

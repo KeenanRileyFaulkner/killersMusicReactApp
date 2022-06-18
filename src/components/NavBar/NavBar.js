@@ -8,6 +8,25 @@ const albumNames = ['HOT FUSS', "SAM'S TOWN", 'SAWDUST', 'DAY & AGE',
 
 const links = ['SHOWTIME', 'MUSIC', 'VIDEOS', 'PHOTOS', 'MERCH'];
 
+const albumPlaylists = [
+    'https://www.youtube.com/watch?v=BfBT1D04SoE&list=OLAK5uy_naUhtkbYccwhdXg1aKdq2vJpdGzslI-Vc',
+    'https://www.youtube.com/watch?v=GQzDG-tILbo&list=OLAK5uy_mexj509hYSyNuPQSyVi63aHkdQXb4dYnA',
+    'https://www.youtube.com/watch?v=tVNGY1pInfI&list=OLAK5uy_k6WPK2eSfDf4FQ4av-AmjtD1NCN6FlGno',
+    'https://www.youtube.com/watch?v=N5N3Jk0_lKg&list=OLAK5uy_n2INn4lb24RIJAx2lBKvpCda9-rf8RzU0',
+    'https://www.youtube.com/watch?v=QPW0t3ysrGc&list=OLAK5uy_kv8duUr43HpHkEtJh2YnZtq1P-MQ6g9CM',
+    'https://www.youtube.com/watch?v=zWfOlNHXiAM&list=OLAK5uy_kacrcyJZw6q64-y30icAcPACQSUEwq4XM',
+    'https://www.youtube.com/watch?v=4go_DzY8wHc&list=OLAK5uy_kEGStUtBZL5dTF-R1hOOzFwXGSNECsyOk',
+    'https://www.youtube.com/watch?v=xAvFOrnUtSI&list=OLAK5uy_lKxn5gxay7DPrnIdNe-gUovqW0yG4h-5o'
+]
+
+const webLinks = [
+    'https://www.thekillersmusic.com/tour',
+    'https://www.thekillersmusic.com/music',
+    'https://www.thekillersmusic.com/videos',
+    'https://www.thekillersmusic.com/photos',
+    'https://thekillers.lnk.to/PMStore'
+]
+
 const NavBar = () => {
     
     return (
@@ -37,14 +56,14 @@ const Menu = () => {
             }
           </button>
           <ul className={`menuNav ${menuOpen ? "showMenu" : ""}`}>
-              <MenuDropdown header='ALBUMS' selections={albumNames} />
-              <MenuDropdown header='LINKS' selections={links}/>
+              <MenuDropdown header='ALBUMS' selections={albumNames} tagLinks={albumPlaylists} />
+              <MenuDropdown header='LINKS' selections={links} tagLinks={webLinks} />
           </ul>
         </nav>
     );
 };
 
-const MenuDropdown = ({ header, selections }) => {
+const MenuDropdown = ({ header, selections, tagLinks }) => {
     const [expanded, setExpanded] = useState(false);
 
     return (
@@ -62,8 +81,8 @@ const MenuDropdown = ({ header, selections }) => {
                 
                 <ul className='menuItem'>
                     {expanded && selections &&
-                        selections.map((selection) => 
-                            <MenuItem selection={selection}/>
+                        selections.map((selection, index) => 
+                            <MenuItem selection={selection} link={`${tagLinks[index]}`}/>
                         )
                     }
                 </ul>
@@ -80,11 +99,11 @@ const ChevronIcon = ({ expanded }) => {
     );
 };
 
-const MenuItem = ({ selection }) => (
+const MenuItem = ({ selection, link }) => (
     <div>
-        <h5 className='text-white text-sm font-work-sans font-medium my-2 hover:cursor-pointer'>
+        <a href={`${link}`}  rel="noopener noreferrer" target="_blank" className='text-white text-sm font-work-sans font-medium my-2 hover:cursor-pointer'>
             {selection}
-        </h5>
+        </a>
     </div>
 );
 
