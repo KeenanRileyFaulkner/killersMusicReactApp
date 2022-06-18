@@ -11,7 +11,7 @@ const links = ['SHOWTIME', 'MUSIC', 'VIDEOS', 'PHOTOS', 'MERCH'];
 const NavBar = () => {
     
     return (
-        <div className='bg-black-static w-screen fixed h-16 flex flex-row items-center justify-between shadow-xl z-10'>
+        <div className='main-bar'>
             <Menu />
             <h2 className='text-white font-work-sans font-extrabold text-3xl justify-self-center m-auto hover:cursor-pointer hover:text-gray-200'>
                 THE KILLERS

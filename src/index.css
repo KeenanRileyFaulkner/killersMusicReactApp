@@ -3,12 +3,16 @@
 @tailwind utilities;
 
 body {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 @layer components {
   .page-container {
     @apply flex flex-col;
+  }
+
+  .main-bar {
+    @apply bg-black-static w-screen fixed h-16 flex flex-row items-center justify-between shadow-xl z-10;
   }
   
   .menuNav {
@@ -47,8 +51,8 @@ body {
   }
 
   .contentContainer {
-    @apply h-screen w-screen bg-pm-band-photo bg-cover bg-no-repeat bg-[center_64px] bg-fixed
-    overflow-hidden flex flex-row justify-center items-center flex-wrap pt-20 overflow-y-auto;
+    @apply min-h-screen bg-pm-band-photo bg-cover bg-no-repeat bg-[center_64px] bg-fixed
+     flex flex-row justify-center items-center flex-wrap pt-20 overflow-auto;
   }
 
   .albumLink {
