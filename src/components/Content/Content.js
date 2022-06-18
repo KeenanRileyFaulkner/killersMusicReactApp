@@ -1,20 +1,20 @@
 import React from 'react';
-import { AiOutlineArrowDown } from 'react-icons/ai';
 import { MdPauseCircleFilled } from 'react-icons/md';
 import { FaPlayCircle } from 'react-icons/fa';
 import { useState } from 'react';
+import albums from './albums';
 
 const Content = () => {
     return (
         <div className='contentContainer'>
-            <AlbumLink color='bg-steel-blue' image='bg-hf'/>
-            <AlbumLink color='bg-vegas-yellow' image='bg-st'/>
-            <AlbumLink color='bg-mocha-brown' image='bg-sd'/>
-            <AlbumLink color='bg-bb-black' image='bg-da'/>
-            <AlbumLink color='bg-pearly-white' image='bg-bb'/>
-            <AlbumLink color='bg-amber-wave' image='bg-ww'/>
-            <AlbumLink color='bg-steel-blue' image='bg-itm'/>
-            <AlbumLink color='bg-vegas-yellow' image='bg-pm'/>
+            <AlbumLink color={`${albums[0].color}`} image={`${albums[0].image}`} />
+            <AlbumLink color={`${albums[1].color}`} image={`${albums[1].image}`} />
+            <AlbumLink color={`${albums[2].color}`} image={`${albums[2].image}`} />
+            <AlbumLink color={`${albums[3].color}`} image={`${albums[3].image}`} />
+            <AlbumLink color={`${albums[4].color}`} image={`${albums[4].image}`} />
+            <AlbumLink color={`${albums[5].color}`} image={`${albums[5].image}`} />
+            <AlbumLink color={`${albums[6].color}`} image={`${albums[6].image}`} />
+            <AlbumLink color={`${albums[7].color}`} image={`${albums[7].image}`} />
         </div>
     );
 }
@@ -33,6 +33,14 @@ const AlbumLink = ({ color='bg-gray-800', image='bg-logo'}) => {
                     <FaPlayCircle size='50' className='text-white opacity-70' />
                 )}
             </button>
+        </div>
+    );
+}
+
+const generateAlbumLink = (elem) => {
+    return (
+        <div>
+            <AlbumLink color={`${elem.color}`} image={`${elem.image}`} />
         </div>
     );
 }
