@@ -42,7 +42,6 @@ const Content = ({ albums=albumsArr }) => {
     return (
         <div className='contentContainer'>  
             {albumState.map((album, index) => {
-                console.log(album.color, album.image);
                 return <AlbumLink color={`${album.color}`} image={`${album.image}`} onClick={() => handleClick(index)} musicPlaying={album.playing} />
             })} 
 
