@@ -32,9 +32,9 @@ const NavBar = () => {
     return (
         <div className='main-bar'>
             <Menu />
-            <h2 className='text-white font-work-sans font-extrabold text-3xl justify-self-center m-auto hover:cursor-pointer hover:text-gray-200'>
+            <a href="https://thekillersmusic.com" rel="noopener noreferrer" target="_blank" className='text-white font-work-sans font-extrabold text-3xl justify-self-center m-auto hover:cursor-pointer hover:text-gray-200'>
                 THE KILLERS
-            </h2>
+            </a>
         </div>
     );
 };
@@ -82,7 +82,7 @@ const MenuDropdown = ({ header, selections, tagLinks }) => {
                 <ul className='menuItem'>
                     {expanded && selections &&
                         selections.map((selection, index) => 
-                            <MenuItem selection={selection} link={`${tagLinks[index]}`}/>
+                            <MenuItem selection={selection} link={`${tagLinks[index]}`} />
                         )
                     }
                 </ul>

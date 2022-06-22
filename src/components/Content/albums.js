@@ -1,71 +1,90 @@
-const albumColors = ['bg-steel-blue', 'bg-vegas-yellow', 'bg-mocha-brown', 'bg-bb-black', 'bg-pearly-white', 'bg-amber-wave'];
+//this file renders an array of album objects, each with a valid name, image, color, and id property. Append an album object with the desired name and image properties and 
+//generateAlbums() will automatically add the color and serial id number to the object, before returning it with the other objects in the array.
 
-let albums = [
-    {
-        name: 'Hot Fuss',
-        image: 'bg-hf'
-    },
+//This is used to generate the albumLinks in the Content.js file, and lift state for audio playback.
 
-    {
-        name: "Sam's Town",
-        image: 'bg-st'
-    },
+const generateAlbums = () => {
+    const albumColors = ['bg-steel-blue', 'bg-vegas-yellow', 'bg-mocha-brown', 'bg-bb-black', 'bg-pearly-white', 'bg-amber-wave'];
 
-    {
-        name: 'Sawdust',
-        image: 'bg-sd'
-    },
+    let albums = [
+        {
+            name: 'Hot Fuss',
+            image: 'bg-hf',
+            playing: false
+        },
+    
+        {
+            name: "Sam's Town",
+            image: 'bg-st',
+            playing: false
+        },
+    
+        {
+            name: 'Sawdust',
+            image: 'bg-sd',
+            playing: false
+        },
+    
+        {
+            name: 'Day & Age',
+            image: 'bg-da',
+            playing: false
+        },
+    
+        {
+            name: 'Battle Born',
+            image: 'bg-bb',
+            playing: false
+        },
+    
+        {
+            name: 'Wonderful Wonderful',
+            image: 'bg-ww',
+            playing: false
+        },
+    
+        {
+            name: 'Imploding The Mirage',
+            image: 'bg-itm',
+            playing: false
+        },
+    
+        {
+            name: 'Pressure Machine',
+            image: 'bg-pm',
+            playing: false
+        }
+    ];
+    
+    let id = 0;
+    albums.forEach(album => {
+        album.id = id;
+        id++;
+        switch (album.id % 6) {
+            case 0:
+                album.color = albumColors[0];
+                break;
+            case 1:
+                album.color = albumColors[1];
+                break;
+            case 2:
+                album.color = albumColors[2];
+                break;
+            case 3:
+                album.color = albumColors[3];
+                break;
+            case 4:
+                album.color = albumColors[4];
+                break;
+            case 5:
+                album.color = albumColors[5];
+                break;
+        }
+    });
 
-    {
-        name: 'Day & Age',
-        image: 'bg-da'
-    },
+    return albums;
+}
 
-    {
-        name: 'Battle Born',
-        image: 'bg-bb'
-    },
+let generatedAlbums = generateAlbums();
 
-    {
-        name: 'Wonderful Wonderful',
-        image: 'bg-ww'
-    },
-
-    {
-        name: 'Imploding The Mirage',
-        image: 'bg-itm'
-    },
-
-    {
-        name: 'Pressure Machine',
-        image: 'bg-pm'
-    }
-];
-
-let id = 0;
-albums.forEach(album => {
-    album.id = id;
-    id++;
-    switch (album.id % 6) {
-        case 0:
-            album.color = albumColors[0];
-            break;
-        case 1:
-            album.color = albumColors[1];
-            break;
-        case 2:
-            album.color = albumColors[2];
-            break;
-        case 3:
-            album.color = albumColors[3];
-            break;
-        case 4:
-            album.color = albumColors[4];
-            break;
-        case 5:
-            album.color = albumColors[5];
-            break;
-    }
-})
-
-export default albums;
+export default generatedAlbums;

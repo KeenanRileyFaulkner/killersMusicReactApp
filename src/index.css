@@ -58,4 +58,8 @@ body {
   .albumLink {
     @apply h-[250px] w-[250px] bg-cover mx-3 my-3 flex items-center justify-center;
   }
+
+  .audio-icon {
+    @apply text-white opacity-70
+  }
 }
