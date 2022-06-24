@@ -10,6 +10,10 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
     }
 });
 
+const calcRandomTrackNum = arr => {
+    return (Math.floor(Math.random() * arr.length));
+}
+
 module.exports = {
     getSong: (req, res) => {
         const { id } = req.params;
@@ -17,8 +21,8 @@ module.exports = {
             SELECT url FROM audios
             WHERE ${id} = album_id`)
         .then(dbRes => {
-            // res.status(200).send(dbRes[0][0].url)
-            console.log(dbRes[0]);
+            const randomTrack = calcRandomTrackNum(dbRes[0]);
+            res.status(200).send(dbRes[0][randomTrack].url);
         })
             .catch(err => console.log(err));
     }
