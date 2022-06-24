@@ -16,7 +16,10 @@ module.exports = {
         sequelize.query(`
             SELECT url FROM audios
             WHERE ${id} = album_id`)
-            .then(dbRes => res.status(200).send(dbRes[0][0].url))
+        .then(dbRes => {
+            // res.status(200).send(dbRes[0][0].url)
+            console.log(dbRes[0]);
+        })
             .catch(err => console.log(err));
     }
 }
