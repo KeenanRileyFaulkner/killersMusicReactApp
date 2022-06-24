@@ -3,17 +3,21 @@ import { MdPauseCircleFilled } from 'react-icons/md';
 import { FaPlayCircle } from 'react-icons/fa';
 import { useState } from 'react';
 import albumsArr from './albums';
+import axios from 'axios';
+
 
 const Content = ({ albums=albumsArr }) => {
     const [albumList, setAlbumList] = useState(albums);
-
+    const [audioControls, setAudioControls] = useState({src: ''});
 
     const handleClick = i => {
         let albumsCopy;
         if (albumList[i].playing) {
-            albumsCopy = albumList.map((album, index) => {
+            albumsCopy = albumList.map((album) => {
                 return({...album, playing: false });
-        })} else {
+            });
+            setAudioControls({src: ''});
+        } else {
             albumsCopy = albumList.map((album, index) => {
                 if(index === i) {
                     return({ ...album, playing: true });
@@ -21,15 +25,25 @@ const Content = ({ albums=albumsArr }) => {
                     return({ ...album, playing: false });
                 }
             });
-        }
 
-        // axios.get('someURL').then()
+            axios.get(`http://localhost:4005/albums/${i}`).then((res) => {
+                setAudioControls({src: res.data});
+            }).catch(err => console.log(err));
+        }
         
         setAlbumList(albumsCopy);
     }
 
+    const stopAllPlaying = () => {
+        let albumsCopy = albumList.map((album) => {
+            return({...album, playing: false});
+        });
+        setAlbumList(albumsCopy);
+    }
+
     return (
-        <div className='contentContainer'>  
+        <div className='contentContainer'>
+            <AudioPlayer src={audioControls.src} handleEnded={() => stopAllPlaying()}/>
             {albumList.map((album, index) => {
                 return <AlbumLink color={`${album.color}`} image={`${album.image}`} onClick={() => handleClick(index)} musicPlaying={album.playing} key={album.id} />
             })}
@@ -52,6 +66,10 @@ const AlbumLink = ({ color='bg-gray-800', image='bg-logo', onClick, musicPlaying
             </button>
         </div>
     );
+}
+
+const AudioPlayer = ({ src, handleEnded }) => {
+    return(<audio src={src} autoPlay onEnded={handleEnded}/>);
 }
 
 export default Content;

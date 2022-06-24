@@ -10,7 +10,7 @@ app.use(express.json());
 
 //How do I get the files for my app? By giving express access to src or public?
 
-app.get('/seed', seed);
+app.post('/seed', seed);
 app.get('/albums/:id', getSong);
 
 const port = process.env.PORT || 4002;

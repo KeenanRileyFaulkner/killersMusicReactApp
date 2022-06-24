@@ -9,7 +9,7 @@ const albumNames = ['HOT FUSS', "SAM'S TOWN", 'SAWDUST', 'DAY & AGE',
 const links = ['SHOWTIME', 'MUSIC', 'VIDEOS', 'PHOTOS', 'MERCH'];
 
 const albumPlaylists = [
-    'https://www.youtube.com/watch?v=BfBT1D04SoE&list=OLAK5uy_naUhtkbYccwhdXg1aKdq2vJpdGzslI-Vc',
+    'https://www.youtube.com/watch?v=MQwu08Sc2vA&list=OLAK5uy_kmy3IV3JBPfdu49IeOMbd0RoQSQxa8lxY',
     'https://www.youtube.com/watch?v=GQzDG-tILbo&list=OLAK5uy_mexj509hYSyNuPQSyVi63aHkdQXb4dYnA',
     'https://www.youtube.com/watch?v=tVNGY1pInfI&list=OLAK5uy_k6WPK2eSfDf4FQ4av-AmjtD1NCN6FlGno',
     'https://www.youtube.com/watch?v=N5N3Jk0_lKg&list=OLAK5uy_n2INn4lb24RIJAx2lBKvpCda9-rf8RzU0',

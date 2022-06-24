@@ -24,6 +24,6 @@ module.exports = {
             const randomTrack = calcRandomTrackNum(dbRes[0]);
             res.status(200).send(dbRes[0][randomTrack].url);
         })
-            .catch(err => console.log(err));
+        .catch(err => console.log(err));
     }
 }
