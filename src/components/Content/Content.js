@@ -5,15 +5,16 @@ import { useState } from 'react';
 import albumsArr from './albums';
 
 const Content = ({ albums=albumsArr }) => {
-    const [albumState, setAlbumState] = useState(albums);
+    const [albumList, setAlbumList] = useState(albums);
+
 
     const handleClick = i => {
         let albumsCopy;
-        if (albumState[i].playing) {
-            albumsCopy = albumState.map((album, index) => {
+        if (albumList[i].playing) {
+            albumsCopy = albumList.map((album, index) => {
                 return({...album, playing: false });
         })} else {
-            albumsCopy = albumState.map((album, index) => {
+            albumsCopy = albumList.map((album, index) => {
                 if(index === i) {
                     return({ ...album, playing: true });
                 } else {
@@ -24,13 +25,13 @@ const Content = ({ albums=albumsArr }) => {
 
         // axios.get('someURL').then()
         
-        setAlbumState(albumsCopy);
+        setAlbumList(albumsCopy);
     }
 
     return (
         <div className='contentContainer'>  
-            {albumState.map((album, index) => {
-                return <AlbumLink color={`${album.color}`} image={`${album.image}`} onClick={() => handleClick(index)} musicPlaying={album.playing} />
+            {albumList.map((album, index) => {
+                return <AlbumLink color={`${album.color}`} image={`${album.image}`} onClick={() => handleClick(index)} musicPlaying={album.playing} key={album.id} />
             })}
         </div>
     );

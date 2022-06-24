@@ -82,7 +82,7 @@ const MenuDropdown = ({ header, selections, tagLinks }) => {
                 <ul className='menuItem'>
                     {expanded && selections &&
                         selections.map((selection, index) => 
-                            <MenuItem selection={selection} link={`${tagLinks[index]}`} />
+                            <MenuItem selection={selection} link={`${tagLinks[index]}`} key={selection} />
                         )
                     }
                 </ul>
