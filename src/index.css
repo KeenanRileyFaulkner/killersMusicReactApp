@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  /* overflow: hidden; */
-}
-
 @layer components {
   .page-container {
     @apply flex flex-col;

@@ -79,6 +79,8 @@ const generateAlbums = () => {
             case 5:
                 album.color = albumColors[5];
                 break;
+            
+            // no default
         }
     });
 
