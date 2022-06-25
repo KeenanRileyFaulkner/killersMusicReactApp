@@ -32,7 +32,7 @@ const NavBar = () => {
     return (
         <div className='main-bar'>
             <Menu />
-            <a href="https://thekillersmusic.com" rel="noopener noreferrer" target="_blank" className='text-white font-work-sans font-extrabold text-3xl justify-self-center m-auto hover:cursor-pointer hover:text-gray-200'>
+            <a href="https://thekillersmusic.com" rel="noopener noreferrer" target="_blank" className='nav-title'>
                 THE KILLERS
             </a>
         </div>
@@ -51,13 +51,13 @@ const Menu = () => {
           <button onClick={handleToggle} className='text-white'>
             {
               menuOpen ? 
-                (<AiOutlineClose size='30' className='text-white mx-4 my-auto justify-self-flexstart' />)
-                : (<HiOutlineMenu size='30' className='text-white hover:text-gray-200 mx-4 my-auto justify-self-flexstart'/>)
+                (<AiOutlineClose size='30' className='close-menu-btn' />)
+                : (<HiOutlineMenu size='30' className='hamburger-btn'/>)
             }
           </button>
           <ul className={`menuNav ${menuOpen ? "showMenu" : ""}`}>
               <MenuDropdown header='ALBUMS' selections={albumNames} tagLinks={albumPlaylists} />
-              <MenuDropdown header='LINKS' selections={links} tagLinks={webLinks} />
+              <MenuDropdown header='OFFICIAL LINKS' selections={links} tagLinks={webLinks} />
           </ul>
         </nav>
     );
@@ -101,7 +101,7 @@ const ChevronIcon = ({ expanded }) => {
 
 const MenuItem = ({ selection, link }) => (
     <div>
-        <a href={`${link}`}  rel="noopener noreferrer" target="_blank" className='text-white text-sm font-work-sans font-medium my-2 hover:cursor-pointer'>
+        <a href={`${link}`}  rel="noopener noreferrer" target="_blank" className='menu-item-link'>
             {selection}
         </a>
     </div>

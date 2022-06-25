@@ -14,6 +14,18 @@ body {
   .main-bar {
     @apply bg-black-static w-screen fixed h-16 flex flex-row items-center justify-between shadow-xl z-10;
   }
+
+  .nav-title {
+    @apply text-white font-work-sans font-extrabold text-3xl justify-self-center m-auto hover:cursor-pointer hover:text-gray-200;
+  }
+
+  .close-menu-btn {
+    @apply text-white mx-4 my-auto justify-self-start;
+  }
+
+  .hamburger-btn {
+    @apply text-white hover:text-gray-200 mx-4 my-auto justify-self-start;
+  }
   
   .menuNav {
       @apply absolute text-white w-[250px] h-screen mt-3.5 scale-x-0 bg-black-static opacity-80
@@ -26,6 +38,10 @@ body {
 
   .menuDropdown {
     @apply mt-2;
+  }
+
+  .menu-item-link {
+    @apply text-white text-sm font-work-sans font-medium my-2 hover:cursor-pointer;
   }
 
   .dropdown {
