@@ -52,7 +52,7 @@ body {
 
   .contentContainer {
     @apply min-h-screen bg-pm-band-photo bg-cover bg-no-repeat bg-[center_64px] bg-fixed
-     flex flex-row justify-center items-center flex-wrap pt-20 overflow-auto;
+     flex flex-row justify-center items-center flex-wrap pt-20 overflow-auto px-3;
   }
 
   .albumLink {
