@@ -27,14 +27,14 @@ const webLinks = [
     'https://thekillers.lnk.to/PMStore'
 ]
 
-const NavBar = () => {
+const NavBar = ({ handleTitleClick }) => {
     
     return (
         <div className='main-bar'>
             <Menu />
-            <a href="https://thekillersmusic.com" rel="noopener noreferrer" target="_blank" className='nav-title'>
+            <div className='nav-title' onClick={() => handleTitleClick()}>
                 THE KILLERS
-            </a>
+            </div>
         </div>
     );
 };

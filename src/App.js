@@ -23,7 +23,7 @@ function App() {
   } else if (currPage.about) {
     display = 
       <div className='page-container'>
-        <NavBar />
+        <NavBar handleTitleClick={setPageToPlayerScreen} />
       </div>;
   }
 
