@@ -6,7 +6,7 @@ import albumsArr from './albums';
 import axios from 'axios';
 
 
-const PlayerContent = ({ albums=albumsArr, bgPhoto }) => {
+const PlayerContent = ({ albums=albumsArr }) => {
     const [albumList, setAlbumList] = useState(albums);
     const [audioControls, setAudioControls] = useState({src: ''});
 
@@ -42,7 +42,7 @@ const PlayerContent = ({ albums=albumsArr, bgPhoto }) => {
     }
 
     return (
-        <div className={`contentContainer ${bgPhoto}`}>
+        <div className='contentContainer bg-pm-band-photo'>
             <AudioPlayer src={audioControls.src} handleEnded={() => stopAllPlaying()}/>
             {albumList.map((album, index) => {
                 return <AlbumLink color={`${album.color}`} image={`${album.image}`} onClick={() => handleClick(index)} musicPlaying={album.playing} key={album.id} />

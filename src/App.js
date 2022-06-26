@@ -18,7 +18,7 @@ function App() {
     display = 
       <div className='page-container'>
         <NavBar />
-        <PlayerContent bgPhoto='bg-pm-band-photo' /> 
+        <PlayerContent /> 
       </div>
   } else if (currPage.about) {
     display = 
