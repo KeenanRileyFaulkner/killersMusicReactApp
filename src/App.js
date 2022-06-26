@@ -8,7 +8,7 @@ function App() {
   return (
     <div className='page-container'>
       <NavBar />
-      <PlayerContent />
+      <PlayerContent bgPhoto='bg-pm-band-photo' />
     </div>
   );
 }
