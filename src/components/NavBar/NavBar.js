@@ -57,7 +57,7 @@ const Menu = () => {
           </button>
           <ul className={`menuNav ${menuOpen ? "showMenu" : ""}`}>
               <MenuDropdown header='ALBUMS' selections={albumNames} tagLinks={albumPlaylists} />
-              <MenuDropdown header='OFFICIAL LINKS' selections={links} tagLinks={webLinks} />
+              <MenuDropdown header='BAND LINKS' selections={links} tagLinks={webLinks} />
           </ul>
         </nav>
     );

@@ -63,7 +63,7 @@
   }
 
   .contentContainer {
-    @apply min-h-screen bg-cover bg-no-repeat bg-[center_64px] bg-fixed
+    @apply min-h-screen bg-cover bg-no-repeat bg-fixed
      flex flex-row justify-center items-center flex-wrap pt-20 overflow-auto px-3;
   }
 
@@ -73,5 +73,9 @@
 
   .audio-icon {
     @apply text-white opacity-70
+  }
+
+  .about-band-btn {
+    @apply w-[260px] h-[64px] bg-cover bg-black border-4 border-black p-2 hover:cursor-pointer self-start m-10;
   }
 }

@@ -1,5 +1,6 @@
 import NavBar from './components/NavBar/NavBar';
 import PlayerContent from './components/PlayerContent/PlayerContent';
+import AboutContent from './components/AboutContent/AboutContent';
 import { useState } from 'react';
 
 function App() {
@@ -17,13 +18,14 @@ function App() {
   if (currPage.player) {
     display = 
       <div className='page-container'>
-        <NavBar />
+        <NavBar handleTitleClick={setPageToPlayerScreen} />
         <PlayerContent /> 
       </div>
   } else if (currPage.about) {
     display = 
       <div className='page-container'>
         <NavBar handleTitleClick={setPageToPlayerScreen} />
+        <AboutContent />
       </div>;
   }
 

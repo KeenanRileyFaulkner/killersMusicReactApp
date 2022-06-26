@@ -22,6 +22,9 @@ module.exports = {
         'itm': "url('/src/images/ITM Album Photo.png')",
         'pm': "url('/src/images/PM Album Photo.png')",
         'logo': "url('/src/images/killersLogo.png')",
+        'full-band-photo': "url('/src/images/fullBandTransparent.png')",
+        'unlit-logo': "url('/src/images/bandNameWhite.png')",
+        'lit-logo': "url('/src/images/bandNameLight.png')",
       },
 
       colors: {
