@@ -3,7 +3,7 @@ import PlayerContent from './components/PlayerContent/PlayerContent';
 import { useState } from 'react';
 
 function App() {
-  const [currPage, setCurrPage] = useState({ player: true, about: false })
+  const [currPage, setCurrPage] = useState({ player: false, about: true })
 
   let display;
   if (currPage.player) {
@@ -13,7 +13,10 @@ function App() {
         <PlayerContent bgPhoto='bg-pm-band-photo' /> 
       </div>
   } else if (currPage.about) {
-    display = '';
+    display = 
+      <div className='page-container'>
+        <NavBar />
+      </div>;
   }
 
   return (
