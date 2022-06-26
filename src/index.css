@@ -76,6 +76,6 @@
   }
 
   .about-band-btn {
-    @apply w-[260px] h-[64px] bg-cover bg-black border-4 border-black p-2 hover:cursor-pointer self-start m-10;
+    @apply w-[260px] h-[64px] bg-cover bg-black border-4 border-black rounded p-2 hover:cursor-pointer self-start m-10;
   }
 }
