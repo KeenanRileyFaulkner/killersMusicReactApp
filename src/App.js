@@ -5,6 +5,14 @@ import { useState } from 'react';
 function App() {
   const [currPage, setCurrPage] = useState({ player: false, about: true })
 
+  const setPageToAboutScreen = () => {
+    setCurrPage({ player: false, about: true });
+  }
+
+  const setPageToPlayerScreen = () => {
+    setCurrPage({ player: true, about: false });
+  }
+
   let display;
   if (currPage.player) {
     display = 
