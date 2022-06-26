@@ -6,7 +6,7 @@ import albumsArr from './albums';
 import axios from 'axios';
 
 
-const Content = ({ albums=albumsArr }) => {
+const PlayerContent = ({ albums=albumsArr }) => {
     const [albumList, setAlbumList] = useState(albums);
     const [audioControls, setAudioControls] = useState({src: ''});
 
@@ -26,7 +26,7 @@ const Content = ({ albums=albumsArr }) => {
                 }
             });
 
-            axios.get(`http://localhost:4005/albums/${i}`).then((res) => {
+            axios.get(`http://localhost:4002/albums/${i}`).then((res) => {
                 setAudioControls({src: res.data});
             }).catch(err => console.log(err));
         }
@@ -72,4 +72,4 @@ const AudioPlayer = ({ src, handleEnded }) => {
     return(<audio src={src} autoPlay onEnded={handleEnded}/>);
 }
 
-export default Content;
+export default PlayerContent;
