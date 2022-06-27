@@ -108,7 +108,7 @@ const DescriptionBox = ({ currSelection }) => {
     let borderColor;
     if(currSelection.band) {
         text = bandDescription.toUpperCase();
-        borderColor = 'border-white';
+        borderColor = 'border-[#262626]';
     } else if (currSelection.brandon) {
         text = brandonDescription.toUpperCase();
         borderColor = 'border-[#d8b666]';

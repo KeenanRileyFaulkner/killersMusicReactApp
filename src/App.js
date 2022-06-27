@@ -18,7 +18,7 @@ function App() {
   if (currPage.player) {
     display = 
       <div className='page-container'>
-        <NavBar handleTitleClick={setPageToPlayerScreen} />
+        <NavBar handleTitleClick={setPageToAboutScreen} />
         <PlayerContent /> 
       </div>
   } else if (currPage.about) {
