@@ -54,7 +54,7 @@ const BandLogo = ({ selected, handleClick }) => {
     }
 
     return (
-        <div onClick={() => handleClick()} className={`${logo} about-band-btn self-center justify-center`} />
+        <div onClick={() => handleClick()} className={`${logo} about-band-btn self-center justify-center hover:opacity-90`} />
     )
 }
 
