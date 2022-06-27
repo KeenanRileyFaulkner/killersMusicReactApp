@@ -19,7 +19,7 @@ function App() {
     setCurrPage({ player: false, about: false, covers: true });
   }
 
-  const updatePageArr = [setPageToCoversScreen, setPageToAboutScreen, setPageToPlayerScreen]; //preserve order for nav links to work
+  const updatePageArr = [setPageToPlayerScreen, setPageToCoversScreen, setPageToAboutScreen]; //preserve order for nav links to work
 
   let display;
   if (currPage.player) {
@@ -31,13 +31,13 @@ function App() {
   } else if (currPage.about) {
     display = 
       <div className='page-container'>
-        <NavBar handleTitleClick={setPageToPlayerScreen} />
+        <NavBar handleTitleClick={setPageToPlayerScreen} pageNavFuncs={updatePageArr} />
         <AboutContent />
       </div>;
   } else if (currPage.covers) {
     display =
       <div>
-        <NavBar handleTitleClick={setPageToAboutScreen} />
+        <NavBar handleTitleClick={setPageToAboutScreen} pageNavFuncs={updatePageArr} />
         <CoversContent />
       </div>
   }

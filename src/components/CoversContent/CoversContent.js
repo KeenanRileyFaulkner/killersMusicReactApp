@@ -31,7 +31,7 @@ const CoversContent = ({ covers=coversArr }) => {
                 }
             });
 
-            axios.get(`http://localhost:4002/covers/${i + 1}`).then((res) => {
+            axios.get(`http://localhost:4002/covers/${i + 1}`).then((res) => { //i + 1 because each cover is stored in db using SERIAL PRIMARY KEY (1 based index)
                 setAudioControls({src: res.data});
             }).catch(err => console.log(err));
         }
