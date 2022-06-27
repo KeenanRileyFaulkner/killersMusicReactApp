@@ -64,7 +64,11 @@
 
   .contentContainer {
     @apply min-h-screen bg-cover bg-no-repeat bg-fixed
-     flex flex-row justify-center items-center flex-wrap pt-20 overflow-auto px-3;
+     flex flex-row flex-wrap pt-[100px] overflow-auto px-3;
+  }
+
+  .centerItems {
+    @apply justify-center items-center;
   }
 
   .albumLink {
@@ -76,6 +80,6 @@
   }
 
   .about-band-btn {
-    @apply w-[260px] h-[64px] bg-cover bg-black border-4 border-black rounded p-2 hover:cursor-pointer self-start m-10;
+    @apply w-[325px] h-[86px] bg-cover bg-black border-8 border-black rounded p-2 hover:cursor-pointer self-start my-6;
   }
 }

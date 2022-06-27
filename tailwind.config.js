@@ -1,6 +1,5 @@
 module.exports = {
   mode: 'jit',
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
@@ -25,6 +24,14 @@ module.exports = {
         'full-band-photo': "url('/src/images/fullBandTransparent.png')",
         'unlit-logo': "url('/src/images/bandNameWhite.png')",
         'lit-logo': "url('/src/images/bandNameLight.png')",
+        'brandon-color': "url('/src/images/brandonColor.png')",
+        'brandon-bw': "url('/src/images/brandonBW.png')",
+        'dave-color': "url('/src/images/daveColor.png')",
+        'dave-bw': "url('/src/images/daveBW.png')",
+        'mark-color': "url('/src/images/markColor.png')",
+        'mark-bw': "url('/src/images/markBW.png')",
+        'ronnie-color': "url('/src/images/ronnieColor.png')",
+        'ronnie-bw': "url('/src/images/ronnieBW.png')",
       },
 
       colors: {
