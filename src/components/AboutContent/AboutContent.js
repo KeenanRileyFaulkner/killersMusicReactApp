@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { bandDescription, daveDescription, brandonDescription, markDescription, ronnieDescription } from './bios';
 
 const AboutContent = () => {
     const initialState = {band: true, brandon: false, ronnie: false, dave: false, mark: false}
@@ -40,6 +41,8 @@ const AboutContent = () => {
                 selectRonnie={selectRonnie} selectMark={selectMark} selectDave={selectDave} />
 
             <BandLogo selected={displayedInfo.band} handleClick={selectBandInfo} />
+
+            <DescriptionBox currSelection={displayedInfo} />
         </div>
     );
 }
@@ -61,10 +64,10 @@ const BandLogo = ({ selected, handleClick }) => {
 const FullBand = ({ selectedState, selectBrandon, selectRonnie, selectMark, selectDave}) => {
     return (
         <div className='flex flew-row justify-center items-center p-2 flex-wrap'>
-            <BandMember name='brandon' selected={selectedState.brandon} handleSelect={selectBrandon} key='brandon'/>
-            <BandMember name='ronnie' selected={selectedState.ronnie} handleSelect={selectRonnie} key='ronnie' />
-            <BandMember name='mark' selected={selectedState.mark} handleSelect={selectMark} key='mark' />
             <BandMember name='dave' selected={selectedState.dave} handleSelect={selectDave} key='dave' />
+            <BandMember name='brandon' selected={selectedState.brandon} handleSelect={selectBrandon} key='brandon'/>
+            <BandMember name='mark' selected={selectedState.mark} handleSelect={selectMark} key='mark' />
+            <BandMember name='ronnie' selected={selectedState.ronnie} handleSelect={selectRonnie} key='ronnie' />
         </div>
     );
 }
@@ -94,10 +97,37 @@ const BandMember = ({ name, selected, handleSelect }) => {
     }
 
     return selected ? (
-        <div className={`${colorPhoto} w-[150px] h-[150px] bg-cover hover:opacity-90 hover:cursor-pointer ml-4 mt-4`} onClick={() => handleSelect()} />
+        <div className={`${colorPhoto} band-member`} onClick={() => handleSelect()} />
     ) : (
-        <div className={`${bwPhoto} w-[150px] h-[150px] bg-cover hover:opacity-90 hover:cursor-pointer ml-4 mt-4`} onClick={() => handleSelect()} />
+        <div className={`${bwPhoto} band-member`} onClick={() => handleSelect()} />
     );
+}
+
+const DescriptionBox = ({ currSelection }) => {
+    let text;
+    let borderColor;
+    if(currSelection.band) {
+        text = bandDescription.toUpperCase();
+        borderColor = 'border-white';
+    } else if (currSelection.brandon) {
+        text = brandonDescription.toUpperCase();
+        borderColor = 'border-[#d8b666]';
+    } else if (currSelection.dave) {
+        text = daveDescription.toUpperCase();
+        borderColor = 'border-[#9f5c0c]';
+    } else if (currSelection.mark) {
+        text = markDescription.toUpperCase();
+        borderColor = 'border-[#538b90]';
+    } else if (currSelection.ronnie) {
+        text = ronnieDescription.toUpperCase();
+        borderColor = 'border-[#382417]';
+    }
+
+    return(
+        <div className={`${borderColor} description-box`}>
+                {text}
+        </div>
+    )
 }
 
 export default AboutContent;
