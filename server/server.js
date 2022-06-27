@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { getSong } = require('./controller');
+const { getSong, getCover } = require('./controller');
 const { seed } = require('./seed');
 
 const app = express();
@@ -13,6 +13,7 @@ app.use(express.static(path.join(__dirname, '../build')));
 
 app.post('/seed', seed);
 app.get('/albums/:id', getSong);
+app.get('/covers/:id', getCover);
 
 const port = process.env.PORT || 4002;
 app.listen(port, () => {

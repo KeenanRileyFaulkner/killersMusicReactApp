@@ -25,5 +25,16 @@ module.exports = {
             res.status(200).send(dbRes[0][randomTrack].url);
         })
         .catch(err => console.log(err));
+    },
+
+    getCover: (req, res) => {
+        const { id } = req.params;
+        sequelize.query(`
+            SELECT url FROM covers
+            WHERE ${id} = cover_id`)
+        .then(dbRes => {
+            res.status(200).send(dbRes[0][0].url);
+        })
+        .catch(err => console.log(err));
     }
 }

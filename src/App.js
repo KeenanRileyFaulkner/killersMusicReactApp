@@ -1,24 +1,31 @@
 import NavBar from './components/NavBar/NavBar';
 import PlayerContent from './components/PlayerContent/PlayerContent';
 import AboutContent from './components/AboutContent/AboutContent';
+import CoversContent from './components/CoversContent/CoversContent';
 import { useState } from 'react';
 
 function App() {
-  const [currPage, setCurrPage] = useState({ player: false, about: true })
+  const [currPage, setCurrPage] = useState({ player: false, about: false, covers: true, })
 
   const setPageToAboutScreen = () => {
-    setCurrPage({ player: false, about: true });
+    setCurrPage({ player: false, about: true, covers: false });
   }
 
   const setPageToPlayerScreen = () => {
-    setCurrPage({ player: true, about: false });
+    setCurrPage({ player: true, about: false, covers: false });
   }
+
+  const setPageToCoversScreen = () => {
+    setCurrPage({ player: false, about: false, covers: true });
+  }
+
+  const updatePageArr = [setPageToCoversScreen, setPageToAboutScreen, setPageToPlayerScreen]; //preserve order for nav links to work
 
   let display;
   if (currPage.player) {
     display = 
       <div className='page-container'>
-        <NavBar handleTitleClick={setPageToAboutScreen} />
+        <NavBar handleTitleClick={setPageToCoversScreen} pageNavFuncs={updatePageArr} />
         <PlayerContent /> 
       </div>
   } else if (currPage.about) {
@@ -27,6 +34,12 @@ function App() {
         <NavBar handleTitleClick={setPageToPlayerScreen} />
         <AboutContent />
       </div>;
+  } else if (currPage.covers) {
+    display =
+      <div>
+        <NavBar handleTitleClick={setPageToAboutScreen} />
+        <CoversContent />
+      </div>
   }
 
   return (

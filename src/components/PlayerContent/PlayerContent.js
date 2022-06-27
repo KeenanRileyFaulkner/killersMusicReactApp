@@ -43,7 +43,7 @@ const PlayerContent = ({ albums=albumsArr }) => {
 
     return (
         <div className='contentContainer bg-pm-band-photo bg-[center_64px] centerItems'>
-            <AudioPlayer src={audioControls.src} handleEnded={() => stopAllPlaying()}/>
+            <AudioPlayer src={audioControls.src} handleEnded={() => stopAllPlaying()} />
             {albumList.map((album, index) => {
                 return <AlbumLink color={`${album.color}`} image={`${album.image}`} onClick={() => handleClick(index)} musicPlaying={album.playing} key={album.id} />
             })}

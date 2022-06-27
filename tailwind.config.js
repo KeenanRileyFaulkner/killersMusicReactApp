@@ -32,6 +32,9 @@ module.exports = {
         'mark-bw': "url('/src/images/markBW.png')",
         'ronnie-color': "url('/src/images/ronnieColor.png')",
         'ronnie-bw': "url('/src/images/ronnieBW.png')",
+        'itm-band-photo': "url('/src/images/ITM-band-photo-alternate.webp')",
+        'spiral-soundwave': "url('/src/images/spiralSoundWave.png')",
+        'green-soundwave': "url('/src/images/greenSoundWave.png')",
       },
 
       colors: {

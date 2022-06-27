@@ -14,13 +14,24 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
 module.exports = {
     seed: (req, res) => {
         sequelize.query(`
-            DROP TABLE IF EXISTS audios;
+            DROP TABLE IF EXISTS audios, covers;
             
             CREATE TABLE audios (
                 song_id SERIAL PRIMARY KEY,
                 url VARCHAR(256),
                 album_id INT
             );
+
+            CREATE TABLE covers (
+                cover_id SERIAL PRIMARY KEY,
+                url VARCHAR(256),
+                cover_name VARCHAR(100)
+            );
+
+            INSERT INTO covers (url, cover_name)
+            VALUES
+            ('https://docs.google.com/uc?export=download&id=1qMiYoBfDs3lj2DzYTUxAY4iKnZY5KG1V', 'Mr. Brightside'),
+            ('https://docs.google.com/uc?export=download&id=1XuRnVmkPuHycbNJ4Imd6zARFomBkQ4mY', 'All These Things That Ive Done');
             
             INSERT INTO audios (url, album_id)
             VALUES 

@@ -27,11 +27,13 @@ const webLinks = [
     'https://thekillers.lnk.to/PMStore'
 ]
 
-const NavBar = ({ handleTitleClick }) => {
-    
+const pages = ['MUSIC PLAYER', 'COVERS', 'ABOUT THE BAND'];
+
+const NavBar = ({ handleTitleClick, pageNavFuncs }) => {
+    console.log(pageNavFuncs);
     return (
         <div className='main-bar'>
-            <Menu />
+            <Menu funcArr={pageNavFuncs} />
             <div className='nav-title' onClick={() => handleTitleClick()}>
                 THE KILLERS
             </div>
@@ -39,7 +41,7 @@ const NavBar = ({ handleTitleClick }) => {
     );
 };
 
-const Menu = () => {
+const Menu = ({ funcArr }) => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const handleToggle = () => {
@@ -56,6 +58,7 @@ const Menu = () => {
             }
           </button>
           <ul className={`menuNav ${menuOpen ? "showMenu" : ""}`}>
+              <InternalMenuDropdown header='PAGE LINKS' selections={pages} updateFunctionsArr={funcArr} />
               <MenuDropdown header='ALBUMS' selections={albumNames} tagLinks={albumPlaylists} />
               <MenuDropdown header='BAND' selections={links} tagLinks={webLinks} />
           </ul>
@@ -91,6 +94,34 @@ const MenuDropdown = ({ header, selections, tagLinks }) => {
     );
 };
 
+const InternalMenuDropdown = ({ header, selections, updateFunctionsArr }) => {
+    const [expanded, setExpanded] = useState(false);
+
+    return (
+        <li className='menuDropdown'>
+            <div className='dropdown' onClick={() => setExpanded(!expanded)}>
+                <div className='dropdownHeader'>
+                    <div className='additionalChevronStyles'>
+                        <ChevronIcon expanded={expanded} />
+                    </div>
+                    <h5 className='ml-2 hover:cursor-default'>
+                        {header}
+                    </h5>
+                </div>
+                
+                
+                <ul className='menuItem'>
+                    {expanded && selections &&
+                        selections.map((selection, index) => {
+                            return <InternalMenuItem selection={selection} updateFunction={updateFunctionsArr[index]} key={selection} />
+                        })
+                    }
+                </ul>
+            </div>
+        </li>
+    );
+}
+
 const ChevronIcon = ({ expanded }) => {
     return expanded ? (
         <FaChevronDown size='14' className='chevClass hover:cursor-pointer' />
@@ -104,6 +135,12 @@ const MenuItem = ({ selection, link }) => (
         <a href={`${link}`}  rel="noopener noreferrer" target="_blank" className='menu-item-link'>
             {selection}
         </a>
+    </div>
+);
+
+const InternalMenuItem = ({ selection, updateFunction }) => (
+    <div onClick={() => updateFunction()} className='menu-item-link'>
+        {selection}
     </div>
 );
 

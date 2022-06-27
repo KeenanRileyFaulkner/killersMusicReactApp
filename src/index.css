@@ -76,7 +76,7 @@
   }
 
   .audio-icon {
-    @apply text-white opacity-70
+    @apply text-white opacity-70 hover:opacity-90;
   }
 
   .band-member {
