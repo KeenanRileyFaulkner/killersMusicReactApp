@@ -58,9 +58,10 @@ const Menu = ({ funcArr }) => {
             }
           </button>
           <ul className={`menuNav ${menuOpen ? "showMenu" : ""}`}>
-              <InternalMenuDropdown header='PAGE LINKS' selections={pages} updateFunctionsArr={funcArr} />
-              <MenuDropdown header='ALBUMS' selections={albumNames} tagLinks={albumPlaylists} />
-              <MenuDropdown header='BAND' selections={links} tagLinks={webLinks} />
+            <InternalMenuDropdown header='PAGE LINKS' selections={pages} updateFunctionsArr={funcArr} />
+            <MenuDropdown header='ALBUMS' selections={albumNames} tagLinks={albumPlaylists} />
+            <MenuDropdown header='BAND' selections={links} tagLinks={webLinks} />
+            <AdminAccess />
           </ul>
         </nav>
     );
@@ -69,12 +70,16 @@ const Menu = ({ funcArr }) => {
 const MenuDropdown = ({ header, selections, tagLinks }) => {
     const [expanded, setExpanded] = useState(false);
 
+    const toggleExpanded = () => {
+        setExpanded(!expanded);
+    }
+
     return (
         <li className='menuDropdown'>
-            <div className='dropdown' onClick={() => setExpanded(!expanded)}>
+            <div className='dropdown'>
                 <div className='dropdownHeader'>
                     <div className='additionalChevronStyles'>
-                        <ChevronIcon expanded={expanded} />
+                        <ChevronIcon expanded={expanded} handleClick={toggleExpanded} />
                     </div>
                     <h5 className='ml-2 hover:cursor-default'>
                         {header}
@@ -97,12 +102,16 @@ const MenuDropdown = ({ header, selections, tagLinks }) => {
 const InternalMenuDropdown = ({ header, selections, updateFunctionsArr }) => {
     const [expanded, setExpanded] = useState(true);
 
+    const toggleExpanded = () => {
+        setExpanded(!expanded);
+    }
+
     return (
         <li className='menuDropdown'>
-            <div className='dropdown' onClick={() => setExpanded(!expanded)}>
+            <div className='dropdown'>
                 <div className='dropdownHeader'>
                     <div className='additionalChevronStyles'>
-                        <ChevronIcon expanded={expanded} />
+                        <ChevronIcon expanded={expanded} handleClick={toggleExpanded} />
                     </div>
                     <h5 className='ml-2 hover:cursor-default'>
                         {header}
@@ -122,11 +131,19 @@ const InternalMenuDropdown = ({ header, selections, updateFunctionsArr }) => {
     );
 }
 
-const ChevronIcon = ({ expanded }) => {
+const AdminAccess = () => {
+    return (
+        <li className='fixed mr-[15px] ml-[78%] mt-[338%] text-right font-work-sans font-medium text-xs hover:cursor-pointer hover:text-blue-300'> 
+            ADMIN
+        </li>
+    );
+}
+
+const ChevronIcon = ({ expanded, handleClick }) => {
     return expanded ? (
-        <FaChevronDown size='14' className='chevClass hover:cursor-pointer' />
+        <FaChevronDown size='14' className='chevClass hover:cursor-pointer' onClick={() => handleClick()} />
     ) : (
-        <FaChevronRight size='14' className='chevClass hover:cursor-pointer' />
+        <FaChevronRight size='14' className='chevClass hover:cursor-pointer' onClick={() => handleClick()} />
     );
 };
 

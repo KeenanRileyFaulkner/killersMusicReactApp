@@ -28,7 +28,7 @@
   }
   
   .menuNav {
-      @apply absolute text-white w-[250px] h-screen mt-3.5 scale-x-0 bg-black-static opacity-80
+      @apply absolute text-white w-[250px] flex flex-col h-screen mt-3.5 scale-x-0 bg-black-static opacity-80
        transition-all duration-75 origin-top-left;
   }
 
