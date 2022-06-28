@@ -23,26 +23,26 @@ function App() {
   const setPageToAdminLoginScreen = () => {
     setCurrPage({...voidState, adminLogin: true});
   }
-  
+
   const updatePageArr = [setPageToPlayerScreen, setPageToCoversScreen, setPageToAboutScreen]; //preserve order for nav links to work
 
   let display;
   if (currPage.player) {
     display = 
       <div className='page-container'>
-        <NavBar handleTitleClick={setPageToCoversScreen} pageNavFuncs={updatePageArr} />
+        <NavBar handleTitleClick={setPageToCoversScreen} pageNavFuncs={updatePageArr} adminLogin={setPageToAdminLoginScreen} />
         <PlayerContent /> 
       </div>
   } else if (currPage.about) {
     display = 
       <div className='page-container'>
-        <NavBar handleTitleClick={setPageToPlayerScreen} pageNavFuncs={updatePageArr} />
+        <NavBar handleTitleClick={setPageToPlayerScreen} pageNavFuncs={updatePageArr} adminLogin={setPageToAdminLoginScreen}/>
         <AboutContent />
       </div>;
   } else if (currPage.covers) {
     display =
       <div>
-        <NavBar handleTitleClick={setPageToAboutScreen} pageNavFuncs={updatePageArr} />
+        <NavBar handleTitleClick={setPageToAboutScreen} pageNavFuncs={updatePageArr} adminLogin={setPageToAdminLoginScreen}/>
         <CoversContent />
       </div>
   }

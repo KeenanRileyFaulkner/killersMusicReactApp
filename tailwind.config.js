@@ -21,7 +21,7 @@ module.exports = {
         'itm': "url('/src/images/ITM Album Photo.png')",
         'pm': "url('/src/images/PM Album Photo.png')",
         'logo': "url('/src/images/killersLogo.png')",
-        'full-band-photo': "url('/src/images/fullBandTransparent.png')",
+        'full-band-photo': "url('/src/images/full-band-color.jpg')",
         'unlit-logo': "url('/src/images/bandNameWhite.png')",
         'lit-logo': "url('/src/images/bandNameLight.png')",
         'brandon-color': "url('/src/images/brandonColor.png')",
@@ -35,6 +35,10 @@ module.exports = {
         'itm-band-photo': "url('/src/images/ITM-band-photo-alternate.webp')",
         'spiral-soundwave': "url('/src/images/spiralSoundWave.png')",
         'green-soundwave': "url('/src/images/greenSoundWave.png')",
+        'dave-full-band-color': "url('/src/images/Dave-full-band-color.png')",
+        'brandon-full-band-color': "url('/src/images/Brandon-full-band-color.png')",
+        'mark-full-band-color': "url('/src/images/Mark-full-band-color.png')",
+        'ronnie-full-band-color': "url('/src/images/Ronnie-full-band-color.png')",
       },
 
       colors: {

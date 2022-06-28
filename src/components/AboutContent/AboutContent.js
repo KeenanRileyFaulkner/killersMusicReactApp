@@ -35,8 +35,22 @@ const AboutContent = () => {
         }
     }
 
+    let backgroundPhoto;
+    if(displayedInfo.dave) {
+        backgroundPhoto = 'bg-dave-full-band-color';
+    } else if (displayedInfo.brandon) {
+        backgroundPhoto = 'bg-brandon-full-band-color';
+    } else if (displayedInfo.mark) {
+        backgroundPhoto = 'bg-mark-full-band-color';
+    } else if (displayedInfo.ronnie) {
+        backgroundPhoto = 'bg-ronnie-full-band-color';
+    } else {
+        backgroundPhoto = 'bg-full-band-photo';
+    }
+
+
     return (
-        <div className="contentContainer bg-full-band-photo bg-[center_24px] flex-col">
+        <div className={`contentContainer ${backgroundPhoto} bg-[center_24px] flex-col`}>
             <FullBand selectedState={displayedInfo} selectBrandon={selectBrandon} 
                 selectRonnie={selectRonnie} selectMark={selectMark} selectDave={selectDave} />
 
