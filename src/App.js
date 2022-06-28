@@ -5,7 +5,7 @@ import CoversContent from './components/CoversContent/CoversContent';
 import { useState } from 'react';
 
 function App() {
-  const [currPage, setCurrPage] = useState({ player: false, about: false, covers: true, })
+  const [currPage, setCurrPage] = useState({ player: false, about: true, covers: false, })
 
   const setPageToAboutScreen = () => {
     setCurrPage({ player: false, about: true, covers: false });

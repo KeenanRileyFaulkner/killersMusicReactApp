@@ -1,5 +1,5 @@
 const generateCovers = () => {
-    const coverColors = ['bg-vegas-yellow', 'bg-steel-blue', 'bg-mocha-brown', 'bg-bb-black', 'bg-pearly-white', 'bg-amber-wave'];
+    const coverColors = [ 'bg-steel-blue', 'bg-vegas-yellow', 'bg-mocha-brown', 'bg-bb-black', 'bg-pearly-white', 'bg-amber-wave'];
     const covers = [
         {
             name: 'Mr. Brightside',
