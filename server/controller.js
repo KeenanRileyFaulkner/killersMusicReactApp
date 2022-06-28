@@ -36,5 +36,15 @@ module.exports = {
             res.status(200).send(dbRes[0][0].url);
         })
         .catch(err => console.log(err));
+    },
+
+    incrPlays: (req, res) => {
+        const { id } = req.params;
+        sequelize.query(`
+            UPDATE covers
+            SET total_plays = total_plays + 1
+            WHERE ${id} = cover_id`)
+        .then(res.status(200).send('Thanks for listening!'))
+        .catch(err => console.log(err));
     }
 }

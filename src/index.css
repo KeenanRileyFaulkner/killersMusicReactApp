@@ -12,7 +12,11 @@
   }
 
   .nav-title {
-    @apply text-white font-work-sans font-extrabold text-3xl justify-self-center m-auto hover:cursor-pointer hover:text-gray-200;
+    @apply text-white font-work-sans font-extrabold text-3xl justify-self-center mx-auto relative hover:cursor-pointer hover:text-gray-200;
+  }
+
+  .invisible-menu-align {
+    @apply w-[64px];
   }
 
   .close-menu-btn {
@@ -92,6 +96,6 @@
   }
 
   .cover-name {
-    @apply mx-5 mt-3 p-2 text-center font-work-sans font-extrabold text-white bg-black-static bg-cover border-[4px]  rounded-lg;
+    @apply mx-5 mt-3 p-2 text-center font-work-sans font-extrabold text-white bg-black-static bg-cover border-[4px] rounded-lg;
   }
 }

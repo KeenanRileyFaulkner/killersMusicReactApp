@@ -26,7 +26,7 @@ const PlayerContent = ({ albums=albumsArr }) => {
                 }
             });
 
-            axios.get(`http://localhost:4002/albums/${i}`).then((res) => {
+            axios.get(`/albums/${i}`).then((res) => {
                 setAudioControls({src: res.data});
             }).catch(err => console.log(err));
         }

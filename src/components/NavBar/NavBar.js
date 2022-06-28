@@ -30,13 +30,13 @@ const webLinks = [
 const pages = ['MUSIC PLAYER', 'COVERS', 'ABOUT THE BAND'];
 
 const NavBar = ({ handleTitleClick, pageNavFuncs }) => {
-    console.log(pageNavFuncs);
     return (
         <div className='main-bar'>
             <Menu funcArr={pageNavFuncs} />
             <div className='nav-title' onClick={() => handleTitleClick()}>
                 THE KILLERS
             </div>
+            <div className='invisible-menu-align'></div>
         </div>
     );
 };
