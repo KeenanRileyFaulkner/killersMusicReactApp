@@ -90,4 +90,8 @@
   .description-box {
     @apply w-[50%] bg-black-static min-w-[310px] font-work-sans font-extrabold border-[8px] text-xl rounded-3xl text-white p-4 self-center text-center mb-10;
   }
+
+  .cover-name {
+    @apply mx-5 mt-3 p-2 text-center font-work-sans font-extrabold text-white bg-black-static bg-cover border-[4px]  rounded-lg;
+  }
 }
