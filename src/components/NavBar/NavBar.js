@@ -95,7 +95,7 @@ const MenuDropdown = ({ header, selections, tagLinks }) => {
 };
 
 const InternalMenuDropdown = ({ header, selections, updateFunctionsArr }) => {
-    const [expanded, setExpanded] = useState(false);
+    const [expanded, setExpanded] = useState(true);
 
     return (
         <li className='menuDropdown'>
