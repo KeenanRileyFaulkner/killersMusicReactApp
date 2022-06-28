@@ -36,14 +36,19 @@ function App() {
   } else if (currPage.about) {
     display = 
       <div className='page-container'>
-        <NavBar handleTitleClick={setPageToPlayerScreen} pageNavFuncs={updatePageArr} adminLogin={setPageToAdminLoginScreen}/>
+        <NavBar handleTitleClick={setPageToPlayerScreen} pageNavFuncs={updatePageArr} adminLogin={setPageToAdminLoginScreen} />
         <AboutContent />
       </div>;
   } else if (currPage.covers) {
     display =
       <div>
-        <NavBar handleTitleClick={setPageToAboutScreen} pageNavFuncs={updatePageArr} adminLogin={setPageToAdminLoginScreen}/>
+        <NavBar handleTitleClick={setPageToAboutScreen} pageNavFuncs={updatePageArr} adminLogin={setPageToAdminLoginScreen} />
         <CoversContent />
+      </div>
+  } else if (currPage.adminLogin) {
+    display = 
+      <div>
+        <NavBar handleTitleClick={setPageToAboutScreen} pageNavFuncs={updatePageArr} adminLogin={setPageToAdminLoginScreen} />
       </div>
   }
 

@@ -66,6 +66,10 @@
     ml-[33px];
   }
 
+  .admin-login-btn {
+    @apply fixed mr-[15px] ml-[78%] mt-[338%] text-right font-work-sans font-medium text-xs hover:cursor-pointer hover:text-blue-300;
+  }
+
   .contentContainer {
     @apply min-h-screen bg-cover bg-no-repeat bg-fixed
      flex flex-row flex-wrap pt-[100px] overflow-auto px-3;

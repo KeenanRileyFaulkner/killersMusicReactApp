@@ -29,10 +29,10 @@ const webLinks = [
 
 const pages = ['MUSIC PLAYER', 'COVERS', 'ABOUT THE BAND'];
 
-const NavBar = ({ handleTitleClick, pageNavFuncs }) => {
+const NavBar = ({ handleTitleClick, pageNavFuncs, adminLogin }) => {
     return (
         <div className='main-bar'>
-            <Menu funcArr={pageNavFuncs} />
+            <Menu funcArr={pageNavFuncs} adminLogin={adminLogin} />
             <div className='nav-title' onClick={() => handleTitleClick()}>
                 THE KILLERS
             </div>
@@ -41,7 +41,7 @@ const NavBar = ({ handleTitleClick, pageNavFuncs }) => {
     );
 };
 
-const Menu = ({ funcArr }) => {
+const Menu = ({ funcArr, adminLogin }) => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const handleToggle = () => {
@@ -61,7 +61,7 @@ const Menu = ({ funcArr }) => {
             <InternalMenuDropdown header='PAGE LINKS' selections={pages} updateFunctionsArr={funcArr} />
             <MenuDropdown header='ALBUMS' selections={albumNames} tagLinks={albumPlaylists} />
             <MenuDropdown header='BAND' selections={links} tagLinks={webLinks} />
-            <AdminAccess />
+            <AdminAccess adminLogin={adminLogin} />
           </ul>
         </nav>
     );
@@ -131,12 +131,12 @@ const InternalMenuDropdown = ({ header, selections, updateFunctionsArr }) => {
     );
 }
 
-const AdminAccess = () => {
+const AdminAccess = ({ adminLogin }) => {
     //This component will be invisible on mobile devices due to margins. This is desirable.
     //I will be the only admin and will only be doing admin work on a desktop.
-    
+
     return (
-        <li className='fixed mr-[15px] ml-[78%] mt-[338%] text-right font-work-sans font-medium text-xs hover:cursor-pointer hover:text-blue-300'> 
+        <li onClick={() => adminLogin()} className='admin-login-btn'> 
             ADMIN
         </li>
     );
