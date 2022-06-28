@@ -77,11 +77,11 @@ const MenuDropdown = ({ header, selections, tagLinks }) => {
     return (
         <li className='menuDropdown'>
             <div className='dropdown'>
-                <div className='dropdownHeader'>
+                <div className='dropdownHeader' onClick={() => toggleExpanded()}>
                     <div className='additionalChevronStyles'>
-                        <ChevronIcon expanded={expanded} handleClick={toggleExpanded} />
+                        <ChevronIcon expanded={expanded} />
                     </div>
-                    <h5 className='ml-2 hover:cursor-default'>
+                    <h5 className='ml-2 hover:cursor-pointer'>
                         {header}
                     </h5>
                 </div>
@@ -109,11 +109,11 @@ const InternalMenuDropdown = ({ header, selections, updateFunctionsArr }) => {
     return (
         <li className='menuDropdown'>
             <div className='dropdown'>
-                <div className='dropdownHeader'>
+                <div className='dropdownHeader' onClick={() => toggleExpanded()} >
                     <div className='additionalChevronStyles'>
-                        <ChevronIcon expanded={expanded} handleClick={toggleExpanded} />
+                        <ChevronIcon expanded={expanded} />
                     </div>
-                    <h5 className='ml-2 hover:cursor-default'>
+                    <h5 className='ml-2 hover:cursor-pointer'>
                         {header}
                     </h5>
                 </div>
@@ -132,6 +132,9 @@ const InternalMenuDropdown = ({ header, selections, updateFunctionsArr }) => {
 }
 
 const AdminAccess = () => {
+    //This component will be invisible on mobile devices due to margins. This is desirable.
+    //I will be the only admin and will only be doing admin work on a desktop.
+    
     return (
         <li className='fixed mr-[15px] ml-[78%] mt-[338%] text-right font-work-sans font-medium text-xs hover:cursor-pointer hover:text-blue-300'> 
             ADMIN

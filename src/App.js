@@ -5,20 +5,25 @@ import CoversContent from './components/CoversContent/CoversContent';
 import { useState } from 'react';
 
 function App() {
-  const [currPage, setCurrPage] = useState({ player: false, about: true, covers: false, })
+  const voidState = { player: false, about: false, covers: false, adminLogin: false}
+  const [currPage, setCurrPage] = useState({...voidState, about: true});
 
   const setPageToAboutScreen = () => {
-    setCurrPage({ player: false, about: true, covers: false });
+    setCurrPage({...voidState, about: true});
   }
 
   const setPageToPlayerScreen = () => {
-    setCurrPage({ player: true, about: false, covers: false });
+    setCurrPage({...voidState, player: true});
   }
 
   const setPageToCoversScreen = () => {
-    setCurrPage({ player: false, about: false, covers: true });
+    setCurrPage({...voidState, covers: true});
   }
 
+  const setPageToAdminLoginScreen = () => {
+    setCurrPage({...voidState, adminLogin: true});
+  }
+  
   const updatePageArr = [setPageToPlayerScreen, setPageToCoversScreen, setPageToAboutScreen]; //preserve order for nav links to work
 
   let display;
