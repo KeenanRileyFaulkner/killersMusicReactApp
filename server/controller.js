@@ -57,6 +57,10 @@ module.exports = {
             SELECT password FROM passwords
             WHERE user_name = '${userID}'`)
         .then(dbRes => {
+            if(typeof dbRes[0][0] === 'undefined') {
+                res.status(401).send('There was a problem authenticating your request');
+                return;
+            }
             storedPassword = dbRes[0][0].password;
             let matching = bcrypt.compareSync(receivedPassword, storedPassword);
             if(!matching) {
