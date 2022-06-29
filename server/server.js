@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { getSong, getCover, incrPlays } = require('./controller');
+const { getSong, getCover, incrPlays, getKey } = require('./controller');
 const { seed } = require('./seed');
 
 const app = express();
@@ -15,6 +15,8 @@ app.post('/seed', seed);
 app.get('/albums/:id', getSong);
 app.get('/covers/:id', getCover);
 app.put('/covers/:id', incrPlays);
+
+app.post('/login', getKey);
 
 const port = process.env.PORT || 4002;
 app.listen(port, () => {

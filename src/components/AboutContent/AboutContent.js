@@ -77,7 +77,7 @@ const BandLogo = ({ selected, handleClick }) => {
 
 const FullBand = ({ selectedState, selectBrandon, selectRonnie, selectMark, selectDave}) => {
     return (
-        <div className='flex flew-row justify-center items-center p-2 flex-wrap'>
+        <div className='band-member-btns'>
             <BandMember name='dave' selected={selectedState.dave} handleSelect={selectDave} key='dave' />
             <BandMember name='brandon' selected={selectedState.brandon} handleSelect={selectBrandon} key='brandon'/>
             <BandMember name='mark' selected={selectedState.mark} handleSelect={selectMark} key='mark' />

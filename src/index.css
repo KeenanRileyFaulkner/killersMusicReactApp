@@ -29,7 +29,7 @@
   
   .menuNav {
       @apply absolute text-white w-[250px] flex flex-col h-screen mt-3.5 scale-x-0 bg-black-static opacity-80
-       transition-all duration-75 origin-top-left;
+      transition-all duration-75 origin-top-left;
   }
 
   .showMenu {
@@ -87,6 +87,10 @@
     @apply text-white opacity-70 hover:opacity-90;
   }
 
+  .band-member-btns {
+    @apply flex flex-row justify-center items-center p-2 flex-wrap
+  }
+
   .band-member {
     @apply w-[150px] h-[150px] bg-cover hover:opacity-90 hover:cursor-pointer ml-4 mt-4;
   }
@@ -95,11 +99,27 @@
     @apply w-[325px] h-[86px] bg-cover bg-black border-8 border-black rounded p-2 hover:cursor-pointer self-start my-8;
   }
 
+  .animate-opacity {
+    @apply opacity-90 transition-opacity transition-
+  }
+
   .description-box {
     @apply w-[50%] bg-black-static min-w-[310px] font-work-sans font-extrabold border-[8px] text-xl rounded-3xl text-white p-4 self-center text-center mb-10;
   }
 
   .cover-name {
     @apply mx-5 mt-3 p-2 text-center font-work-sans font-extrabold text-white bg-black-static bg-cover border-[4px] rounded-lg;
+  }
+
+  .login-box {
+    @apply bg-black-static bg-cover w-[500px] h-[350px] mb-40 border-[8px] border-gray-900 rounded-3xl flex flex-col justify-center;
+  }
+
+  .login-field {
+    @apply w-[90%] h-[30px] my-[15px] ml-[5%] font-work-sans font-bold pl-2 rounded-lg;
+  }
+
+  .login-submit-btn {
+    @apply bg-black text-white text-[12pt] font-extrabold font-work-sans border-white border-[4px] h-[50px] w-[80px] self-center mb-auto rounded-lg hover:opacity-70;
   }
 }

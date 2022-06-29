@@ -2,6 +2,7 @@ import NavBar from './components/NavBar/NavBar';
 import PlayerContent from './components/PlayerContent/PlayerContent';
 import AboutContent from './components/AboutContent/AboutContent';
 import CoversContent from './components/CoversContent/CoversContent';
+import AdminContent from './components/AdminContent/AdminContent';
 import { useState } from 'react';
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
     display = 
       <div>
         <NavBar handleTitleClick={setPageToAboutScreen} pageNavFuncs={updatePageArr} adminLogin={setPageToAdminLoginScreen} />
+        <AdminContent />
       </div>
   }
 
