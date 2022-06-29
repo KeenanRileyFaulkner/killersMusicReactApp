@@ -122,4 +122,17 @@
   .login-submit-btn {
     @apply bg-black text-white text-[12pt] font-extrabold font-work-sans border-white border-[4px] h-[50px] w-[80px] self-center mb-auto rounded-lg hover:opacity-70;
   }
+
+  .dashboard-container {
+    @apply h-screen w-[100%] bg-gray-700 pt-16 flex flex-row-reverse;
+  }
+
+  .admin-dashboard-nav {
+    @apply py-2 border-l-[2px] border-gray-800 w-[320px] h-[100%] bg-gray-700
+    font-work-sans text-[#121212] font-semibold px-4 overflow-hidden;
+  }
+
+  .admin-menu-item-link {
+    @apply text-[#121212] hover:text-white
+  }
 }

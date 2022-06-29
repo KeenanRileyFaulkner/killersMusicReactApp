@@ -39,6 +39,7 @@ module.exports = {
         'brandon-full-band-color': "url('/src/images/Brandon-full-band-color.png')",
         'mark-full-band-color': "url('/src/images/Mark-full-band-color.png')",
         'ronnie-full-band-color': "url('/src/images/Ronnie-full-band-color.png')",
+        'killer-k': "url('/src/images/killerK.png')",
       },
 
       colors: {

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import Dashboard from './Dashboard';
 
 //For all POST, PUT, and DELETE requests made on this page, the user must send a connection string with the request that matches the one in the db.
 
@@ -20,11 +21,11 @@ const AdminContent = () => {
         display = <LoginBox passKeyUp={(key) => displayDashboardAndStoreKey(key)} />
     } else {
         loginPageAlign = '';
-        display = <div></div>
+        display = <Dashboard serverKey={serverKey} />
     }
 
     return (
-        <div className={`contentContainer ${loginPageAlign} bg-gray-700`}>
+        <div className={`contentContainer ${loginPageAlign} bg-gray-700 pt-0 px-0`}>
             {display}
         </div>
     )
