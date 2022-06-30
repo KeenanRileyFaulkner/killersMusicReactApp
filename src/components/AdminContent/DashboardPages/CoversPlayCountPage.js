@@ -58,7 +58,7 @@ const EntriesContainer = () => {
     }
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col overflow-auto scrollbar-thin scrollbar-track-gray-800 scrollbar-thumb-gray-900">
             {display}
         </div>
     );

@@ -58,7 +58,7 @@ const SongsContainer = () => {
     }
 
     return (
-        <div className="flex flex-col overflow-auto">
+        <div className="flex flex-col overflow-auto scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-800">
             {display}
         </div>
     );
