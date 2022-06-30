@@ -78,6 +78,16 @@ module.exports = {
         .catch(err => console.log(err));
     },
 
+    getAllSongs: (req, res) => {
+        sequelize.query(`
+            SELECT url, song_name, song_id, album_name FROM audios
+            JOIN albums ON audios.album_id = albums.album_id`)
+        .then(dbRes => {
+            res.status(200).send(dbRes[0]);
+        })
+        .catch(err => console.log(err));
+    },
+
     getAllCovers: (req, res) => {
         sequelize.query(`
             SELECT * FROM covers`)

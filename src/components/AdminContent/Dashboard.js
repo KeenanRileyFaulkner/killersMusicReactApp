@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
 import AddAlbumPage from './DashboardPages/AddAlbumPage';
+import ViewSongsPage from './DashboardPages/ViewSongsPage';
 import CoversPlayCountPage from './DashboardPages/CoversPlayCountPage';
 
 const Dashboard = ({ serverKey }) => {
@@ -83,9 +84,9 @@ const Dashboard = ({ serverKey }) => {
 
     const dashboardUpdateArrCoverLinks = [
         setDisplayToAddCover,
+        setDisplayToGetViews,
         setDisplayToUpdateCover,
-        setDisplayToRemoveCover,
-        setDisplayToGetViews
+        setDisplayToRemoveCover
     ]
 
     let dashboardDisplay;
@@ -98,7 +99,7 @@ const Dashboard = ({ serverKey }) => {
     } else if (currDisplay.addAlbumSong) {
         dashboardDisplay = '';
     } else if (currDisplay.viewSongs) {
-        dashboardDisplay = '';
+        dashboardDisplay = <ViewSongsPage />;
     } else if (currDisplay.updateSongInfo) {
         dashboardDisplay = '';
     } else if (currDisplay.removeAlbumSong) {
@@ -129,7 +130,7 @@ const RightSideNav = ({ resetDash, albumLinksStateUpdate, albumSongsStateUpdate,
             <h2 className='mt-8 hover:cursor-pointer' onClick={() => resetDash()}>MENU</h2>
             <MenuDropdown header='BAND ALBUM LINKS' selections={['ADD ALBUM', 'UPDATE ALBUM INFO', 'REMOVE ALBUM']} updateFunctions={albumLinksStateUpdate} />
             <MenuDropdown header='BAND ALBUM SONGS' selections={['ADD SONG', 'VIEW SONGS', 'UPDATE SONG INFO', 'REMOVE SONG']} updateFunctions={albumSongsStateUpdate} />
-            <MenuDropdown header='PERSONAL COVER LINKS' selections={['ADD COVER', 'UPDATE COVER INFO', 'REMOVE COVER', 'GET PLAY COUNT']} updateFunctions={coverLinksStateUpdate} />
+            <MenuDropdown header='PERSONAL COVER LINKS' selections={['ADD COVER','GET PLAY COUNT', 'UPDATE COVER INFO', 'REMOVE COVER']} updateFunctions={coverLinksStateUpdate} />
         </nav>
     )
 }
