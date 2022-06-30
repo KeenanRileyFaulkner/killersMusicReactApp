@@ -288,6 +288,24 @@ module.exports = {
         .catch(err => console.log(err));
     },
 
+    deleteSong: (req, res) => {
+        const {id} = req.params;
+        sequelize.query(`
+            UPDATE albums
+            SET num_tracks = num_tracks - 1
+            WHERE album_id IN (SELECT album_id FROM audios WHERE song_name = '${id}');
+
+            DELETE FROM audios
+            WHERE song_name = '${id}'`)
+        .then(() => {
+            res.status(200).send('Song successfully deleted from database.');
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(400).send('There was a problem deleting the song from the database.');
+        });
+    },
+
     addCover: (req, res) => {
         let compareKey;
         let cover_name;

@@ -11,7 +11,8 @@ const {
     getAllAlbums, 
     deleteAlbum, 
     addSong, 
-    getAllSongs, 
+    getAllSongs,
+    deleteSong, 
     addCover, 
     getAllCovers 
 } = require('./controller');
@@ -38,6 +39,7 @@ app.delete('/albums/:id', deleteAlbum);
 
 app.post('/songs', addSong);
 app.get('/songs', getAllSongs);
+app.delete('/songs/:id', deleteSong);
 
 app.post('/covers', addCover);
 app.get('/covers', getAllCovers);

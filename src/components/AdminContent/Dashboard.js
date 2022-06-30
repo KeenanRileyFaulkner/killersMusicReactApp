@@ -5,6 +5,7 @@ import ViewAlbumsPage from './DashboardPages/ViewAlbumsPage';
 import RemoveAlbumPage from './DashboardPages/RemoveAlbumPage';
 import AddAlbumSongPage from './DashboardPages/AddAlbumSongPage';
 import ViewSongsPage from './DashboardPages/ViewSongsPage';
+import RemoveSongPage from './DashboardPages/RemoveSongPage';
 import AddCoverPage from './DashboardPages/AddCoverPage';
 import CoversPlayCountPage from './DashboardPages/CoversPlayCountPage';
 
@@ -115,7 +116,7 @@ const Dashboard = ({ serverKey }) => {
     } else if (currDisplay.updateSongInfo) {
         dashboardDisplay = '';
     } else if (currDisplay.removeAlbumSong) {
-        dashboardDisplay = '';
+        dashboardDisplay = <RemoveSongPage serverKey={serverKey} />;
     } else if (currDisplay.addCover) {
         dashboardDisplay = <AddCoverPage serverKey={serverKey} />
     } else if (currDisplay.updateCover) {
