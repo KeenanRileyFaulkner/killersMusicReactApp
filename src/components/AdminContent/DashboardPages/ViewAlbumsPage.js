@@ -11,7 +11,7 @@ const ViewAlbumsPage = () => {
 }
 
 const TableHeader = () => {
-    const cols = ['COVER', 'NAME', 'YEAR', 'NUMBER OF TRACKS', 'ALBUM ID' ];
+    const cols = ['IMAGE', 'NAME', 'YEAR', 'NUMBER OF TRACKS', 'ALBUM ID' ];
     return (
         <header className="grid grid-cols-5 border-b-[2px] border-gray-800 text-[#121212] font-semibold font-work-sans items-center">
             {cols.map((col, index) => {

@@ -19,6 +19,7 @@ const AddAlbumForm = ({ serverKey }) => {
         reqBody.album_name = inputs[0].value;
         reqBody.release_year = inputs[1].value;
         reqBody.image_url = inputs[2].value;
+        reqBody.num_tracks = inputs[3].value;
 
         axios.post('http://localhost:4002/albums', reqBody)
             .then(res => {
@@ -26,12 +27,14 @@ const AddAlbumForm = ({ serverKey }) => {
                 inputs[0].value = '';
                 inputs[1].value = '';
                 inputs[2].value = '';
+                inputs[3].value = '';
             })
             .catch(err => {
                 alert(err.response.data);
                 inputs[0].value = '';
                 inputs[1].value = '';
                 inputs[2].value = '';
+                inputs[3].value = '';
             });
     }
 
@@ -41,6 +44,7 @@ const AddAlbumForm = ({ serverKey }) => {
             <input placeholder="ALBUM NAME" type="text" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
             <input placeholder="RELEASE YEAR" type="text" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
             <input placeholder="IMAGE URL" type="text" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg" />
+            <input placeholder="NUMBER OF TRACKS (OPTIONAL)" type="text" className='h-[30px] w-[90%] pl-3 font-extrabold rounded-lg' />
             <button className="bg-black border-white border-[4px] w-[100px] rounded-xl font-extrabold text-white">SUBMIT</button>
         </form>
     )

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
 import AddAlbumPage from './DashboardPages/AddAlbumPage';
 import ViewAlbumsPage from './DashboardPages/ViewAlbumsPage';
+import RemoveAlbumPage from './DashboardPages/RemoveAlbumPage';
 import AddAlbumSongPage from './DashboardPages/AddAlbumSongPage';
 import ViewSongsPage from './DashboardPages/ViewSongsPage';
 import AddCoverPage from './DashboardPages/AddCoverPage';
@@ -106,7 +107,7 @@ const Dashboard = ({ serverKey }) => {
     } else if (currDisplay.viewAlbums) {
         dashboardDisplay = <ViewAlbumsPage />;
     } else if (currDisplay.removeAlbum) {
-        dashboardDisplay = '';
+        dashboardDisplay = <RemoveAlbumPage serverKey={serverKey} />;
     } else if (currDisplay.addAlbumSong) {
         dashboardDisplay = <AddAlbumSongPage serverKey={serverKey} />
     } else if (currDisplay.viewSongs) {

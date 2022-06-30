@@ -78,6 +78,56 @@ module.exports = {
         .catch(err => console.log(err));
     },
 
+    authenticateUser: (req, res) => {
+        if(req.body.serverKey === '') {
+            res.status(401).send('You are not authorized to make this request');
+            return;
+        } else if (req.body.username === '') {
+            res.status(400).send('You must include your username to make this request');
+            return
+        } else if (req.body.password === '') {
+            res.status(400).send('You must include your password to make this request');
+            return;
+        }
+
+        const username = req.body.username;
+        const password = req.body.password;
+        const compareKey = req.body.serverKey;
+
+        sequelize.query(`
+            SELECT access_key FROM connection_data
+            WHERE access_key = '${compareKey}'`)
+        .then(dbRes => {
+            if(typeof dbRes[0][0].access_key !== 'undefined') {
+                sequelize.query(`
+                    SELECT password FROM passwords
+                    WHERE user_name = '${username}'`)
+                .then(dbRes => {
+                    if(typeof dbRes[0][0] === 'undefined') {
+                        res.status(401).send('There was a problem authenticating your request');
+                        return;
+                    }
+                    let storedPassword = dbRes[0][0].password;
+                    let matching = bcrypt.compareSync(password, storedPassword);
+                    if(!matching) {
+                        res.status(401).send('There was a problem verifying your password');
+                        return;
+                    }
+
+                    res.status(200).send('Successful auth');
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.status(500).send('An unknown error has occurred.');
+                })
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).send('An unknown error has occurred');
+        })
+    },
+
     addAlbum: (req, res) => {
         if(req.body.serverKey === '') {
             res.status(401).send('You are not authorized to make this request');
@@ -103,6 +153,13 @@ module.exports = {
             image_url = req.body.image_url;
         }
 
+        let num_tracks;
+        if(req.body.num_tracks === '') {
+            num_tracks = 0;
+        } else {
+            num_tracks = req.body.num_tracks;
+        }
+
         sequelize.query(`
             SELECT access_key FROM connection_data
             WHERE access_key = '${compareKey}'`)
@@ -111,7 +168,7 @@ module.exports = {
                 sequelize.query(`
                     INSERT INTO albums (album_name, release_year, image_url, num_tracks)
                     VALUES
-                    ('${album_name}', ${release_year}, '${image_url}', 0)`)
+                    ('${album_name}', ${release_year}, '${image_url}', ${num_tracks})`)
                 .then(() => {
                     res.status(200).send('The album was successfully added. Go to "View Albums" in nav to see it.');
                 })
@@ -138,6 +195,20 @@ module.exports = {
             res.status(200).send(dbRes[0]);
         })
         .catch(err => console.log(err));
+    },
+
+    deleteAlbum: (req, res) => {
+        const {id} = req.params;
+        sequelize.query(`
+            DELETE FROM albums
+            WHERE album_name = '${id}'`)
+        .then(() => {
+            res.status(200).send('Album successfully deleted from database.');
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(400).send('There was a problem deleting the album from the database.');
+        });
     },
 
     addSong: (req, res) => {
