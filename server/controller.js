@@ -20,7 +20,7 @@ module.exports = {
         const { id } = req.params;
         sequelize.query(`
             SELECT url FROM audios
-            WHERE ${id} = album_id`)
+            WHERE ${Number(id) + 1} = album_id`)
         .then(dbRes => {
             const randomTrack = calcRandomTrackNum(dbRes[0]);
             res.status(200).send(dbRes[0][randomTrack].url);
