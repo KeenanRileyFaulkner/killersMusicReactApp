@@ -78,6 +78,59 @@ module.exports = {
         .catch(err => console.log(err));
     },
 
+    addAlbum: (req, res) => {
+        if(req.body.serverKey === '') {
+            res.status(401).send('You are not authorized to make this request');
+        }
+
+        const compareKey = req.body.serverKey;
+        let album_name;
+        let release_year;
+        let image_url;
+
+        if(req.body.album_name === '') {
+            res.status(400).send('An album_name must be included in your request');
+            return;
+        } else if (req.body.release_year === '') {
+            res.status(400).send('A release_year must be included in your request');
+            return;
+        } else if (req.body.image_url === '') {
+            res.status(400).send('An image_url must be included in your request');
+            return;
+        } else {
+            album_name = req.body.album_name;
+            release_year = req.body.release_year;
+            image_url = req.body.image_url;
+        }
+
+        sequelize.query(`
+            SELECT access_key FROM connection_data
+            WHERE access_key = '${compareKey}'`)
+        .then(dbRes => {
+            if(typeof dbRes[0][0].access_key !== 'undefined') {
+                sequelize.query(`
+                    INSERT INTO albums (album_name, release_year, image_url, num_tracks)
+                    VALUES
+                    ('${album_name}', ${release_year}, '${image_url}', 0)`)
+                .then(() => {
+                    res.status(200).send('The album was successfully added. Go to "View Albums" in nav to see it.');
+                })
+                .catch((err) => {
+                    console.log(err);
+                    res.status(500).send('An unknown error occurred while adding the album to the database.');
+                })
+            } else {
+                res.status(401).send('You are not authorized to make that request');
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(401).send('You are not authorized to make that request');
+        })
+
+
+    },
+
     getAllAlbums: (req, res) => {
         sequelize.query(`
             SELECT * FROM albums`)
@@ -127,7 +180,11 @@ module.exports = {
                         sequelize.query(`
                             INSERT INTO audios (url, album_id, song_name)
                             VALUES
-                            ('${audio_url}', ${album_id}, '${song_name}')`)
+                            ('${audio_url}', ${album_id}, '${song_name}');
+                            
+                            UPDATE albums
+                            SET num_tracks = num_tracks + 1
+                            WHERE album_id = ${album_id}`)
                         .then(() => {
                             res.status(200).send('Song successfully added to db. Go to "View Songs" in nav to view.');
                         })
