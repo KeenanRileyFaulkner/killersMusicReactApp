@@ -66,7 +66,7 @@ const SongsContainer = () => {
 
 const Song = ({ name, album, audioURL, songID }) => {
     return (
-        <div className="grid grid-cols-4 h-[60px] w-[100%] text-[8pt] text-gray-400 border-b-[2px] border-gray-800">
+        <div className="grid grid-cols-4 h-[60px] w-[100%] text-[8pt] text-gray-400 border-b-[2px] border-gray-800 py-2">
             <section className="flex centerItems">
                 <h2>{name}</h2>
             </section>

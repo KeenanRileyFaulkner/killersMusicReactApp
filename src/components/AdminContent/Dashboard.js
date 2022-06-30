@@ -7,6 +7,7 @@ import CoversPlayCountPage from './DashboardPages/CoversPlayCountPage';
 const Dashboard = ({ serverKey }) => {
     const voidState = { 
         addAlbum: false, 
+        viewAlbums: false,
         updateAlbum: false, 
         removeAlbum: false, 
         addAlbumSong: false,
@@ -23,6 +24,10 @@ const Dashboard = ({ serverKey }) => {
 
     const setDisplayToAddAlbum = () => {
         setCurrDisplay({...voidState, addAlbum: true});
+    }
+
+    const setDisplayToViewAlbums = () => {
+        setCurrDisplay({...voidState, viewAlbums: true});
     }
 
     const setDisplayToUpdateAlbum = () => {
@@ -71,6 +76,7 @@ const Dashboard = ({ serverKey }) => {
 
     const dashboardUpdateArrAlbumLinks = [
         setDisplayToAddAlbum,
+        setDisplayToViewAlbums,
         setDisplayToUpdateAlbum,
         setDisplayToRemoveAlbum
     ];
@@ -93,6 +99,8 @@ const Dashboard = ({ serverKey }) => {
     if(currDisplay.addAlbum) {
         dashboardDisplay = <AddAlbumPage serverKey={serverKey} />;
     } else if (currDisplay.updateAlbum) {
+        dashboardDisplay = '';
+    } else if (currDisplay.viewAlbums) {
         dashboardDisplay = '';
     } else if (currDisplay.removeAlbum) {
         dashboardDisplay = '';
@@ -128,7 +136,7 @@ const RightSideNav = ({ resetDash, albumLinksStateUpdate, albumSongsStateUpdate,
     return (
         <nav className='admin-dashboard-nav'>
             <h2 className='mt-8 hover:cursor-pointer' onClick={() => resetDash()}>MENU</h2>
-            <MenuDropdown header='BAND ALBUM LINKS' selections={['ADD ALBUM', 'UPDATE ALBUM INFO', 'REMOVE ALBUM']} updateFunctions={albumLinksStateUpdate} />
+            <MenuDropdown header='BAND ALBUM LINKS' selections={['ADD ALBUM', 'VIEW ALBUMS', 'UPDATE ALBUM INFO', 'REMOVE ALBUM']} updateFunctions={albumLinksStateUpdate} />
             <MenuDropdown header='BAND ALBUM SONGS' selections={['ADD SONG', 'VIEW SONGS', 'UPDATE SONG INFO', 'REMOVE SONG']} updateFunctions={albumSongsStateUpdate} />
             <MenuDropdown header='PERSONAL COVER LINKS' selections={['ADD COVER','GET PLAY COUNT', 'UPDATE COVER INFO', 'REMOVE COVER']} updateFunctions={coverLinksStateUpdate} />
         </nav>
