@@ -97,6 +97,56 @@ module.exports = {
         .catch(err => console.log(err));
     },
 
+    addCover: (req, res) => {
+        let compareKey;
+        let cover_name;
+        let image_url;
+        let audio_url;
+        if(req.body.serverKey === '') {
+            res.status(401).send('You are not authorized to make this request');
+            return;
+        }
+
+        compareKey = req.body.serverKey;
+
+        if(req.body.cover_name === '') {
+            res.status(400).send('A cover_name must be included in your request');
+            return;
+        } else if (req.body.image_url === '') {
+            res.status(400).send('An image_url must be included in your request');
+            return;
+        } else if (req.body.audio_url === '') {
+            res.status(400).send('An audio_url must be included in your request');
+            return;
+        } else {
+            cover_name = req.body.cover_name;
+            image_url = req.body.image_url;
+            audio_url = req.body.audio_url;
+        }
+
+        sequelize.query(`
+            SELECT access_key FROM connection_data
+            WHERE access_key = '${compareKey}'`)
+        .then(dbRes => {
+            if(typeof dbRes[0][0].access_key !== 'undefined') {
+                sequelize.query(`
+                    INSERT INTO covers (image_url, audio_url, cover_name, total_plays)
+                    VALUES
+                        ('${image_url}', '${audio_url}', '${cover_name}', 0);`)
+                .then(() => {
+                    res.status(200).send('New record succesfully created. Go to "Get Play Count" in nav to view.');
+                })
+                .catch(err => console.log(err));
+            } else {
+                res.status(401).send('You are not authorized to make this request');
+            }
+        })
+        .catch(err => {
+            // console.log(err);
+            res.status(401).send('You are not authorized to make this request');
+        });
+    },
+
     getAllCovers: (req, res) => {
         sequelize.query(`
             SELECT * FROM covers`)

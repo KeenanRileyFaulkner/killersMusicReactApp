@@ -3,6 +3,7 @@ import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
 import AddAlbumPage from './DashboardPages/AddAlbumPage';
 import ViewAlbumsPage from './DashboardPages/ViewAlbumsPage';
 import ViewSongsPage from './DashboardPages/ViewSongsPage';
+import AddCoverPage from './DashboardPages/AddCoverPage';
 import CoversPlayCountPage from './DashboardPages/CoversPlayCountPage';
 
 const Dashboard = ({ serverKey }) => {
@@ -114,7 +115,7 @@ const Dashboard = ({ serverKey }) => {
     } else if (currDisplay.removeAlbumSong) {
         dashboardDisplay = '';
     } else if (currDisplay.addCover) {
-        dashboardDisplay = '';
+        dashboardDisplay = <AddCoverPage serverKey={serverKey}/>
     } else if (currDisplay.updateCover) {
         dashboardDisplay = '';
     } else if (currDisplay.removeCover) {

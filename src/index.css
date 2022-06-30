@@ -12,7 +12,8 @@
   }
 
   .nav-title {
-    @apply text-white font-work-sans font-extrabold text-3xl justify-self-center mx-auto relative hover:cursor-pointer hover:text-gray-200;
+    @apply text-white font-work-sans font-extrabold text-3xl justify-self-center mx-auto relative 
+    hover:cursor-pointer hover:text-gray-200;
   }
 
   .invisible-menu-align {
@@ -67,7 +68,8 @@
   }
 
   .admin-login-btn {
-    @apply fixed mr-[15px] ml-[78%] mt-[338%] text-right font-work-sans font-medium text-xs hover:cursor-pointer hover:text-blue-300;
+    @apply fixed mr-[15px] ml-[78%] mt-[338%] text-right font-work-sans font-medium text-xs 
+    hover:cursor-pointer hover:text-blue-300;
   }
 
   .contentContainer {
@@ -104,7 +106,8 @@
   }
 
   .description-box {
-    @apply w-[50%] bg-black-static min-w-[310px] font-work-sans font-extrabold border-[8px] text-xl rounded-3xl text-white p-4 self-center text-center mb-10;
+    @apply w-[50%] bg-black-static min-w-[310px] font-work-sans font-extrabold border-[8px] text-xl 
+    rounded-3xl text-white p-4 self-center text-center mb-10;
   }
 
   .cover-name {
@@ -112,7 +115,8 @@
   }
 
   .login-box {
-    @apply bg-black-static bg-cover w-[500px] h-[350px] mb-40 border-[8px] border-gray-900 rounded-3xl flex flex-col justify-center;
+    @apply bg-black-static bg-cover w-[500px] h-[350px] mb-40 border-[8px] border-gray-900 
+    rounded-3xl flex flex-col justify-center;
   }
 
   .login-field {
@@ -120,7 +124,8 @@
   }
 
   .login-submit-btn {
-    @apply bg-black text-white text-[12pt] font-extrabold font-work-sans border-white border-[4px] h-[50px] w-[80px] self-center mb-auto rounded-lg hover:opacity-70;
+    @apply bg-black text-white text-[12pt] font-extrabold font-work-sans border-white border-[4px] 
+    h-[50px] w-[80px] self-center mb-auto rounded-lg hover:opacity-70;
   }
 
   .dashboard-container {
@@ -142,5 +147,10 @@
 
   .top-dash-page {
     @apply w-[100%];
+  }
+
+  .add-cover-form {
+    @apply h-[350px] w-[500px] flex flex-row flex-wrap mb-[200px] 
+    bg-black-static border-[8px] rounded-3xl border-white p-8 justify-center font-work-sans text-[12pt];
   }
 }
