@@ -28,13 +28,13 @@ module.exports = {
         .catch(err => console.log(err));
     },
 
-    getCover: (req, res) => {
+    getCoverAudio: (req, res) => {
         const { id } = req.params;
         sequelize.query(`
-            SELECT url FROM covers
+            SELECT audio_url FROM covers
             WHERE ${id} = cover_id`)
         .then(dbRes => {
-            res.status(200).send(dbRes[0][0].url);
+            res.status(200).send(dbRes[0][0].audio_url);
         })
         .catch(err => console.log(err));
     },
@@ -76,5 +76,14 @@ module.exports = {
             }
         })
         .catch(err => console.log(err));
-    }
+    },
+
+    getAllCovers: (req, res) => {
+        sequelize.query(`
+            SELECT * FROM covers`)
+        .then(dbRes => {
+            res.status(200).send(dbRes[0]);
+        })
+        .catch(err => console.log(err));
+    },
 }

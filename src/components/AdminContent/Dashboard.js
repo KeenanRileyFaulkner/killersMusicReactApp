@@ -1,46 +1,140 @@
 import { useState } from 'react';
 import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
+import AddAlbumPage from './DashboardPages/AddAlbumPage';
+import CoversPlayCountPage from './DashboardPages/CoversPlayCountPage';
 
 const Dashboard = ({ serverKey }) => {
     const voidState = { 
         addAlbum: false, 
         updateAlbum: false, 
         removeAlbum: false, 
+        addAlbumSong: false,
+        viewSongs: false,
+        updateSongInfo: false,
+        removeAlbumSong: false,
         addCover: false, 
         updateCover: false, 
+        removeCover: false,
         getViews: false
     }
 
     const [currDisplay, setCurrDisplay] = useState(voidState);
 
+    const setDisplayToAddAlbum = () => {
+        setCurrDisplay({...voidState, addAlbum: true});
+    }
+
+    const setDisplayToUpdateAlbum = () => {
+        setCurrDisplay({...voidState, updateAlbum: true});
+    }
+
+    const setDisplayToRemoveAlbum = () => {
+        setCurrDisplay({...voidState, removeAlbum: true});
+    }
+
+    const setDisplayToAddAlbumSong = () => {
+        setCurrDisplay({...voidState, addAlbumSong: true});
+    }
+
+    const setDisplayToViewSongs = () => {
+        setCurrDisplay({...voidState, viewSongs: true});
+    }
+
+    const setDisplayToUpdateSongInfo = () => {
+        setCurrDisplay({...voidState, updateSongInfo: true});
+    }
+
+    const setDisplayToRemoveAlbumSong = () => {
+        setCurrDisplay({...voidState, removeAlbumSong: true});
+    }
+
+    const setDisplayToAddCover = () => {
+        setCurrDisplay({...voidState, addCover: true});
+    }
+
+    const setDisplayToUpdateCover = () => {
+        setCurrDisplay({...voidState, updateCover: true});
+    }
+
+    const setDisplayToRemoveCover = () => {
+        setCurrDisplay({...voidState, removeCover: true});
+    }
+
+    const setDisplayToGetViews = () => {
+        setCurrDisplay({...voidState, getViews: true});
+    }
+
+    const resetDash = () => {
+        setCurrDisplay({...voidState});
+    }
+
+    const dashboardUpdateArrAlbumLinks = [
+        setDisplayToAddAlbum,
+        setDisplayToUpdateAlbum,
+        setDisplayToRemoveAlbum
+    ];
+
+    const dashboardUpdateArrAlbumSongs = [
+        setDisplayToAddAlbumSong,
+        setDisplayToViewSongs,
+        setDisplayToUpdateSongInfo,
+        setDisplayToRemoveAlbumSong
+    ];
+
+    const dashboardUpdateArrCoverLinks = [
+        setDisplayToAddCover,
+        setDisplayToUpdateCover,
+        setDisplayToRemoveCover,
+        setDisplayToGetViews
+    ]
+
     let dashboardDisplay;
-    if(true) {
-        dashboardDisplay = 
-            <div className='flex justify-center w-[1500px] items-center'>
-                <div className='bg-killer-k bg-cover h-[293px] w-[176px]' />
-            </div>
+    if(currDisplay.addAlbum) {
+        dashboardDisplay = <AddAlbumPage serverKey={serverKey} />;
+    } else if (currDisplay.updateAlbum) {
+        dashboardDisplay = '';
+    } else if (currDisplay.removeAlbum) {
+        dashboardDisplay = '';
+    } else if (currDisplay.addAlbumSong) {
+        dashboardDisplay = '';
+    } else if (currDisplay.viewSongs) {
+        dashboardDisplay = '';
+    } else if (currDisplay.updateSongInfo) {
+        dashboardDisplay = '';
+    } else if (currDisplay.removeAlbumSong) {
+        dashboardDisplay = '';
+    } else if (currDisplay.addCover) {
+        dashboardDisplay = '';
+    } else if (currDisplay.updateCover) {
+        dashboardDisplay = '';
+    } else if (currDisplay.removeCover) {
+        dashboardDisplay = '';
+    } else if (currDisplay.getViews) {
+        dashboardDisplay = <CoversPlayCountPage />;
+    } else {
+        dashboardDisplay = <LandingPage />
     }
 
     return (
         <div className="dashboard-container">
-            <RightSideNav />
+            <RightSideNav resetDash={resetDash} albumLinksStateUpdate={dashboardUpdateArrAlbumLinks} albumSongsStateUpdate={dashboardUpdateArrAlbumSongs} coverLinksStateUpdate={dashboardUpdateArrCoverLinks} />
             {dashboardDisplay}
         </div>
     )
 }
 
-const RightSideNav = () => {
+const RightSideNav = ({ resetDash, albumLinksStateUpdate, albumSongsStateUpdate, coverLinksStateUpdate }) => {
     return (
-        <div className='admin-dashboard-nav'>
-            <h2 className='mt-8'>MENU</h2>
-            <MenuDropdown header='BAND ALBUM LINKS' selections={['ADD ALBUM', 'UPDATE ALBUM INFO', 'REMOVE ALBUM']} />
-            <MenuDropdown header='BAND ALBUM SONGS' selections={['ADD SONG', 'VIEW SONGS', 'UPDATE SONG INFO', 'REMOVE SONG']} />
-            <MenuDropdown header='PERSONAL COVER LINKS' selections={['ADD COVER', 'UPDATE COVER INFO', 'REMOVE COVER', 'GET VIEW COUNT']} />
-        </div>
+        <nav className='admin-dashboard-nav'>
+            <h2 className='mt-8 hover:cursor-pointer' onClick={() => resetDash()}>MENU</h2>
+            <MenuDropdown header='BAND ALBUM LINKS' selections={['ADD ALBUM', 'UPDATE ALBUM INFO', 'REMOVE ALBUM']} updateFunctions={albumLinksStateUpdate} />
+            <MenuDropdown header='BAND ALBUM SONGS' selections={['ADD SONG', 'VIEW SONGS', 'UPDATE SONG INFO', 'REMOVE SONG']} updateFunctions={albumSongsStateUpdate} />
+            <MenuDropdown header='PERSONAL COVER LINKS' selections={['ADD COVER', 'UPDATE COVER INFO', 'REMOVE COVER', 'GET PLAY COUNT']} updateFunctions={coverLinksStateUpdate} />
+        </nav>
     )
 }
 
-const MenuDropdown = ({ header, selections }) => {
+const MenuDropdown = ({ header, selections, updateFunctions }) => {
     const [expanded, setExpanded] = useState(true);
 
     const toggleExpanded = () => {
@@ -63,7 +157,7 @@ const MenuDropdown = ({ header, selections }) => {
                 <ul className='menuItem'>
                     {expanded && selections &&
                         selections.map((selection, index) => 
-                            <InternalMenuItem selection={selection} updateFunction='' key={selection} />
+                            <InternalMenuItem selection={selection} updateFunction={updateFunctions[index]} key={selection} />
                         )
                     }
                 </ul>
@@ -85,5 +179,13 @@ const InternalMenuItem = ({ selection, updateFunction }) => (
         {selection}
     </div>
 );
+
+const LandingPage = () => {
+    return(
+        <div className='centered-dash-page'>
+            <div className='bg-killer-k bg-cover h-[293px] w-[176px]' />
+        </div>
+    )
+}
 
 export default Dashboard;

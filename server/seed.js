@@ -24,15 +24,16 @@ module.exports = {
 
             CREATE TABLE covers (
                 cover_id SERIAL PRIMARY KEY,
-                url VARCHAR(256),
+                image_url VARCHAR(256),
+                audio_url VARCHAR(256),
                 cover_name VARCHAR(100),
                 total_plays INT
             );
 
-            INSERT INTO covers (url, cover_name, total_plays)
+            INSERT INTO covers (image_url, audio_url, cover_name, total_plays)
             VALUES
-            ('https://docs.google.com/uc?export=download&id=1qMiYoBfDs3lj2DzYTUxAY4iKnZY5KG1V', 'Mr. Brightside', 0),
-            ('https://docs.google.com/uc?export=download&id=1XuRnVmkPuHycbNJ4Imd6zARFomBkQ4mY', 'All These Things That Ive Done', 0);
+            ('https://drive.google.com/thumbnail?id=1-7H7nPD2URtKe3OVIrSzb7_lsv5l7Q79', 'https://docs.google.com/uc?export=download&id=1qMiYoBfDs3lj2DzYTUxAY4iKnZY5KG1V', 'Mr. Brightside', 0),
+            ('https://drive.google.com/thumbnail?id=1vHYA9KjpeYC4WMHNNJnO7sypzAxAPSH0', 'https://docs.google.com/uc?export=download&id=1XuRnVmkPuHycbNJ4Imd6zARFomBkQ4mY', 'All These Things That Ive Done', 0);
             
             INSERT INTO audios (url, album_id)
             VALUES 

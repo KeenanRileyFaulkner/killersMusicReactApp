@@ -8,7 +8,7 @@
   }
 
   .main-bar {
-    @apply bg-black-static w-screen fixed h-16 flex flex-row items-center justify-between shadow-xl z-10;
+    @apply bg-black-static w-screen fixed h-16 flex flex-row items-center justify-between z-10;
   }
 
   .nav-title {
@@ -128,11 +128,19 @@
   }
 
   .admin-dashboard-nav {
-    @apply py-2 border-l-[2px] border-gray-800 w-[320px] h-[100%] bg-gray-700
+    @apply py-2 border-l-[2px] border-gray-800 w-[350px] h-[100%] bg-gray-700
     font-work-sans text-[#121212] font-semibold px-4 overflow-hidden;
   }
 
   .admin-menu-item-link {
     @apply text-[#121212] hover:text-white
+  }
+
+  .centered-dash-page {
+    @apply flex w-[100%] centerItems;
+  }
+
+  .top-dash-page {
+    @apply w-[100%];
   }
 }
