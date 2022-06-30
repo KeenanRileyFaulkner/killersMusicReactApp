@@ -87,6 +87,69 @@ module.exports = {
         .catch(err => console.log(err));
     },
 
+    addSong: (req, res) => {
+        if(req.body.serverKey === '') {
+            res.status(401).send('You are not authorized to make this request');
+            return;
+        }
+
+        const compareKey = req.body.serverKey;
+        let song_name;
+        let album_name;
+        let audio_url;
+        if(req.body.song_name === '') {
+            res.status(400).send('A song_name must be included in your request');
+            return;
+        } else if (req.body.album_name === '') {
+            res.status(400).send('An album_name must be included in your request');
+            return;
+        } else if (req.body.audio_url === '') {
+            res.status(400).send('An audio_url must be included in your request');
+            return;
+        } else {
+            song_name = req.body.song_name;
+            album_name = req.body.album_name;
+            audio_url = req.body.audio_url;
+        }
+
+        sequelize.query(`
+            SELECT access_key FROM connection_data
+            WHERE access_key = '${compareKey}'`)
+        .then(dbRes => {
+            if(typeof dbRes[0][0].access_key !== 'undefined') {
+                let album_id;
+                sequelize.query(`
+                    SELECT album_id fROM albums
+                    WHERE album_name = '${album_name}'`)
+                .then(dbRes => {
+                    if (typeof dbRes[0][0].album_id !== 'undefined') {
+                        album_id = dbRes[0][0].album_id;
+                        sequelize.query(`
+                            INSERT INTO audios (url, album_id, song_name)
+                            VALUES
+                            ('${audio_url}', ${album_id}, '${song_name}')`)
+                        .then(() => {
+                            res.status(200).send('Song successfully added to db. Go to "View Songs" in nav to view.');
+                        })
+                    } else {
+                        res.status(400).send('No album was found with that name.');
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.status(503).send('No album was found with that name');
+                })
+                
+            } else {
+                res.status(401).send('You are not authorized to make this request');
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(401).send('You are not authorized to make this request');
+        })
+    },
+
     getAllSongs: (req, res) => {
         sequelize.query(`
             SELECT url, song_name, song_id, album_name FROM audios
@@ -142,7 +205,7 @@ module.exports = {
             }
         })
         .catch(err => {
-            // console.log(err);
+            console.log(err);
             res.status(401).send('You are not authorized to make this request');
         });
     },

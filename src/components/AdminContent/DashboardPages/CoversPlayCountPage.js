@@ -73,7 +73,7 @@ const TableEntry = ({ imageURL, coverID, audioURL, name, playCount }) => {
             <section className="flex centerItems">
                 <h2>{coverID}</h2>
             </section>
-            <section className="flex flex-wrap items-center overflow-auto">
+            <section className="flex flex-wrap items-center overflow-auto  truncate scrollbar-thin scrollbar-track-gray-800 scrollbar-thumb-gray-900">
                 <h2>{audioURL}</h2>
             </section>
             <section className="flex centerItems">

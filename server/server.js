@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { getSong, getCoverAudio, incrPlays, getKey, getAllAlbums, getAllSongs, addCover, getAllCovers } = require('./controller');
+const { getSong, getCoverAudio, incrPlays, getKey, getAllAlbums, addSong, getAllSongs, addCover, getAllCovers } = require('./controller');
 const { seed } = require('./seed');
 
 const app = express();
@@ -20,6 +20,7 @@ app.post('/login', getKey);
 
 app.get('/albums', getAllAlbums);
 
+app.post('/songs', addSong);
 app.get('/songs', getAllSongs);
 
 app.post('/covers', addCover);

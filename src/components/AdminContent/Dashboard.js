@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
 import AddAlbumPage from './DashboardPages/AddAlbumPage';
 import ViewAlbumsPage from './DashboardPages/ViewAlbumsPage';
+import AddAlbumSongPage from './DashboardPages/AddAlbumSongPage';
 import ViewSongsPage from './DashboardPages/ViewSongsPage';
 import AddCoverPage from './DashboardPages/AddCoverPage';
 import CoversPlayCountPage from './DashboardPages/CoversPlayCountPage';
@@ -99,7 +100,7 @@ const Dashboard = ({ serverKey }) => {
 
     let dashboardDisplay;
     if(currDisplay.addAlbum) {
-        dashboardDisplay = <AddAlbumPage serverKey={serverKey} />;
+        dashboardDisplay = <AddAlbumPage serverKey={serverKey} />
     } else if (currDisplay.updateAlbum) {
         dashboardDisplay = '';
     } else if (currDisplay.viewAlbums) {
@@ -107,7 +108,7 @@ const Dashboard = ({ serverKey }) => {
     } else if (currDisplay.removeAlbum) {
         dashboardDisplay = '';
     } else if (currDisplay.addAlbumSong) {
-        dashboardDisplay = '';
+        dashboardDisplay = <AddAlbumSongPage serverKey={serverKey} />
     } else if (currDisplay.viewSongs) {
         dashboardDisplay = <ViewSongsPage />;
     } else if (currDisplay.updateSongInfo) {
@@ -115,7 +116,7 @@ const Dashboard = ({ serverKey }) => {
     } else if (currDisplay.removeAlbumSong) {
         dashboardDisplay = '';
     } else if (currDisplay.addCover) {
-        dashboardDisplay = <AddCoverPage serverKey={serverKey}/>
+        dashboardDisplay = <AddCoverPage serverKey={serverKey} />
     } else if (currDisplay.updateCover) {
         dashboardDisplay = '';
     } else if (currDisplay.removeCover) {
