@@ -364,4 +364,18 @@ module.exports = {
         })
         .catch(err => console.log(err));
     },
+
+    deleteCover: (req, res) => {
+        const {id} = req.params;
+        sequelize.query(`
+            DELETE FROM covers
+            WHERE cover_name = '${id}'`)
+        .then(() => {
+            res.status(200).send('Cover successfully deleted from database.');
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(400).send('There was a problem deleting the cover from the database.');
+        });
+    }
 }

@@ -14,7 +14,8 @@ const {
     getAllSongs,
     deleteSong, 
     addCover, 
-    getAllCovers 
+    getAllCovers,
+    deleteCover
 } = require('./controller');
 const { seed } = require('./seed');
 
@@ -43,6 +44,7 @@ app.delete('/songs/:id', deleteSong);
 
 app.post('/covers', addCover);
 app.get('/covers', getAllCovers);
+app.delete('/covers/:id', deleteCover);
 
 const port = process.env.PORT || 4002;
 app.listen(port, () => {
