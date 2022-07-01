@@ -10,6 +10,7 @@ import UpdateSongPage from './DashboardPages/UpdateSongPage';
 import RemoveSongPage from './DashboardPages/RemoveSongPage';
 import AddCoverPage from './DashboardPages/AddCoverPage';
 import CoversPlayCountPage from './DashboardPages/CoversPlayCountPage';
+import UpdateCoverPage from './DashboardPages/UpdateCoverPage';
 import RemoveCoverPage from './DashboardPages/RemoveCoverPage';
 
 const Dashboard = ({ serverKey }) => {
@@ -123,7 +124,7 @@ const Dashboard = ({ serverKey }) => {
     } else if (currDisplay.addCover) {
         dashboardDisplay = <AddCoverPage serverKey={serverKey} />
     } else if (currDisplay.updateCover) {
-        dashboardDisplay = '';
+        dashboardDisplay = <UpdateCoverPage serverKey={serverKey} />;
     } else if (currDisplay.removeCover) {
         dashboardDisplay = <RemoveCoverPage serverKey={serverKey} />;
     } else if (currDisplay.getViews) {
