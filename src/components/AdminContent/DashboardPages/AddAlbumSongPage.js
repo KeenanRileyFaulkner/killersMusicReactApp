@@ -32,7 +32,7 @@ const AddSongForm = ({ serverKey }) => {
     }
 
     return (
-        <form className="add-cover-form" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <h1 className="text-white font-extrabold">ADD SONG TO DATABASE</h1>
             <input placeholder="SONG NAME" type="text" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
             <input placeholder="ALBUM NAME" type="text" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
