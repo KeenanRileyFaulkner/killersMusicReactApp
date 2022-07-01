@@ -235,6 +235,7 @@ module.exports = {
                     })
                     .catch(err => {
                         console.log(err);
+                        res.status(500).send('An unknown error has occurred');
                     })
                 } else {
                     sequelize.query(`
@@ -388,6 +389,7 @@ module.exports = {
                     })
                     .catch(err => {
                         console.log(err);
+                        res.status(500).send('An unknown error has occurred. You may have entered an invalid album id');
                     })
                 } else {
                     sequelize.query(`
@@ -487,6 +489,65 @@ module.exports = {
             res.status(200).send(dbRes[0]);
         })
         .catch(err => console.log(err));
+    },
+
+    updateCover: (req, res) => {
+        if(req.body.serverKey === '') {
+            res.status(401).send('You are not authorized to make this request');
+            return;
+        }
+
+        const compareKey = req.body.serverKey;
+        const cover_id = req.body.cover_id;
+        const columnsToUpdate = Object.keys(req.body).filter(key => (key !== 'serverKey') && (key !== 'cover_id'));
+        const columnNames = columnsToUpdate.join(', ');
+
+        let valuesInOrder = [];
+        columnsToUpdate.forEach(column => {
+            valuesInOrder.push((`'${req.body[column]}'`));
+        });
+
+        let updateValues = valuesInOrder.join(", ");
+
+        const moreThanOneUpdate = (valuesInOrder.length > 1);
+
+        sequelize.query(`
+            SELECT access_key FROM connection_data
+            WHERE access_key = '${compareKey}'`)
+        .then(dbRes => {
+            if(typeof dbRes[0][0].access_key !== 'undefined') {
+                if (moreThanOneUpdate) {
+                    sequelize.query(`
+                        UPDATE covers SET (${columnNames}) = (${updateValues})
+                        WHERE cover_id = ${cover_id}`)
+                    .then(() => {
+                        res.status(200).send('Cover information successfully updated. Go to "Get Play Count" in nav to see it.');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.status(500).send('An unknown error has occurred. No apostrophes are allowed in any field')
+                    })
+                } else {
+                    sequelize.query(`
+                        UPDATE covers SET ${columnNames} = ${updateValues}
+                        WHERE cover_id = ${cover_id}`)
+                    .then(() => {
+                        res.status(200).send('Cover information successfully updated. Go to "Get Play Count" in nav to see it.');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.status(500).send('An unknown error has occurred. No apostrophes are allowed in any field');
+                    })
+                }
+                
+            } else {
+                res.status(401).send('You are not authorized to make that request');
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(401).send('There was a problem authenticating your request');
+        });
     },
 
     deleteCover: (req, res) => {
