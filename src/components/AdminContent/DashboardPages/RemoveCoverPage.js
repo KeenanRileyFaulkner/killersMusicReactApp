@@ -31,28 +31,20 @@ const RemoveCoverForm = ({serverKey}) => {
                     axios.delete(`http://localhost:4002/covers/${coverToDelete}`)
                         .then(res => {
                             alert(res.data);
-                            inputs[0].value = '';
-                            inputs[1].value = '';
-                            inputs[2].value = '';
+                            inputs.forEach(input => input.value = '');
                         })
                         .catch(err => {
                             alert(err.response.data);
-                            inputs[0].value = '';
-                            inputs[1].value = '';
-                            inputs[2].value = '';
+                            inputs.forEach(input => input.value = '');
                         })
                 } else {
                     alert('You are not authorized to make that request');
-                    inputs[0].value = '';
-                    inputs[1].value = '';
-                    inputs[2].value = '';
+                    inputs.forEach(input => input.value = '');
                 }
             })
             .catch(err => {
                 alert(err.response.data);
-                inputs[0].value = '';
-                inputs[1].value = '';
-                inputs[2].value = '';
+                inputs.forEach(input => input.value = '');
             });
     }
 

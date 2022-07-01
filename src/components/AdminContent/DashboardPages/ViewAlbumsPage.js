@@ -68,7 +68,7 @@ const Album = ({ artworkURL, name, year, numTracks, albumID }) => {
     return (
         <div className="grid grid-cols-5 h-[150px] w-[100%] text-[8pt] text-gray-400 border-b-[2px] border-gray-800 py-2">
             <section className="flex centerItems">
-                <img src={artworkURL} className="h-[100px] w-[100px] "/>
+                <img src={artworkURL} className="h-[100px] w-[100px]" alt="" />
             </section>
             <section className="flex centerItems">
                 <h2>{name}</h2>

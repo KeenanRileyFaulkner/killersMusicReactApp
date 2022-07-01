@@ -24,17 +24,12 @@ const AddAlbumForm = ({ serverKey }) => {
         axios.post('http://localhost:4002/albums', reqBody)
             .then(res => {
                 alert(res.data);
-                inputs[0].value = '';
-                inputs[1].value = '';
-                inputs[2].value = '';
-                inputs[3].value = '';
+                inputs.forEach(input => input.value = '');
             })
             .catch(err => {
                 alert(err.response.data);
-                inputs[0].value = '';
-                inputs[1].value = '';
-                inputs[2].value = '';
-                inputs[3].value = '';
+                inputs.forEach(input => input.value = '');
+
             });
     }
 

@@ -23,15 +23,11 @@ const AddCoverForm = ({ serverKey }) => {
         axios.post('http://localhost:4002/covers', reqBody)
             .then(res => {
                 alert(res.data);
-                inputs[0].value = '';
-                inputs[1].value = '';
-                inputs[2].value = '';
+                inputs.forEach(input => input.value = '');
             })
             .catch(err => {
                 alert(err.response.data);
-                inputs[0].value = '';
-                inputs[1].value = '';
-                inputs[2].value = '';
+                inputs.forEach(input => input.value = '');
             });
     }
 
