@@ -64,9 +64,9 @@ const UpdateAlbumForm = ({serverKey}) => {
             <h1 className="text-white font-extrabold">UPDATE ALBUM IN DATABASE</h1>
             <input placeholder="ALBUM ID#" type="text" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
             <input placeholder="NEW ALBUM NAME (OPTIONAL)" type="text" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
-            <input placeholder="NEW ALBUM RELEASE YEAR (OPTIONAL)" type="password" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
-            <input placeholder="NEW ALBUM IMG URL (OPTIONAL)" type="password" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
-            <input placeholder="NEW NUM TRACKS (OPTIONAL)" type="password" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
+            <input placeholder="NEW ALBUM RELEASE YEAR (OPTIONAL)" type="text" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
+            <input placeholder="NEW ALBUM IMG URL (OPTIONAL)" type="text" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
+            <input placeholder="NEW NUM TRACKS (OPTIONAL)" type="text" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
             <button className="bg-black border-white border-[4px] w-[100px] rounded-xl font-extrabold text-white">SUBMIT</button>
         </form>
     )

@@ -197,6 +197,67 @@ module.exports = {
         .catch(err => console.log(err));
     },
 
+    updateAlbum: (req, res) => {
+        if(req.body.serverKey === '') {
+            res.status(401).send('You are not authorized to make this request');
+            return;
+        }
+
+        const compareKey = req.body.serverKey;
+        const album_id = req.body.album_id;
+        const columnsToUpdate = Object.keys(req.body).filter(key => (key !== 'serverKey') && (key !== 'album_id'));
+        const columnNames = columnsToUpdate.join(', ');
+
+        let valuesInOrder = [];
+        columnsToUpdate.forEach(column => {
+            if (column === 'release_year' || column === 'num_tracks') {
+                valuesInOrder.push((Number(req.body[column])));
+            } else {
+                valuesInOrder.push((`'${req.body[column]}'`));
+            }
+        });
+
+        let updateValues = valuesInOrder.join(", ");
+
+        const moreThanOneUpdate = (valuesInOrder.length > 1);
+
+        sequelize.query(`
+            SELECT access_key FROM connection_data
+            WHERE access_key = '${compareKey}'`)
+        .then(dbRes => {
+            if(typeof dbRes[0][0].access_key !== 'undefined') {
+                if (moreThanOneUpdate) {
+                    sequelize.query(`
+                        UPDATE albums SET (${columnNames}) = (${updateValues})
+                        WHERE album_id = ${album_id}`)
+                    .then(() => {
+                        res.status(200).send('Album information successfully updated. Go to "View Albums" in nav to see it.');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+                } else {
+                    sequelize.query(`
+                        UPDATE albums SET ${columnNames} = ${updateValues}
+                        WHERE album_id = ${album_id}`)
+                    .then(() => {
+                        res.status(200).send('Album information successfully updated. Go to "View Albums" in nav to see it.');
+                    })
+                    .catch(err => {
+                        console.log(valuesInOrder.length, moreThanOneUpdate);
+                    })
+                }
+                
+            } else {
+                res.status(401).send('You are not authorized to make that request');
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(401).send('There was a problem authenticating your request');
+        });
+    },
+
     deleteAlbum: (req, res) => {
         const {id} = req.params;
         sequelize.query(`

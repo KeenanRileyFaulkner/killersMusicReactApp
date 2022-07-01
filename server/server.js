@@ -8,7 +8,8 @@ const {
     getKey, 
     authenticateUser,
     addAlbum, 
-    getAllAlbums, 
+    getAllAlbums,
+    updateAlbum,
     deleteAlbum, 
     addSong, 
     getAllSongs,
@@ -36,6 +37,7 @@ app.post('/authenticate', authenticateUser);
 
 app.post('/albums', addAlbum);
 app.get('/albums', getAllAlbums);
+app.put('/albums', updateAlbum);
 app.delete('/albums/:id', deleteAlbum);
 
 app.post('/songs', addSong);
