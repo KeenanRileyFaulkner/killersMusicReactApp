@@ -13,6 +13,7 @@ const {
     deleteAlbum, 
     addSong, 
     getAllSongs,
+    updateSong,
     deleteSong, 
     addCover, 
     getAllCovers,
@@ -32,8 +33,8 @@ app.get('/albums/:id', getSong);
 app.get('/covers/:id', getCoverAudio);
 app.put('/covers/:id', incrPlays);
 
-app.post('/login', getKey);
-app.post('/authenticate', authenticateUser);
+app.post('/login', getKey); //this will check the password sent against a stored hash and return the key if there's a match
+app.post('/authenticate', authenticateUser); //this will check the key that has been received against the stored one, as well as the username and password
 
 app.post('/albums', addAlbum);
 app.get('/albums', getAllAlbums);
@@ -42,6 +43,7 @@ app.delete('/albums/:id', deleteAlbum);
 
 app.post('/songs', addSong);
 app.get('/songs', getAllSongs);
+app.put('/songs', updateSong);
 app.delete('/songs/:id', deleteSong);
 
 app.post('/covers', addCover);

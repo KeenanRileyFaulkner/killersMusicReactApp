@@ -244,7 +244,8 @@ module.exports = {
                         res.status(200).send('Album information successfully updated. Go to "View Albums" in nav to see it.');
                     })
                     .catch(err => {
-                        console.log(valuesInOrder.length, moreThanOneUpdate);
+                        console.log(err);
+                        res.status(500).send('An unknown error has occurred');
                     })
                 }
                 
@@ -347,6 +348,68 @@ module.exports = {
             res.status(200).send(dbRes[0]);
         })
         .catch(err => console.log(err));
+    },
+
+    updateSong: (req, res) => {
+        if(req.body.serverKey === '') {
+            res.status(401).send('You are not authorized to make this request');
+            return;
+        }
+
+        const compareKey = req.body.serverKey;
+        const song_id = req.body.song_id;
+        const columnsToUpdate = Object.keys(req.body).filter(key => (key !== 'serverKey') && (key !== 'song_id'));
+        const columnNames = columnsToUpdate.join(', ');
+
+        let valuesInOrder = [];
+        columnsToUpdate.forEach(column => {
+            if (column === 'album_id') {
+                valuesInOrder.push((Number(req.body[column])));
+            } else {
+                valuesInOrder.push((`'${req.body[column]}'`));
+            }
+        });
+
+        let updateValues = valuesInOrder.join(", ");
+
+        const moreThanOneUpdate = (valuesInOrder.length > 1);
+
+        sequelize.query(`
+            SELECT access_key FROM connection_data
+            WHERE access_key = '${compareKey}'`)
+        .then(dbRes => {
+            if(typeof dbRes[0][0].access_key !== 'undefined') {
+                if (moreThanOneUpdate) {
+                    sequelize.query(`
+                        UPDATE audios SET (${columnNames}) = (${updateValues})
+                        WHERE song_id = ${song_id}`)
+                    .then(() => {
+                        res.status(200).send('Song information successfully updated. Go to "View Songs" in nav to see it.');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+                } else {
+                    sequelize.query(`
+                        UPDATE audios SET ${columnNames} = ${updateValues}
+                        WHERE song_id = ${song_id}`)
+                    .then(() => {
+                        res.status(200).send('Song information successfully updated. Go to "View Songs" in nav to see it.');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.status(500).send('An unknown error has occurred. You may have entered an invalid album id.');
+                    })
+                }
+                
+            } else {
+                res.status(401).send('You are not authorized to make that request');
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(401).send('There was a problem authenticating your request');
+        });
     },
 
     deleteSong: (req, res) => {
