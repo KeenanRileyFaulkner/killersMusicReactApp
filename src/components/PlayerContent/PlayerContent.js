@@ -11,7 +11,7 @@ const PlayerContent = () => {
     let albumsFromAxios = [];
     const albumColors = ['bg-steel-blue', 'bg-vegas-yellow', 'bg-mocha-brown', 'bg-bb-black', 'bg-pearly-white', 'bg-amber-wave'];
     useEffect(() => {
-        axios.get('http://localhost:4002/albumsForPlayer')
+        axios.get('http://localhost:4002/albumsForDisplay')
         .then(res => {
             albumsFromAxios = [...res.data];
             albumsFromAxios.forEach((album, index) => {
@@ -19,7 +19,6 @@ const PlayerContent = () => {
                 album.color = albumColors[index % 6];
             })
             setAlbumList(albumsFromAxios);
-            console.log(albumsFromAxios[0].image_url);
         })
         .catch(err => console.log(err));
     }, [])
@@ -61,7 +60,7 @@ const PlayerContent = () => {
         <div className='contentContainer bg-pm-band-photo bg-[center_64px] centerItems'>
             <AudioPlayer src={audioControls.src} handleEnded={() => stopAllPlaying()} />
             {albumList.map((album, index) => {
-                return <AlbumLink color={`${album.color}`} image={`${album.image_url}`} onClick={() => handleClick(index)} musicPlaying={album.playing} key={album.album_id} />
+                return <AlbumLink color={`${album.color}`} image={`${album.image_url}`} onClick={() => handleClick(index)} musicPlaying={album.playing} key={album.album_name} />
             })}
         </div>
     );

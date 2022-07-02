@@ -16,7 +16,7 @@ const calcRandomTrackNum = arr => {
 }
 
 module.exports = {
-    getAlbumsForPlayer: (req, res) => {
+    getAlbumsForDisplay: (req, res) => {
         sequelize.query(`
             SELECT album_id, album_name, image_url FROM albums
             ORDER BY album_id`)
@@ -39,6 +39,19 @@ module.exports = {
             res.status(200).send(dbRes[0][randomTrack].url);
         })
         .catch(err => console.log(err));
+    },
+
+    getCoversForDisplay: (req, res) => {
+        sequelize.query(`
+            SELECT image_url, cover_name, audio_url FROM covers
+            ORDER BY cover_id`)
+        .then(dbRes => {
+            res.status(200).send(dbRes[0]);
+        })
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        })
     },
 
     getCoverAudio: (req, res) => {

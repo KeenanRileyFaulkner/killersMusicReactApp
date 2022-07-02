@@ -3,8 +3,9 @@ const cors = require('cors');
 const path = require('path');
 
 const { 
-    getAlbumsForPlayer,
+    getAlbumsForDisplay,
     getSong, 
+    getCoversForDisplay,
     getCoverAudio, 
     incrPlays, 
     getKey, 
@@ -33,8 +34,9 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../build')));
 
 app.post('/seed', seed);
-app.get('/albumsForPlayer', getAlbumsForPlayer);
+app.get('/albumsForDisplay', getAlbumsForDisplay);
 app.get('/albums/:id', getSong);
+app.get('/coversForDisplay', getCoversForDisplay);
 app.get('/covers/:id', getCoverAudio);
 app.put('/covers/:id', incrPlays);
 
