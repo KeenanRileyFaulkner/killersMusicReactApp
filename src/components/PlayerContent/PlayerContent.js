@@ -70,8 +70,6 @@ const PlayerContent = () => {
 
 const AlbumLink = ({ color='bg-gray-800', image, onClick, musicPlaying }) => {
 
-    console.log({image})
-
     return (
         <div className={`${color} albumLink`} style={{backgroundImage: `url(${image})`}}>
             <button onClick={onClick}>
