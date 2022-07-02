@@ -255,20 +255,30 @@ module.exports = {
                 if (moreThanOneUpdate) {
                     sequelize.query(`
                         UPDATE albums SET (${columnNames}) = (${updateValues})
-                        WHERE album_id = ${album_id}`)
-                    .then(() => {
-                        res.status(200).send('Album information successfully updated. Go to "View Albums" in nav to see it.');
+                        WHERE album_id = ${album_id}
+                        RETURNING *`)
+                    .then(dbRes => {
+                        if (dbRes[1].rowCount > 0) {
+                            res.status(200).send('Album information successfully updated. Go to "View Albums" in nav to see it.');
+                        } else {
+                            res.status(400).send('That album could not be found');
+                        }
                     })
                     .catch(err => {
                         console.log(err);
-                        res.status(500).send('An unknown error has occurred');
+                        res.status(500).send('An unknown error occurred');
                     })
                 } else {
                     sequelize.query(`
                         UPDATE albums SET ${columnNames} = ${updateValues}
-                        WHERE album_id = ${album_id}`)
+                        WHERE album_id = ${album_id}
+                        RETURNING *`)
                     .then(() => {
-                        res.status(200).send('Album information successfully updated. Go to "View Albums" in nav to see it.');
+                        if (dbRes[1].rowCount > 0) {
+                            res.status(200).send('Album information successfully updated. Go to "View Albums" in nav to see it.');
+                        } else {
+                            res.status(400).send('That album could not be found');
+                        }
                     })
                     .catch(err => {
                         console.log(err);
@@ -409,9 +419,14 @@ module.exports = {
                 if (moreThanOneUpdate) {
                     sequelize.query(`
                         UPDATE audios SET (${columnNames}) = (${updateValues})
-                        WHERE song_id = ${song_id}`)
-                    .then(() => {
-                        res.status(200).send('Song information successfully updated. Go to "View Songs" in nav to see it.');
+                        WHERE song_id = ${song_id}
+                        RETURNING *`)
+                    .then((dbRes) => {
+                        if (dbRes[1].rowCount > 0) {
+                            res.status(200).send('Song information successfully updated. Go to "View Songs" in nav to see it.');
+                        } else {
+                            res.status(400).send('That song could not be found');
+                        }
                     })
                     .catch(err => {
                         console.log(err);
@@ -420,9 +435,14 @@ module.exports = {
                 } else {
                     sequelize.query(`
                         UPDATE audios SET ${columnNames} = ${updateValues}
-                        WHERE song_id = ${song_id}`)
-                    .then(() => {
-                        res.status(200).send('Song information successfully updated. Go to "View Songs" in nav to see it.');
+                        WHERE song_id = ${song_id}
+                        RETURNING *`)
+                    .then((dbRes) => {
+                        if (dbRes[1].rowCount > 0) {
+                            res.status(200).send('Song information successfully updated. Go to "View Songs" in nav to see it.');
+                        } else {
+                            res.status(400).send('That song could not be found');
+                        }
                     })
                     .catch(err => {
                         console.log(err);
@@ -545,9 +565,14 @@ module.exports = {
                 if (moreThanOneUpdate) {
                     sequelize.query(`
                         UPDATE covers SET (${columnNames}) = (${updateValues})
-                        WHERE cover_id = ${cover_id}`)
-                    .then(() => {
-                        res.status(200).send('Cover information successfully updated. Go to "Get Play Count" in nav to see it.');
+                        WHERE cover_id = ${cover_id}
+                        RETURNING *`)
+                    .then((dbRes) => {
+                        if (dbRes[1].rowCount > 0) {
+                            res.status(200).send('Cover information successfully updated. Go to "Get Play Count" in nav to see it.');
+                        } else {
+                            res.status(400).send('That cover could not be found');
+                        }
                     })
                     .catch(err => {
                         console.log(err);
@@ -556,9 +581,14 @@ module.exports = {
                 } else {
                     sequelize.query(`
                         UPDATE covers SET ${columnNames} = ${updateValues}
-                        WHERE cover_id = ${cover_id}`)
-                    .then(() => {
-                        res.status(200).send('Cover information successfully updated. Go to "Get Play Count" in nav to see it.');
+                        WHERE cover_id = ${cover_id}
+                        RETURNING *`)
+                    .then((dbRes) => {
+                        if (dbRes[1].rowCount > 0) {
+                            res.status(200).send('Cover information successfully updated. Go to "Get Play Count" in nav to see it.');
+                        } else {
+                            res.status(400).send('That cover could not be found');
+                        }
                     })
                     .catch(err => {
                         console.log(err);

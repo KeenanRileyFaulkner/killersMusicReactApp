@@ -24,16 +24,12 @@ const {
     deleteCover
 } = require('./controller');
 
-const { seed } = require('./seed');
-
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-//How do I get the files for my app? By giving express access to src or public?
 app.use(express.static(path.join(__dirname, '../build')));
 
-app.post('/seed', seed);
 app.get('/albumsForDisplay', getAlbumsForDisplay);
 app.get('/albums/:id', getSong);
 app.get('/coversForDisplay', getCoversForDisplay);
