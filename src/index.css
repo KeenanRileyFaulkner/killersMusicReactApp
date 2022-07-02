@@ -146,7 +146,7 @@
   }
 }
 
-/* form {
+form {
   @apply h-[350px] w-[500px] flex flex-row flex-wrap mb-[200px] 
   bg-black-static border-[8px] rounded-3xl border-white p-8 justify-center font-work-sans text-[12pt];
-} */
+}
