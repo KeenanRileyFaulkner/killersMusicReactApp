@@ -57,7 +57,7 @@ const Menu = ({ funcArr, adminLogin }) => {
                 : (<HiOutlineMenu size='30' className='hamburger-btn'/>)
             }
           </button>
-          <ul className={`menuNav ${menuOpen ? "showMenu" : ""}`}>
+          <ul className={`menuNav ${menuOpen ? "showMenu" : ""} overflow:hidden`}>
             <InternalMenuDropdown header='PAGE LINKS' selections={pages} updateFunctionsArr={funcArr} />
             <MenuDropdown header='ALBUMS' selections={albumNames} tagLinks={albumPlaylists} />
             <MenuDropdown header='BAND' selections={links} tagLinks={webLinks} />

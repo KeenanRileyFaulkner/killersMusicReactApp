@@ -25,7 +25,7 @@ const PlayerContent = () => {
 
     const [audioControls, setAudioControls] = useState({src: ''});
 
-    const handleClick = i => {
+    const handleClick = (i, albumID) => {
         let albumsCopy;
         if (albumList[i].playing) {
             albumsCopy = albumList.map((album) => {
@@ -41,7 +41,7 @@ const PlayerContent = () => {
                 }
             });
 
-            axios.get(`http://localhost:4002/albums/${i}`).then((res) => {
+            axios.get(`http://localhost:4002/albums/${albumID}`).then((res) => {
                 setAudioControls({src: res.data});
             }).catch(err => console.log(err));
         }
@@ -60,7 +60,7 @@ const PlayerContent = () => {
         <div className='contentContainer bg-pm-band-photo bg-[center_64px] centerItems'>
             <AudioPlayer src={audioControls.src} handleEnded={() => stopAllPlaying()} />
             {albumList.map((album, index) => {
-                return <AlbumLink color={`${album.color}`} image={`${album.image_url}`} onClick={() => handleClick(index)} musicPlaying={album.playing} key={album.album_name} />
+                return <AlbumLink color={`${album.color}`} image={`${album.image_url}`} onClick={() => handleClick(index, album.album_id)} musicPlaying={album.playing} key={album.album_name} />
             })}
         </div>
     );

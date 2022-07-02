@@ -33,7 +33,7 @@ module.exports = {
         const { id } = req.params;
         sequelize.query(`
             SELECT url FROM audios
-            WHERE ${Number(id) + 1} = album_id`)
+            WHERE ${Number(id)} = album_id`)
         .then(dbRes => {
             const randomTrack = calcRandomTrackNum(dbRes[0]);
             res.status(200).send(dbRes[0][randomTrack].url);
@@ -43,7 +43,7 @@ module.exports = {
 
     getCoversForDisplay: (req, res) => {
         sequelize.query(`
-            SELECT image_url, cover_name, audio_url FROM covers
+            SELECT image_url, cover_name, audio_url, cover_id FROM covers
             ORDER BY cover_id`)
         .then(dbRes => {
             res.status(200).send(dbRes[0]);

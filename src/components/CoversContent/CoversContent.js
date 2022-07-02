@@ -30,7 +30,7 @@ const CoversContent = ({ covers=coversArr }) => {
         setCoverList(coversCopy);
     }
 
-    const handleClick = (i) => {
+    const handleClick = (i, coverID) => {
         let coversCopy;
         if(coverList[i].playing) {
             coversCopy = coverList.map((cover) => {
@@ -46,11 +46,11 @@ const CoversContent = ({ covers=coversArr }) => {
                 }
             });
 
-            axios.get(`http://localhost:4002/covers/${i + 1}`).then((res) => { //i + 1 because each cover is stored in db using SERIAL PRIMARY KEY (1 based index)
+            axios.get(`http://localhost:4002/covers/${coverID}`).then((res) => { //i + 1 because each cover is stored in db using SERIAL PRIMARY KEY (1 based index)
                 setAudioControls({src: res.data});
             }).catch(err => console.log(err));
 
-            axios.put(`http://localhost:4002/covers/${i + 1}`).then((res) => {
+            axios.put(`http://localhost:4002/covers/${coverID}`).then((res) => {
                 console.log(res.data); //can add functionality here later
             }).catch(err => console.log(err));
         }
@@ -62,7 +62,7 @@ const CoversContent = ({ covers=coversArr }) => {
         <div className='contentContainer bg-itm-band-photo bg-[center_10px] centerItems'>
             <AudioPlayer src={audioControls.src} handleEnded={stopAllPlaying} />
             {coverList.map((cover, index) => {
-                return <CoverLink color={cover.color} image={cover.image_url} onClick={() => handleClick(index)} musicPlaying={cover.playing} coverName={cover.cover_name} key={cover.cover_name} />
+                return <CoverLink color={cover.color} image={cover.image_url} onClick={() => handleClick(index, cover.cover_id)} musicPlaying={cover.playing} coverName={cover.cover_name} key={cover.cover_name} />
             })}
         </div>
     )
@@ -96,7 +96,7 @@ const CoverLink = ({ color='bg-gray-800', image, onClick, musicPlaying, coverNam
     }
 
     return (
-        <div>
+        <div className='mb-[30px]'>
             <div className={`${color} albumLink mx-8 mt-4`} style={{backgroundImage: `url(${image})`}}>
                 <button onClick={onClick}>
                     {musicPlaying ? (
