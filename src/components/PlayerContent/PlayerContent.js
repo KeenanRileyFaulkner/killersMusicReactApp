@@ -1,13 +1,29 @@
 import React from 'react';
 import { MdPauseCircleFilled } from 'react-icons/md';
 import { FaPlayCircle } from 'react-icons/fa';
-import { useState } from 'react';
-import albumsArr from './albums';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-const PlayerContent = ({ albums=albumsArr }) => {
-    const [albumList, setAlbumList] = useState(albums);
+const PlayerContent = () => {
+    const [albumList, setAlbumList] = useState([]);
+
+    let albumsFromAxios = [];
+    const albumColors = ['bg-steel-blue', 'bg-vegas-yellow', 'bg-mocha-brown', 'bg-bb-black', 'bg-pearly-white', 'bg-amber-wave'];
+    useEffect(() => {
+        axios.get('http://localhost:4002/albumsForPlayer')
+        .then(res => {
+            albumsFromAxios = [...res.data];
+            albumsFromAxios.forEach((album, index) => {
+                album.playing = false;
+                album.color = albumColors[index % 6];
+            })
+            setAlbumList(albumsFromAxios);
+            console.log(albumsFromAxios[0].image_url);
+        })
+        .catch(err => console.log(err));
+    }, [])
+
     const [audioControls, setAudioControls] = useState({src: ''});
 
     const handleClick = i => {
@@ -45,7 +61,7 @@ const PlayerContent = ({ albums=albumsArr }) => {
         <div className='contentContainer bg-pm-band-photo bg-[center_64px] centerItems'>
             <AudioPlayer src={audioControls.src} handleEnded={() => stopAllPlaying()} />
             {albumList.map((album, index) => {
-                return <AlbumLink color={`${album.color}`} image={`${album.image}`} onClick={() => handleClick(index)} musicPlaying={album.playing} key={album.id} />
+                return <AlbumLink color={`${album.color}`} image={`${album.image_url}`} onClick={() => handleClick(index)} musicPlaying={album.playing} key={album.album_id} />
             })}
         </div>
     );
@@ -53,10 +69,12 @@ const PlayerContent = ({ albums=albumsArr }) => {
 
 
 
-const AlbumLink = ({ color='bg-gray-800', image='bg-logo', onClick, musicPlaying }) => {
+const AlbumLink = ({ color='bg-gray-800', image, onClick, musicPlaying }) => {
+
+    console.log({image})
 
     return (
-        <div className={`${image} ${color} albumLink`}>
+        <div className={`${color} albumLink`} style={{backgroundImage: `url(${image})`}}>
             <button onClick={onClick}>
                 {musicPlaying ? (
                     <MdPauseCircleFilled size='58' className='audio-icon' />
@@ -72,4 +90,4 @@ const AudioPlayer = ({ src, handleEnded }) => {
     return(<audio src={src} autoPlay onEnded={handleEnded}/>);
 }
 
-export default PlayerContent;
+export default PlayerContent; 

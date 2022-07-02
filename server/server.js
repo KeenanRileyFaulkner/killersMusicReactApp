@@ -1,7 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+
 const { 
+    getAlbumsForPlayer,
     getSong, 
     getCoverAudio, 
     incrPlays, 
@@ -20,6 +22,7 @@ const {
     updateCover,
     deleteCover
 } = require('./controller');
+
 const { seed } = require('./seed');
 
 const app = express();
@@ -30,6 +33,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../build')));
 
 app.post('/seed', seed);
+app.get('/albumsForPlayer', getAlbumsForPlayer);
 app.get('/albums/:id', getSong);
 app.get('/covers/:id', getCoverAudio);
 app.put('/covers/:id', incrPlays);
