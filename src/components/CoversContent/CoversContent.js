@@ -69,7 +69,7 @@ const CoversContent = ({ covers=coversArr }) => {
 }
 
 
-const CoverLink = ({ color='bg-gray-800', image='bg-logo', onClick, musicPlaying, coverName }) => {
+const CoverLink = ({ color='bg-gray-800', image, onClick, musicPlaying, coverName }) => {
 
     let borderColor;
     switch (color) { //switch statement due to tailwind bug; color palette should be available to border utility class but is not
