@@ -62,9 +62,3 @@ function App() {
 }
 
 export default App;
-
-
-/* <div className='page-container'>
-  <NavBar />
-  <PlayerContent bgPhoto='bg-pm-band-photo' /> 
-</div> */
