@@ -50,13 +50,16 @@ const AboutContent = () => {
 
 
     return (
-        <div className={`contentContainer ${backgroundPhoto} bg-[center_24px] flex-col`}>
-            <FullBand selectedState={displayedInfo} selectBrandon={selectBrandon} 
-                selectRonnie={selectRonnie} selectMark={selectMark} selectDave={selectDave} />
+        <div>
+            <div className={`background-image ${backgroundPhoto}`} />
+            <div className={`contentContainer flex-col`}>
+                <FullBand selectedState={displayedInfo} selectBrandon={selectBrandon} 
+                    selectRonnie={selectRonnie} selectMark={selectMark} selectDave={selectDave} />
 
-            <BandLogo selected={displayedInfo.band} handleClick={selectBandInfo} />
+                <BandLogo selected={displayedInfo.band} handleClick={selectBandInfo} />
 
-            <DescriptionBox currSelection={displayedInfo} />
+                <DescriptionBox currSelection={displayedInfo} />
+            </div>
         </div>
     );
 }

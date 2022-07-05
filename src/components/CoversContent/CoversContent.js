@@ -58,12 +58,16 @@ const CoversContent = () => {
     } 
 
     return (
-        <div className='contentContainer bg-itm-band-photo bg-[center_10px] centerItems'>
+        <div>
+            <div className='bg-itm-band-photo background-image'/>
+            <div className='contentContainer centerItems'>
             <AudioPlayer src={audioControls.src} handleEnded={stopAllPlaying} />
             {coverList.map((cover, index) => {
                 return <CoverLink color={cover.color} image={cover.image_url} onClick={() => handleClick(index, cover.cover_id)} musicPlaying={cover.playing} coverName={cover.cover_name} key={cover.cover_name} />
             })}
         </div>
+        </div>
+        
     )
 }
 

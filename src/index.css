@@ -72,8 +72,12 @@
     hover:cursor-pointer hover:text-blue-300;
   }
 
+  .background-image {
+    @apply bg-[center_24px] bg-no-repeat bg-cover fixed h-screen w-screen -z-10;
+  }
+
   .contentContainer {
-    @apply min-h-screen bg-cover bg-no-repeat bg-fixed
+    @apply min-h-screen
      flex flex-row flex-wrap pt-[100px] pb-[30px] overflow-auto px-3;
   }
 

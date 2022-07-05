@@ -57,11 +57,14 @@ const PlayerContent = () => {
     }
 
     return (
-        <div className='contentContainer bg-pm-band-photo bg-[center_64px] centerItems'>
+        <div>
+            <div className='bg-pm-band-photo background-image bg-[center_64px]' />
+            <div className='contentContainer centerItems'>
             <AudioPlayer src={audioControls.src} handleEnded={() => stopAllPlaying()} />
             {albumList.map((album, index) => {
                 return <AlbumLink color={`${album.color}`} image={`${album.image_url}`} onClick={() => handleClick(index, album.album_id)} musicPlaying={album.playing} key={album.album_name} />
             })}
+        </div>
         </div>
     );
 }
