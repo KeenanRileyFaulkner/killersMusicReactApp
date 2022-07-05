@@ -18,8 +18,8 @@ const calcRandomTrackNum = arr => {
 module.exports = {
     getAlbumsForDisplay: (req, res) => {
         sequelize.query(`
-            SELECT album_id, album_name, image_url FROM albums
-            ORDER BY album_id`)
+            SELECT display_order, album_id, album_name, image_url FROM albums
+            ORDER BY display_order`)
         .then(dbRes => {
             res.status(200).send(dbRes[0]);
         })
@@ -163,20 +163,24 @@ module.exports = {
         let album_name;
         let release_year;
         let image_url;
+        let display_order;
 
         if(req.body.album_name === '') {
-            res.status(400).send('An album_name must be included in your request');
+            res.status(400).send('An album name must be included in your request');
             return;
         } else if (req.body.release_year === '') {
-            res.status(400).send('A release_year must be included in your request');
+            res.status(400).send('A release year must be included in your request');
             return;
         } else if (req.body.image_url === '') {
-            res.status(400).send('An image_url must be included in your request');
+            res.status(400).send('An image url must be included in your request');
             return;
+        } else if (req.body.display_order) {
+            res.status(400).send('A display order must be included in your request');
         } else {
             album_name = req.body.album_name;
             release_year = req.body.release_year;
             image_url = req.body.image_url;
+            display_order = req.body.display_order;
         }
 
         let num_tracks;
@@ -192,9 +196,9 @@ module.exports = {
         .then(dbRes => {
             if(typeof dbRes[0][0].access_key !== 'undefined') {
                 sequelize.query(`
-                    INSERT INTO albums (album_name, release_year, image_url, num_tracks)
+                    INSERT INTO albums (album_name, release_year, image_url, num_tracks, display_order)
                     VALUES
-                    ('${album_name}', ${release_year}, '${image_url}', ${num_tracks})`)
+                    ('${album_name}', ${release_year}, '${image_url}', ${num_tracks}, ${display_order})`)
                 .then(() => {
                     res.status(200).send('The album was successfully added. Go to "View Albums" in nav to see it.');
                 })
@@ -216,7 +220,8 @@ module.exports = {
 
     getAllAlbums: (req, res) => {
         sequelize.query(`
-            SELECT * FROM albums`)
+            SELECT * FROM albums
+            ORDER BY display_order`)
         .then(dbRes => {
             res.status(200).send(dbRes[0]);
         })
@@ -236,7 +241,7 @@ module.exports = {
 
         let valuesInOrder = [];
         columnsToUpdate.forEach(column => {
-            if (column === 'release_year' || column === 'num_tracks') {
+            if (column === 'release_year' || column === 'num_tracks' || column === 'display_order') {
                 valuesInOrder.push((Number(req.body[column])));
             } else {
                 valuesInOrder.push((`'${req.body[column]}'`));

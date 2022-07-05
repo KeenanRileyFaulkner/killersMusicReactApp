@@ -11,9 +11,9 @@ const ViewAlbumsPage = () => {
 }
 
 const TableHeader = () => {
-    const cols = ['IMAGE', 'NAME', 'YEAR', 'NUMBER OF TRACKS', 'ALBUM ID' ];
+    const cols = ['IMAGE', 'NAME', 'YEAR', 'DISPLAY ORDER', 'NUMBER OF TRACKS', 'ALBUM ID' ];
     return (
-        <header className="grid grid-cols-5 border-b-[2px] border-gray-800 text-[#121212] font-semibold font-work-sans items-center">
+        <header className="grid grid-cols-6 border-b-[2px] border-gray-800 text-[#121212] font-semibold font-work-sans items-center">
             {cols.map((col, index) => {
                 if(index < cols.length - 1) {
                     return <TableCol colName={cols[index]} border={true} key={cols[index]} />
@@ -51,7 +51,7 @@ const AlbumsContainer = () => {
     let display;
     if(typeof albumsArr !== 'undefined') {
         display = albumsArr.map((album) => {
-                    return <Album artworkURL={album.image_url} name={album.album_name} year={album.release_year} numTracks={album.num_tracks} albumID={album.album_id} />
+                    return <Album artworkURL={album.image_url} name={album.album_name} year={album.release_year} numTracks={album.num_tracks} albumID={album.album_id} displayOrder={album.display_order} />
                   });
     } else {
         display = <div></div>
@@ -64,9 +64,9 @@ const AlbumsContainer = () => {
     );
 }
 
-const Album = ({ artworkURL, name, year, numTracks, albumID }) => {
+const Album = ({ artworkURL, name, year, numTracks, albumID, displayOrder }) => {
     return (
-        <div className="grid grid-cols-5 h-[150px] w-[100%] text-[8pt] text-gray-400 border-b-[2px] border-gray-800 py-2">
+        <div className="grid grid-cols-6 h-[150px] w-[100%] text-[8pt] text-gray-400 border-b-[2px] border-gray-800 py-2">
             <section className="flex centerItems">
                 <img src={artworkURL} className="h-[100px] w-[100px]" alt="" />
             </section>
@@ -75,6 +75,9 @@ const Album = ({ artworkURL, name, year, numTracks, albumID }) => {
             </section>
             <section className="flex centerItems">
                 <h2>{year}</h2>
+            </section>
+            <section className="flex centerItems">
+                <h2>{displayOrder}</h2>
             </section>
             <section className="flex centerItems">
                 <h2>{numTracks}</h2>
