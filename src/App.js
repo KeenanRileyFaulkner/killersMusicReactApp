@@ -8,7 +8,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
+  Navigate
 } from 'react-router-dom';
 
 function App() {
@@ -63,7 +63,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route index element={<><NavBar titleLinkName='music-player'/><AboutContent /></>} />
+        <Route path="/" element={<Navigate to="/about" replace />} />
+        <Route path="/about" element={<><NavBar titleLinkName='music-player'/><AboutContent /></>} />
         <Route path="/music-player" element={<><NavBar titleLinkName='covers-player'/><PlayerContent /></>} />
         <Route path="/covers-player" element={<><NavBar titleLinkName='' /><CoversContent /></>} />
         <Route path="/admin" element={<><NavBar titleLinkName=''/><AdminContent /></>} />
