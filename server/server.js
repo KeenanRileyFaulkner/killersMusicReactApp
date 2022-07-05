@@ -54,6 +54,10 @@ app.get('/covers', getAllCovers);
 app.put('/covers', updateCover);
 app.delete('/covers/:id', deleteCover);
 
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, '../build', 'index.html'));
+});
+
 const port = process.env.PORT || 4002;
 app.listen(port, () => {
     console.log(`Serving you on port ${port}`);

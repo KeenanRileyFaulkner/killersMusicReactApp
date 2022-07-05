@@ -2,6 +2,7 @@ import { HiOutlineMenu } from 'react-icons/hi';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const albumNames = ['HOT FUSS', "SAM'S TOWN", 'SAWDUST', 'DAY & AGE', 
     'BATTLE BORN', 'WONDERFUL WONDERFUL', 'IMPLODING THE MIRAGE', 'PRESSURE MACHINE'];
@@ -29,19 +30,19 @@ const webLinks = [
 
 const pages = ['MUSIC PLAYER', 'COVERS', 'ABOUT THE BAND'];
 
-const NavBar = ({ handleTitleClick, pageNavFuncs, adminLogin }) => {
+const NavBar = ({ titleLinkName }) => {
     return (
         <div className='main-bar'>
-            <Menu funcArr={pageNavFuncs} adminLogin={adminLogin} />
-            <div className='nav-title' onClick={() => handleTitleClick()}>
+            <Menu />
+            <Link to={`/${titleLinkName}`} className='nav-title'>
                 THE KILLERS
-            </div>
+            </Link>
             <div className='invisible-menu-align'></div>
         </div>
     );
 };
 
-const Menu = ({ funcArr, adminLogin }) => {
+const Menu = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const handleToggle = () => {
@@ -58,10 +59,10 @@ const Menu = ({ funcArr, adminLogin }) => {
             }
           </button>
           <ul className={`menuNav ${menuOpen ? "showMenu" : ""} overflow:hidden`}>
-            <InternalMenuDropdown header='PAGE LINKS' selections={pages} updateFunctionsArr={funcArr} />
+            <InternalMenuDropdown header='PAGE LINKS' selections={pages} />
             <MenuDropdown header='ALBUMS' selections={albumNames} tagLinks={albumPlaylists} />
             <MenuDropdown header='BAND' selections={links} tagLinks={webLinks} />
-            <AdminAccess adminLogin={adminLogin} />
+            <AdminAccess />
           </ul>
         </nav>
     );
@@ -99,7 +100,7 @@ const MenuDropdown = ({ header, selections, tagLinks }) => {
     );
 };
 
-const InternalMenuDropdown = ({ header, selections, updateFunctionsArr }) => {
+const InternalMenuDropdown = ({ header, selections }) => {
     const [expanded, setExpanded] = useState(true);
 
     const toggleExpanded = () => {
@@ -122,7 +123,13 @@ const InternalMenuDropdown = ({ header, selections, updateFunctionsArr }) => {
                 <ul className='menuItem'>
                     {expanded && selections &&
                         selections.map((selection, index) => {
-                            return <InternalMenuItem selection={selection} updateFunction={updateFunctionsArr[index]} key={selection} />
+                            if(index === 0) {
+                                return <InternalMenuItem selection={selection} key={selection} linkName="music-player"/>
+                            } else if (index === 1) {
+                                return <InternalMenuItem selection={selection} key={selection} linkName="covers"/>
+                            } else if (index === 2) {
+                                return <InternalMenuItem selection={selection} key={selection} linkName=""/>
+                            }
                         })
                     }
                 </ul>
@@ -131,14 +138,14 @@ const InternalMenuDropdown = ({ header, selections, updateFunctionsArr }) => {
     );
 }
 
-const AdminAccess = ({ adminLogin }) => {
+const AdminAccess = () => {
     //This component will be invisible on mobile devices due to margins. This is desirable.
     //I will be the only admin and will only be doing admin work on a desktop.
 
     return (
-        <li onClick={() => adminLogin()} className='admin-login-btn'> 
+        <Link to="/admin" className='admin-login-btn'> 
             ADMIN
-        </li>
+        </Link>
     );
 }
 
@@ -158,9 +165,11 @@ const MenuItem = ({ selection, link }) => (
     </div>
 );
 
-const InternalMenuItem = ({ selection, updateFunction }) => (
-    <div onClick={() => updateFunction()} className='menu-item-link'>
-        {selection}
+const InternalMenuItem = ({ selection, linkName }) => (
+    <div>
+        <Link to={`/${linkName}`} className='menu-item-link'>
+            {selection}
+        </Link>
     </div>
 );
 

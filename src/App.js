@@ -4,6 +4,12 @@ import AboutContent from './components/AboutContent/AboutContent';
 import CoversContent from './components/CoversContent/CoversContent';
 import AdminContent from './components/AdminContent/AdminContent';
 import { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from 'react-router-dom';
 
 function App() {
   const voidState = { player: false, about: false, covers: false, adminLogin: false}
@@ -55,9 +61,14 @@ function App() {
   }
 
   return (
-    <div>
-      {display}
-    </div>
+    <Router>
+      <Routes>
+        <Route index element={<><NavBar titleLinkName='music-player'/><AboutContent /></>} />
+        <Route path="/music-player" element={<><NavBar titleLinkName='covers'/><PlayerContent /></>} />
+        <Route path="/covers" element={<><NavBar titleLinkName='' /><CoversContent /></>} />
+        <Route path="/admin" element={<><NavBar titleLinkName=''/><AdminContent /></>} />
+      </Routes>
+    </Router>
   );
 }
 
