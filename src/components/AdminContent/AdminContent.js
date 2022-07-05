@@ -25,7 +25,7 @@ const AdminContent = () => {
     }
 
     return (
-        <div className={`contentContainer ${loginPageAlign} bg-gray-700 pt-0 px-0`}>
+        <div className={`contentContainer ${loginPageAlign} bg-gray-700 py-0 px-0`}>
             {display}
         </div>
     )
