@@ -64,8 +64,8 @@ function App() {
     <Router>
       <Routes>
         <Route index element={<><NavBar titleLinkName='music-player'/><AboutContent /></>} />
-        <Route path="/music-player" element={<><NavBar titleLinkName='covers'/><PlayerContent /></>} />
-        <Route path="/covers" element={<><NavBar titleLinkName='' /><CoversContent /></>} />
+        <Route path="/music-player" element={<><NavBar titleLinkName='covers-player'/><PlayerContent /></>} />
+        <Route path="/covers-player" element={<><NavBar titleLinkName='' /><CoversContent /></>} />
         <Route path="/admin" element={<><NavBar titleLinkName=''/><AdminContent /></>} />
       </Routes>
     </Router>
