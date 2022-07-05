@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { bandDescription, daveDescription, brandonDescription, markDescription, ronnieDescription } from './bios';
+import useDocumentTitle from '../../hooks/useDocumentTitle.js';
 
 const AboutContent = () => {
+    useDocumentTitle('About -- The Killers Music Player');
     const initialState = {band: true, brandon: false, ronnie: false, dave: false, mark: false}
     const [displayedInfo, setDisplayedInfo] = useState(initialState);
 

@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Dashboard from './Dashboard';
+import useDocumentTitle from '../../hooks/useDocumentTitle.js';
+
 
 //For all POST, PUT, and DELETE requests made on this page, the user must send a connection string with the request that matches the one in the db.
 
 const AdminContent = () => {
+    useDocumentTitle('Admin -- The Killers Music Player');
     const [loggedIn, setLoggedIn] = useState(false);
     const [serverKey, setServerKey] = useState('');
 

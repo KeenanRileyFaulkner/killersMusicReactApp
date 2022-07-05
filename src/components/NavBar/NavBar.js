@@ -128,7 +128,7 @@ const InternalMenuDropdown = ({ header, selections }) => {
                             } else if (index === 1) {
                                 return <InternalMenuItem selection={selection} key={selection} linkName="covers-player"/>
                             } else if (index === 2) {
-                                return <InternalMenuItem selection={selection} key={selection} linkName=""/>
+                                return <InternalMenuItem selection={selection} key={selection} linkName="about"/>
                             }
                         })
                     }

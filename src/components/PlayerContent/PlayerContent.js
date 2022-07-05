@@ -3,9 +3,11 @@ import { MdPauseCircleFilled } from 'react-icons/md';
 import { FaPlayCircle } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import useDocumentTitle from '../../hooks/useDocumentTitle.js';
 
 
 const PlayerContent = () => {
+    useDocumentTitle('Listen -- The Killers Music Player');
     const [albumList, setAlbumList] = useState([]);
 
     let albumsFromAxios = [];

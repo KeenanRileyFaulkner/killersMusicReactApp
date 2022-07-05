@@ -2,8 +2,10 @@ import { MdPauseCircleFilled } from 'react-icons/md';
 import { FaPlayCircle } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import useDocumentTitle from '../../hooks/useDocumentTitle.js';
 
 const CoversContent = () => {
+    useDocumentTitle('Covers -- The Killers Music Player')
     const [audioControls, setAudioControls] = useState({src: ''});
     const [coverList, setCoverList] = useState([]);
     const coverColors = [ 'bg-steel-blue', 'bg-vegas-yellow', 'bg-mocha-brown', 'bg-bb-black', 'bg-pearly-white', 'bg-amber-wave'];
