@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
 import AddAlbumPage from './DashboardPages/AddAlbumPage';
 import ViewAlbumsPage from './DashboardPages/ViewAlbumsPage';
@@ -12,8 +12,19 @@ import AddCoverPage from './DashboardPages/AddCoverPage';
 import CoversPlayCountPage from './DashboardPages/CoversPlayCountPage';
 import UpdateCoverPage from './DashboardPages/UpdateCoverPage';
 import RemoveCoverPage from './DashboardPages/RemoveCoverPage';
+import {useOutletContext, useNavigate} from 'react-router-dom';
+const Dashboard = () => {
+    const {serverKey, loggedIn} = useOutletContext();
+    const navigate = useNavigate();
 
-const Dashboard = ({ serverKey }) => {
+    useEffect(() => {
+        if(!loggedIn) {
+            console.log('navigating away')
+            navigate('/admin/login');
+            
+        }
+    }, []);
+    
     const voidState = { 
         addAlbum: false, 
         viewAlbums: false,

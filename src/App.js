@@ -10,6 +10,9 @@ import {
   Navigate
 } from 'react-router-dom';
 
+import { LoginBox } from './components/AdminContent/AdminContent';
+import Dashboard from './components/AdminContent/Dashboard';
+
 function App() {
   return (
     <Router>
@@ -18,7 +21,10 @@ function App() {
         <Route path="/about" element={<><NavBar titleLinkName='music-player'/><AboutContent /></>} />
         <Route path="/music-player" element={<><NavBar titleLinkName='covers-player'/><PlayerContent /></>} />
         <Route path="/covers-player" element={<><NavBar titleLinkName='about' /><CoversContent /></>} />
-        <Route path="/admin" element={<><NavBar titleLinkName=''/><AdminContent /></>} />
+        <Route path="/admin" element={<AdminContent />} >
+          <Route path="login" element={<LoginBox />} />
+          <Route path="dashboard" element={<Dashboard />} />
+        </Route>
       </Routes>
     </Router>
   );

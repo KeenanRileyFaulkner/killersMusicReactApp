@@ -143,7 +143,7 @@ const AdminAccess = () => {
     //I will be the only admin and will only be doing admin work on a desktop.
 
     return (
-        <Link to="/admin" className='admin-login-btn'> 
+        <Link to="/admin/login" className='admin-login-btn'> 
             ADMIN
         </Link>
     );
