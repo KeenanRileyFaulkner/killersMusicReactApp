@@ -8,9 +8,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         if(!loggedIn) {
-            console.log('navigating away')
             navigate('/admin/login');
-            
         }
     }, []);
 
