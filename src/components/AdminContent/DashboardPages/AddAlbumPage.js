@@ -1,6 +1,8 @@
 import axios from 'axios';
+import { useOutletContext } from 'react-router-dom';
 
-const AddAlbumPage = ({ serverKey }) => {
+const AddAlbumPage = () => {
+    const {serverKey} = useOutletContext;
     return(
         <div className="centered-dash-page">
             <AddAlbumForm serverKey={serverKey} />

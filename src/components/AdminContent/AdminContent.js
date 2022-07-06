@@ -37,7 +37,7 @@ const AdminContent = () => {
         <div>
             <NavBar titleLinkName='about' />
             <Outlet context={{passKeyUp:(key) => displayDashboardAndStoreKey(key), serverKey, loggedIn}}/>
-        </div>
+        </div> 
     )
     
 }

@@ -12,7 +12,7 @@ import AddCoverPage from './DashboardPages/AddCoverPage';
 import CoversPlayCountPage from './DashboardPages/CoversPlayCountPage';
 import UpdateCoverPage from './DashboardPages/UpdateCoverPage';
 import RemoveCoverPage from './DashboardPages/RemoveCoverPage';
-import {useOutletContext, useNavigate} from 'react-router-dom';
+import {useOutletContext, useNavigate, Outlet, Link} from 'react-router-dom';
 const Dashboard = () => {
     const {serverKey, loggedIn} = useOutletContext();
     const navigate = useNavigate();
@@ -147,7 +147,7 @@ const Dashboard = () => {
     return (
         <div className="dashboard-container">
             <RightSideNav resetDash={resetDash} albumLinksStateUpdate={dashboardUpdateArrAlbumLinks} albumSongsStateUpdate={dashboardUpdateArrAlbumSongs} coverLinksStateUpdate={dashboardUpdateArrCoverLinks} />
-            {dashboardDisplay}
+            <Outlet context={{serverKey}} />
         </div>
     )
 }
@@ -156,14 +156,14 @@ const RightSideNav = ({ resetDash, albumLinksStateUpdate, albumSongsStateUpdate,
     return (
         <nav className='admin-dashboard-nav'>
             <h2 className='mt-8 hover:cursor-pointer' onClick={() => resetDash()}>MENU</h2>
-            <MenuDropdown header='BAND ALBUM LINKS' selections={['ADD ALBUM', 'VIEW ALBUMS', 'UPDATE ALBUM INFO', 'REMOVE ALBUM']} updateFunctions={albumLinksStateUpdate} />
-            <MenuDropdown header='BAND ALBUM SONGS' selections={['ADD SONG', 'VIEW SONGS', 'UPDATE SONG INFO', 'REMOVE SONG']} updateFunctions={albumSongsStateUpdate} />
-            <MenuDropdown header='PERSONAL COVER LINKS' selections={['ADD COVER','GET PLAY COUNT', 'UPDATE COVER INFO', 'REMOVE COVER']} updateFunctions={coverLinksStateUpdate} />
+            <MenuDropdown header='BAND ALBUM LINKS' selections={['ADD ALBUM', 'VIEW ALBUMS', 'UPDATE ALBUM INFO', 'REMOVE ALBUM']} updateFunctions={albumLinksStateUpdate} linkNames={['add-album', 'view-albums', 'update-album', 'remove-album']} />
+            <MenuDropdown header='BAND ALBUM SONGS' selections={['ADD SONG', 'VIEW SONGS', 'UPDATE SONG INFO', 'REMOVE SONG']} updateFunctions={albumSongsStateUpdate} linkNames={['add-song', 'view-songs', 'update-song', 'remove-song']} />
+            <MenuDropdown header='PERSONAL COVER LINKS' selections={['ADD COVER','VIEW COVERS', 'UPDATE COVER INFO', 'REMOVE COVER']} updateFunctions={coverLinksStateUpdate} linkNames={['add-cover', 'view-covers', 'update-cover', 'remove-cover']} />
         </nav>
     )
 }
 
-const MenuDropdown = ({ header, selections, updateFunctions }) => {
+const MenuDropdown = ({ header, selections, updateFunctions, linkNames }) => {
     const [expanded, setExpanded] = useState(true);
 
     const toggleExpanded = () => {
@@ -186,12 +186,12 @@ const MenuDropdown = ({ header, selections, updateFunctions }) => {
                 <ul className='menuItem'>
                     {expanded && selections &&
                         selections.map((selection, index) => 
-                            <InternalMenuItem selection={selection} updateFunction={updateFunctions[index]} key={selection} />
+                            <InternalMenuItem selection={selection} updateFunction={updateFunctions[index]} key={selection} link={linkNames[index]} />
                         )
                     }
                 </ul>
             </div>
-        </div>
+        </div> 
     );
 };
 
@@ -203,13 +203,15 @@ const ChevronIcon = ({ expanded, handleClick }) => {
     );
 };
 
-const InternalMenuItem = ({ selection, updateFunction }) => (
-    <div onClick={() => updateFunction()} className='menu-item-link admin-menu-item-link'>
-        {selection}
+const InternalMenuItem = ({ selection, updateFunction, link }) => (
+    <div>
+        <Link to={`/admin/dashboard/${link}`} className='menu-item-link admin-menu-item-link'>
+            {selection}
+        </Link>
     </div>
 );
 
-const LandingPage = () => {
+export const LandingPage = () => {
     return(
         <div className='centered-dash-page'>
             <div className='bg-killer-k bg-cover h-[293px] w-[176px]' />

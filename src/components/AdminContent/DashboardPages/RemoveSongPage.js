@@ -1,6 +1,8 @@
 import axios from 'axios';
+import { useOutletContext } from 'react-router-dom';
 
-const RemoveSongPage = ({serverKey}) => {
+const RemoveSongPage = () => {
+    const {serverKey} = useOutletContext();
     return (
         <div className="centered-dash-page">
             <RemoveSongForm serverKey={serverKey} />

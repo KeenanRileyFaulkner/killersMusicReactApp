@@ -1,6 +1,8 @@
 import axios from 'axios';
+import { useOutletContext } from 'react-router-dom';
 
-const UpdateCoverPage = ({ serverKey }) => {
+const UpdateCoverPage = () => {
+    const {serverKey} = useOutletContext();
     return (
         <div className='centered-dash-page'>
             <UpdateCoverForm serverKey={serverKey} />
