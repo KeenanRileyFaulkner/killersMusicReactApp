@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from 'react';
+import useDocumentTitle from "../../../hooks/useDocumentTitle";
 
 const CoversPlayCountPage = () => {
+    useDocumentTitle('View Covers -- Admin');
     return(
         <div className="top-dash-page grid grid-rows-[1fr_12fr]">
             <TableHeader />

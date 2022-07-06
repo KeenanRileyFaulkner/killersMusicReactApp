@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { useOutletContext } from 'react-router-dom';
+import useDocumentTitle from '../../../hooks/useDocumentTitle';
 
 const UpdateCoverPage = () => {
     const {serverKey} = useOutletContext();
+    useDocumentTitle('Update Cover In DB -- Admin');
     return (
         <div className='centered-dash-page'>
             <UpdateCoverForm serverKey={serverKey} />

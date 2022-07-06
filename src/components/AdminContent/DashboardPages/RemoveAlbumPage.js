@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { useOutletContext } from 'react-router-dom';
+import useDocumentTitle from '../../../hooks/useDocumentTitle';
 
 const RemoveAlbumPage = () => {
     const {serverKey} = useOutletContext();
+    useDocumentTitle('Remove Album From DB -- Admin');
     return (
         <div className="centered-dash-page">
             <RemoveAlbumForm serverKey={serverKey} />

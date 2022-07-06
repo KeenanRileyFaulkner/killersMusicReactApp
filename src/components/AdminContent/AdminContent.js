@@ -4,14 +4,13 @@ import Dashboard from './Dashboard';
 import useDocumentTitle from '../../hooks/useDocumentTitle.js';
 import NavBar from '../NavBar/NavBar';
 import {Outlet, useOutletContext, useNavigate } from 'react-router-dom'
-import { logDOM } from '@testing-library/react';
 
 
 
 //For all POST, PUT, and DELETE requests made on this page, the user must send a connection string with the request that matches the one in the db.
 
 const AdminContent = () => {
-    useDocumentTitle('Admin -- The Killers Music Player');
+    useDocumentTitle('Login -- Admin');
     const [loggedIn, setLoggedIn] = useState(false);
     const [serverKey, setServerKey] = useState('');
 
@@ -20,19 +19,6 @@ const AdminContent = () => {
         setServerKey(key);
     }
 
-
-    let loginPageAlign;
-    let display;
-    if(!loggedIn) {
-        loginPageAlign = 'centerItems';
-        display = <LoginBox passKeyUp={(key) => displayDashboardAndStoreKey(key)} />
-    } else {
-        loginPageAlign = '';
-        display = <Dashboard serverKey={serverKey} />
-    }
-
-
-    console.log('Rendered')
     return (
         <div>
             <NavBar titleLinkName='about' />
@@ -73,7 +59,6 @@ export const LoginBox = () => {
             });
     }
 
-    console.log('Login Box')
     return (
         <div  className={`contentContainer centerItems bg-gray-700 py-0 px-0`}>
             <form className={`login-box`} onSubmit={handleSubmit}>

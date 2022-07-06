@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import useDocumentTitle from "../../../hooks/useDocumentTitle";
 
 const ViewSongsPage = () => {
+    useDocumentTitle('View Songs -- Admin');
     return(
         <div className="top-dash-page w-[100%] grid grid-rows-[1fr_12fr]">
             <TableHeader />

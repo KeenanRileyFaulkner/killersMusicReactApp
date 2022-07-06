@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { useOutletContext } from 'react-router-dom';
+import useDocumentTitle from '../../../hooks/useDocumentTitle';
 
 const RemoveCoverPage = () => {
     const {serverKey} = useOutletContext();
+    useDocumentTitle('Remove Cover From DB -- Admin');
     return (
         <div className="centered-dash-page">
             <RemoveCoverForm serverKey={serverKey} />
