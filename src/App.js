@@ -3,7 +3,6 @@ import PlayerContent from './components/PlayerContent/PlayerContent';
 import AboutContent from './components/AboutContent/AboutContent';
 import CoversContent from './components/CoversContent/CoversContent';
 import AdminContent from './components/AdminContent/AdminContent';
-import { useState } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
