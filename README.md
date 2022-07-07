@@ -4,7 +4,13 @@ This is my first major React Application. It utilizes tailwind css for all styli
 
 ## MVP
 
-The project is intended to allow users to learn about The Killers, listen to brief snippets of their music, and enjoy full playthroughs of covers I have personally created of some of their music. It includes typical navigation features such as dropdowns and navbars. It uses [React Router](https://reactrouter.com/docs/en/v6). It also has a fully functional admin section with authentication manually implemented (using Bcrypt for password hashing and manual database seeding with a key for verification of successful login state on the backend). The admin section allows for CRUD operations on the database to continue adding to the public facing 'music-player' and 'covers' sections without the need to write additional code. Login to the admin dashboard persists until the 'LOGOUT' section is clicked in the dashboard, or until the page is manually refreshed/loaded in a new tab or window. If an admin bookmarks a page in the admin dashboard, they will be redirected to the login screen which, upon successful authentication, will redirect them back to the page they originally intended to visit.
+The project is intended to allow users to learn about The Killers, listen to brief snippets of their music, and enjoy full playthroughs of covers I have personally created of some of their music. 
+
+It includes typical navigation features such as dropdowns and navbars. It uses [React Router](https://reactrouter.com/docs/en/v6). It also has a fully functional admin section with authentication manually implemented (using Bcrypt for password hashing and manual database seeding with a key for verification of successful login state on the backend). 
+
+The admin section allows for CRUD operations on the database to continue adding to the public facing 'music-player' and 'covers' sections without the need to write additional code. Login to the admin dashboard persists until the 'LOGOUT' section is clicked in the dashboard, or until the page is manually refreshed/loaded in a new tab or window. If an admin bookmarks a page in the admin dashboard, they will be redirected to the login screen which, upon successful authentication, will redirect them back to the page they originally intended to visit.
+
+Styles are highly customized, making use of tailwind to quickly prototype the UI as well as custom designed resources I made myself in Figma.
 
 ## Other Important Project Information
 
@@ -14,7 +20,7 @@ You can view the planning doc [on google docs](https://docs.google.com/document/
 
 ### Database Model
 
-The database model is attached as a pdf. The database utilizes Postgres.
+The database model is included in the repo as a pdf. The database utilizes Postgres.
 
 ### Server
 
