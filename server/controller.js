@@ -197,7 +197,7 @@ module.exports = {
         } else if (req.body.image_url === '') {
             res.status(400).send('An image url must be included in your request');
             return;
-        } else if (req.body.display_order) {
+        } else if (req.body.display_order === '') {
             res.status(400).send('A display order must be included in your request');
         } else {
             album_name = req.body.album_name;
@@ -240,7 +240,7 @@ module.exports = {
         })
         .catch(err => {
             console.log(err);
-            res.status(401).send('You are not authorized to make that request');
+            res.status(401).send('You are not authorized to make that request. Are your inputs valid?');
         })
 
 
@@ -303,14 +303,14 @@ module.exports = {
                     })
                     .catch(err => {
                         console.log(err);
-                        res.status(500).send('An unknown error occurred');
+                        res.status(500).send('An unknown error occurred. Alpha Chars not allowed in numeric fields.');
                     })
                 } else {
                     sequelize.query(`
                         UPDATE albums SET ${columnNames} = ${updateValues}
                         WHERE album_id = ${album_id}
                         RETURNING *`)
-                    .then(() => {
+                    .then(dbRes => {
                         if (dbRes[1].rowCount > 0) {
                             res.status(200).send('Album information successfully updated. Go to "View Albums" in nav to see it.');
                         } else {
@@ -319,7 +319,7 @@ module.exports = {
                     })
                     .catch(err => {
                         console.log(err);
-                        res.status(500).send('An unknown error has occurred');
+                        res.status(500).send('An unknown error has occurred. Alpha Chars not allowed in numeric fields.');
                     })
                 }
                 
@@ -481,7 +481,7 @@ module.exports = {
                     })
                     .catch(err => {
                         console.log(err);
-                        res.status(500).send('An unknown error has occurred. You may have entered an invalid album id');
+                        res.status(500).send('An unknown error has occurred. You may have entered an invalid album id or song id.');
                     })
                 } else {
                     sequelize.query(`
@@ -497,7 +497,7 @@ module.exports = {
                     })
                     .catch(err => {
                         console.log(err);
-                        res.status(500).send('An unknown error has occurred. You may have entered an invalid album id.');
+                        res.status(500).send('An unknown error has occurred. You may have entered an invalid album id or song id.');
                     })
                 }
                 
@@ -642,7 +642,7 @@ module.exports = {
                     })
                     .catch(err => {
                         console.log(err);
-                        res.status(500).send('An unknown error has occurred. No apostrophes are allowed in any field')
+                        res.status(500).send('An unknown error has occurred. No apostrophes are allowed in any field. Alpha Chars not allowed in id field.')
                     })
                 } else {
                     sequelize.query(`
@@ -658,7 +658,7 @@ module.exports = {
                     })
                     .catch(err => {
                         console.log(err);
-                        res.status(500).send('An unknown error has occurred. No apostrophes are allowed in any field');
+                        res.status(500).send('An unknown error has occurred. No apostrophes are allowed in any field. Alpha Chars not allowed in id field.');
                     })
                 }
                 
