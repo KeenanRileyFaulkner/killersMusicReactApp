@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# Project Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is my first major React Application. It utilizes tailwind css for all styling, and is a fan page for The Killers. It was created as a DevMountain Foundations Capstone.
 
-## Available Scripts
+## MVP
 
-In the project directory, you can run:
+The project is intended to allow users to learn about The Killers, listen to brief snippets of their music, and enjoy full playthroughs of covers I have personally created of some of their music. It includes typical navigation features such as dropdowns and navbars. It uses [React Router](https://reactrouter.com/docs/en/v6). It also has a fully functional admin section with authentication manually implemented (using Bcrypt for password hashing and manual database seeding with a key for verification of successful login state on the backend). The admin section allows for CRUD operations on the database to continue adding to the public facing 'music-player' and 'covers' sections without the need to write additional code. Login to the admin dashboard persists until the 'LOGOUT' section is clicked in the dashboard, or until the page is manually refreshed/loaded in a new tab or window. If an admin bookmarks a page in the admin dashboard, they will be redirected to the login screen which, upon successful authentication, will redirect them back to the page they originally intended to visit.
 
-### `npm start`
+## Other Important Project Information
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Planning
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You can view the planning doc [on google docs](https://docs.google.com/document/d/1Uqh2AuGL0GP4Rnbelph28px_zfgFIwO0tccHpdt-w3c/edit?usp=sharing).
 
-### `npm test`
+### Database Model
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The database model is attached as a pdf. The database utilizes Postgres.
 
-### `npm run build`
+### Server
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The server was designed in NodeJS and currently utilizes about 20 endpoints.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Design
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You can view the wireframes and style guide for this project [on figma](https://www.figma.com/file/aAwkgiaTzavuDBbbRJcEaA/capstone-design?node-id=0%3A1).
 
-### `npm run eject`
+### Production Build
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This app was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). The production build is contained in a different repo, but essentially reflects the dev environment.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Disclaimer
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The 'covers' section has issues playing on iOS due to an unknown (to me) iOS playback policy. This is not related to the code itself. The site is best enjoyed on desktop, but works perfectly well on mobile, other than the iOS bug on the covers page.
