@@ -1,3 +1,4 @@
+import BaseComponent from './components/BaseComponent/BaseComponent';
 import NavBar from './components/NavBar/NavBar';
 import PlayerContent from './components/PlayerContent/PlayerContent';
 import AboutContent from './components/AboutContent/AboutContent';
@@ -35,26 +36,27 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/about" replace />} />
-        <Route path="/about" element={<><NavBar titleLinkName='music-player'/><AboutContent /></>} />
-        <Route path="/music-player" element={<><NavBar titleLinkName='covers-player'/><PlayerContent /></>} />
-        <Route path="/covers-player" element={<><NavBar titleLinkName='about' /><CoversContent /></>} />
-        <Route path="/admin" element={<AdminContent authed={authed} login={login} logout={logout} />} >
-          <Route path="login" element={<LoginBox />} />
-          <Route path="dashboard" element={<RequireAuth children={<Dashboard />} />}>
-            <Route path="add-album" element={<RequireAuth children={<AddAlbumPage />} />} />
-            <Route path="view-albums" element={<RequireAuth children={<ViewAlbumsPage />} />} />
-            <Route path="update-album" element={<RequireAuth children={<UpdateAlbumPage />} />} />
-            <Route path="remove-album" element={<RequireAuth children={<RemoveAlbumPage />} />} />
-            <Route path="add-song" element={<RequireAuth children={<AddAlbumSongPage />} />} />
-            <Route path="view-songs" element={<RequireAuth children={<ViewSongsPage />} />} />
-            <Route path="update-song" element={<RequireAuth children={<UpdateSongPage />} />} />
-            <Route path="remove-song" element={<RequireAuth children={<RemoveSongPage />} />} />
-            <Route path="add-cover" element={<RequireAuth children={<AddCoverPage />} />} />
-            <Route path="view-covers" element={<RequireAuth children={<CoversPlayCountPage />} />} />
-            <Route path="update-cover" element={<RequireAuth children={<UpdateCoverPage />} />} />
-            <Route path="remove-cover" element={<RequireAuth children={<RemoveCoverPage />} />} />
-            <Route index element={<RequireAuth children={<LandingPage />} />} />
+        <Route path="/" element={<BaseComponent authed={authed} login={login} logout={logout} />}>
+          <Route path="about" element={<><NavBar titleLinkName='music-player' /><AboutContent /></>} />
+          <Route path="music-player" element={<><NavBar titleLinkName='covers-player' /><PlayerContent /></>} />
+          <Route path="covers-player" element={<><NavBar titleLinkName='about' /><CoversContent /></>} />
+          <Route path="admin" element={<AdminContent authed={authed} login={login} logout={logout} />} >
+            <Route path="login" element={<LoginBox />} />
+            <Route path="dashboard" element={<RequireAuth children={<Dashboard />} />}>
+              <Route path="add-album" element={<RequireAuth children={<AddAlbumPage />} />} />
+              <Route path="view-albums" element={<RequireAuth children={<ViewAlbumsPage />} />} />
+              <Route path="update-album" element={<RequireAuth children={<UpdateAlbumPage />} />} />
+              <Route path="remove-album" element={<RequireAuth children={<RemoveAlbumPage />} />} />
+              <Route path="add-song" element={<RequireAuth children={<AddAlbumSongPage />} />} />
+              <Route path="view-songs" element={<RequireAuth children={<ViewSongsPage />} />} />
+              <Route path="update-song" element={<RequireAuth children={<UpdateSongPage />} />} />
+              <Route path="remove-song" element={<RequireAuth children={<RemoveSongPage />} />} />
+              <Route path="add-cover" element={<RequireAuth children={<AddCoverPage />} />} />
+              <Route path="view-covers" element={<RequireAuth children={<CoversPlayCountPage />} />} />
+              <Route path="update-cover" element={<RequireAuth children={<UpdateCoverPage />} />} />
+              <Route path="remove-cover" element={<RequireAuth children={<RemoveCoverPage />} />} />
+              <Route index element={<RequireAuth children={<LandingPage />} />} />
+            </Route>
           </Route>
         </Route>
       </Routes>

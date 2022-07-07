@@ -2,7 +2,7 @@ import { HiOutlineMenu } from 'react-icons/hi';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
 import { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useOutletContext } from 'react-router-dom';
 
 const albumNames = ['HOT FUSS', "SAM'S TOWN", 'SAWDUST', 'DAY & AGE', 
     'BATTLE BORN', 'WONDERFUL WONDERFUL', 'IMPLODING THE MIRAGE', 'PRESSURE MACHINE'];
@@ -30,7 +30,8 @@ const webLinks = [
 
 const pages = ['MUSIC PLAYER', 'COVERS', 'ABOUT THE BAND'];
 
-const NavBar = ({ titleLinkName, authed }) => {
+const NavBar = ({ titleLinkName }) => {
+    const {authed} = useOutletContext();
     return (
         <div className='main-bar'>
             <Menu authed={authed} />
@@ -144,9 +145,21 @@ const AdminAccess = ({authed}) => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const checkLocationIsDash = () => {
+        const lc = location.pathname;
+
+        if(lc === '/about' || lc === '/music-player' || lc === '/covers' || lc === '/admin') {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     const handleNavigation = () => {
-        if(authed) {
+        if(authed && checkLocationIsDash()) {
             navigate(location.pathname);
+        } else if (authed) {
+            navigate('/admin/dashboard');
         } else {
             console.log('not authed')
             navigate('/admin/login');
