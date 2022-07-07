@@ -2,7 +2,7 @@ import { HiOutlineMenu } from 'react-icons/hi';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const albumNames = ['HOT FUSS', "SAM'S TOWN", 'SAWDUST', 'DAY & AGE', 
     'BATTLE BORN', 'WONDERFUL WONDERFUL', 'IMPLODING THE MIRAGE', 'PRESSURE MACHINE'];
@@ -30,10 +30,10 @@ const webLinks = [
 
 const pages = ['MUSIC PLAYER', 'COVERS', 'ABOUT THE BAND'];
 
-const NavBar = ({ titleLinkName }) => {
+const NavBar = ({ titleLinkName, authed }) => {
     return (
         <div className='main-bar'>
-            <Menu />
+            <Menu authed={authed} />
             <Link to={`/${titleLinkName}`} className='nav-title'>
                 THE KILLERS
             </Link>
@@ -42,7 +42,7 @@ const NavBar = ({ titleLinkName }) => {
     );
 };
 
-const Menu = () => {
+const Menu = ({authed}) => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const handleToggle = () => {
@@ -62,7 +62,7 @@ const Menu = () => {
             <InternalMenuDropdown header='PAGE LINKS' selections={pages} />
             <MenuDropdown header='ALBUMS' selections={albumNames} tagLinks={albumPlaylists} />
             <MenuDropdown header='BAND' selections={links} tagLinks={webLinks} />
-            <AdminAccess />
+            <AdminAccess authed={authed} />
           </ul>
         </nav>
     );
@@ -138,14 +138,25 @@ const InternalMenuDropdown = ({ header, selections }) => {
     );
 }
 
-const AdminAccess = () => {
+const AdminAccess = ({authed}) => {
     //This component will be invisible on mobile devices due to margins. This is desirable.
     //I will be the only admin and will only be doing admin work on a desktop.
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleNavigation = () => {
+        if(authed) {
+            navigate(location.pathname);
+        } else {
+            console.log('not authed')
+            navigate('/admin/login');
+        }
+    }
 
     return (
-        <Link to="/admin/login" className='admin-login-btn'> 
+        <button onClick={handleNavigation} className='admin-login-btn'> 
             ADMIN
-        </Link>
+        </button>
     );
 }
 

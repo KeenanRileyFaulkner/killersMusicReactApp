@@ -1,32 +1,42 @@
 import { useState, useEffect } from 'react';
 import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
-import {useOutletContext, useNavigate, Outlet, Link} from 'react-router-dom';
+import {useOutletContext, useNavigate, Outlet, Link } from 'react-router-dom';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
+
 const Dashboard = () => {
-    const {serverKey, loggedIn} = useOutletContext();
+    const {serverKey, authed, logout, forgetKey} = useOutletContext();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(!loggedIn) {
+        if(!authed) {
             navigate('/admin/login');
         }
     }, []);
 
     return (
         <div className="dashboard-container">
-            <RightSideNav />
-            <Outlet context={{serverKey}} />
+            <RightSideNav logout={logout} forgetKey={forgetKey} />
+            <Outlet context={{serverKey, authed}} />
         </div>
     )
 }
 
-const RightSideNav = () => {
+const RightSideNav = ({logout, forgetKey}) => {
+    const navigate = useNavigate();
+    
+    const handleLogout = () => {
+        logout();
+        forgetKey();
+        navigate('/admin/login');
+    }
+
     return (
         <nav className='admin-dashboard-nav'>
             <div className='mt-8'><Link to={'/admin/dashboard'} className='hover:cursor-pointer'>MENU</Link></div>            
             <MenuDropdown header='BAND ALBUM LINKS' selections={['ADD ALBUM', 'VIEW ALBUMS', 'UPDATE ALBUM INFO', 'REMOVE ALBUM']} linkNames={['add-album', 'view-albums', 'update-album', 'remove-album']} />
             <MenuDropdown header='BAND ALBUM SONGS' selections={['ADD SONG', 'VIEW SONGS', 'UPDATE SONG INFO', 'REMOVE SONG']} linkNames={['add-song', 'view-songs', 'update-song', 'remove-song']} />
             <MenuDropdown header='PERSONAL COVER LINKS' selections={['ADD COVER','VIEW COVERS', 'UPDATE COVER INFO', 'REMOVE COVER']} linkNames={['add-cover', 'view-covers', 'update-cover', 'remove-cover']} />
+            <button className='text-[14pt] font-medium mt-2 ml-[33px]' onClick={() => handleLogout()}>LOGOUT</button>
         </nav>
     )
 }

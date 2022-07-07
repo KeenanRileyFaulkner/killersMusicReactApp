@@ -3,37 +3,40 @@ import axios from 'axios';
 import Dashboard from './Dashboard';
 import useDocumentTitle from '../../hooks/useDocumentTitle.js';
 import NavBar from '../NavBar/NavBar';
-import {Outlet, useOutletContext, useNavigate } from 'react-router-dom'
+import {Outlet, useOutletContext, useNavigate, useLocation } from 'react-router-dom'
 
 
 
 //For all POST, PUT, and DELETE requests made on this page, the user must send a connection string with the request that matches the one in the db.
 
-const AdminContent = () => {
+const AdminContent = ({ authed, login, logout }) => {
     useDocumentTitle('Login -- Admin');
-    const [loggedIn, setLoggedIn] = useState(false);
     const [serverKey, setServerKey] = useState('');
 
-    const displayDashboardAndStoreKey = (key) => {
-        setLoggedIn(true);
+    const storeKey = (key) => {
         setServerKey(key);
+    }
+
+    const forgetKey = () => {
+        setServerKey('');
     }
 
     return (
         <div>
-            <NavBar titleLinkName='about' />
-            <Outlet context={{passKeyUp:(key) => displayDashboardAndStoreKey(key), serverKey, loggedIn}}/>
+            <NavBar titleLinkName='about' authed={authed} />
+            <Outlet context={{passKeyUp:(key) => storeKey(key), serverKey, authed, login, logout, forgetKey}}/>
         </div> 
     )
     
 }
 
 export const LoginBox = () => {
-    const {passKeyUp, loggedIn} = useOutletContext();
+    const {passKeyUp, authed, login} = useOutletContext();
     const navigate = useNavigate();
+    const { state } = useLocation();
 
     useEffect(() => {
-        if(loggedIn) {
+        if(authed) {
             navigate('/admin/dashboard');
         }
     }, []);
@@ -49,8 +52,10 @@ export const LoginBox = () => {
         axios
             .post('http://localhost:4002/login', loginBody)
             .then(res => {
-                passKeyUp(res.data);
-                navigate("/admin/dashboard");
+                login().then(() => {
+                    passKeyUp(res.data);
+                    navigate(state?.path || "/admin/dashboard");
+                });
             })
             .catch(err => {
                 alert(err.response.data);
