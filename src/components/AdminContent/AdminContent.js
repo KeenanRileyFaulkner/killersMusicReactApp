@@ -50,7 +50,7 @@ export const LoginBox = () => {
         loginBody.password = inputs[1].value;
 
         axios
-            .post('http://localhost:4002/login', loginBody)
+            .post('/login', loginBody)
             .then(res => {
                 login().then(() => {
                     passKeyUp(res.data);
