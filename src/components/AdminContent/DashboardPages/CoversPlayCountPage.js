@@ -43,7 +43,7 @@ const EntriesContainer = () => {
     const[entriesArr, setEntriesArr] = useState();
 
     useEffect(() => {
-        axios.get('http://localhost:4002/covers')
+        axios.get('/covers')
         .then(res => {
             setEntriesArr(res.data);
         })

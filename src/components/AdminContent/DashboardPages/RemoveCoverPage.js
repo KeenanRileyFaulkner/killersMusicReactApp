@@ -25,14 +25,14 @@ const RemoveCoverForm = ({serverKey}) => {
         authBody.password = inputs[2].value;
         let successfullAuth = false;
 
-        axios.post('http://localhost:4002/authenticate', authBody)
+        axios.post('/authenticate', authBody)
             .then(res => {
                 if(res.status === 200)   {
                     successfullAuth = true;
                 }
 
                 if(successfullAuth) {
-                    axios.delete(`http://localhost:4002/covers/${coverToDelete}`)
+                    axios.delete(`/covers/${coverToDelete}`)
                         .then(res => {
                             alert(res.data);
                             inputs.forEach(input => input.value = '');

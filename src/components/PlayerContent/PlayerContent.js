@@ -13,7 +13,7 @@ const PlayerContent = () => {
     let albumsFromAxios = [];
     const albumColors = ['bg-steel-blue', 'bg-vegas-yellow', 'bg-mocha-brown', 'bg-bb-black', 'bg-pearly-white', 'bg-amber-wave'];
     useEffect(() => {
-        axios.get('http://localhost:4002/albumsForDisplay')
+        axios.get('/albumsForDisplay')
         .then(res => {
             albumsFromAxios = [...res.data];
             albumsFromAxios.forEach((album, index) => {
@@ -43,7 +43,7 @@ const PlayerContent = () => {
                 }
             });
 
-            axios.get(`http://localhost:4002/albums/${albumID}`).then((res) => {
+            axios.get(`/albums/${albumID}`).then((res) => {
                 setAudioControls({src: res.data});
             }).catch(err => console.log(err));
         }

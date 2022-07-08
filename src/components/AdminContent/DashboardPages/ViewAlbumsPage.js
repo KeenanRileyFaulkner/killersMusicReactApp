@@ -43,7 +43,7 @@ const AlbumsContainer = () => {
     const [albumsArr, setAlbumsArr] = useState();
 
     useEffect(() => {
-        axios.get('http://localhost:4002/albums')
+        axios.get('/albums')
         .then(res => {
             setAlbumsArr(res.data);
         })

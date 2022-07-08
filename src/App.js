@@ -19,6 +19,7 @@ import AddCoverPage from './components/AdminContent/DashboardPages/AddCoverPage'
 import CoversPlayCountPage from './components/AdminContent/DashboardPages/CoversPlayCountPage';
 import UpdateCoverPage from './components/AdminContent/DashboardPages/UpdateCoverPage';
 import RemoveCoverPage from './components/AdminContent/DashboardPages/RemoveCoverPage';
+import Specs from './components/AdminContent/DashboardPages/Specs';
 
 import {
   BrowserRouter as Router,
@@ -36,6 +37,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" exact element={<Navigate to='/about' replace/>} />
         <Route path="/" element={<BaseComponent authed={authed} login={login} logout={logout} />}>
           <Route path="about" element={<><NavBar titleLinkName='music-player' /><AboutContent /></>} />
           <Route path="music-player" element={<><NavBar titleLinkName='covers-player' /><PlayerContent /></>} />
@@ -55,6 +57,7 @@ function App() {
               <Route path="view-covers" element={<RequireAuth children={<CoversPlayCountPage />} />} />
               <Route path="update-cover" element={<RequireAuth children={<UpdateCoverPage />} />} />
               <Route path="remove-cover" element={<RequireAuth children={<RemoveCoverPage />} />} />
+              <Route path="specs" element={<RequireAuth children={<Specs />} />} />
               <Route index element={<RequireAuth children={<LandingPage />} />} />
             </Route>
           </Route>

@@ -49,7 +49,7 @@ const UpdateCoverForm = ({ serverKey }) => {
             return;
         }
 
-        axios.put('http://localhost:4002/covers', updateBody)
+        axios.put('/covers', updateBody)
             .then(res => {
                 alert(res.data);
                 inputs.forEach(input => input.value = '');

@@ -24,7 +24,7 @@ const AddSongForm = ({ serverKey }) => {
         reqBody.album_name = inputs[1].value;
         reqBody.audio_url = inputs[2].value;
 
-        axios.post('http://localhost:4002/songs', reqBody)
+        axios.post('/songs', reqBody)
             .then(res => {
                 alert(res.data);
                 inputs.forEach(input => input.value = '');

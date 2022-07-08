@@ -27,7 +27,7 @@ const AddAlbumForm = ({ serverKey }) => {
         reqBody.display_order = inputs[3].value;
         reqBody.num_tracks = inputs[4].value;
 
-        axios.post('http://localhost:4002/albums', reqBody)
+        axios.post('/albums', reqBody)
             .then(res => {
                 alert(res.data);
                 inputs.forEach(input => input.value = '');

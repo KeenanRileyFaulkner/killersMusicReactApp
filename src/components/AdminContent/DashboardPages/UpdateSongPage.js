@@ -49,7 +49,7 @@ const UpdateSongForm = ({serverKey}) => {
             return;
         }
 
-        axios.put('http://localhost:4002/songs', updateBody)
+        axios.put('/songs', updateBody)
             .then(res => {
                 alert(res.data);
                 inputs.forEach(input => input.value = '');

@@ -36,7 +36,8 @@ const RightSideNav = ({logout, forgetKey}) => {
             <MenuDropdown header='BAND ALBUM LINKS' selections={['ADD ALBUM', 'VIEW ALBUMS', 'UPDATE ALBUM INFO', 'REMOVE ALBUM']} linkNames={['add-album', 'view-albums', 'update-album', 'remove-album']} />
             <MenuDropdown header='BAND ALBUM SONGS' selections={['ADD SONG', 'VIEW SONGS', 'UPDATE SONG INFO', 'REMOVE SONG']} linkNames={['add-song', 'view-songs', 'update-song', 'remove-song']} />
             <MenuDropdown header='PERSONAL COVER LINKS' selections={['ADD COVER','VIEW COVERS', 'UPDATE COVER INFO', 'REMOVE COVER']} linkNames={['add-cover', 'view-covers', 'update-cover', 'remove-cover']} />
-            <button className='text-[14pt] font-medium mt-2 ml-[33px]' onClick={() => handleLogout()}>LOGOUT</button>
+            <div className='text-[14pt] mt-2 ml-[33px] font-medium hover:text-white hover:cursor-pointer'><Link to='/admin/dashboard/specs'>SPECS FOR IMG/MP3</Link></div>
+            <button className='text-[14pt] font-medium mt-2 ml-[33px] hover:text-white hover:cursor-pointer' onClick={() => handleLogout()}>LOGOUT</button>
         </nav>
     )
 }

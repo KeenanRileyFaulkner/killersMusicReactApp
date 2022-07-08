@@ -24,7 +24,7 @@ const AddCoverForm = ({ serverKey }) => {
         reqBody.image_url = inputs[1].value;
         reqBody.audio_url = inputs[2].value;
 
-        axios.post('http://localhost:4002/covers', reqBody)
+        axios.post('/covers', reqBody)
             .then(res => {
                 alert(res.data);
                 inputs.forEach(input => input.value = '');

@@ -55,7 +55,7 @@ const UpdateAlbumForm = ({serverKey}) => {
             return;
         }
 
-        axios.put('http://localhost:4002/albums', updateBody)
+        axios.put('/albums', updateBody)
             .then(res => {
                 alert(res.data);
                 inputs.forEach(input => input.value = '');

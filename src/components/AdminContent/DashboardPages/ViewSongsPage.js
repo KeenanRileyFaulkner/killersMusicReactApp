@@ -43,7 +43,7 @@ const SongsContainer = () => {
     const [songsArr, setSongsArr] = useState();
 
     useEffect(() => {
-        axios.get('http://localhost:4002/songs')
+        axios.get('/songs')
         .then(res => {
             setSongsArr(res.data);
         })

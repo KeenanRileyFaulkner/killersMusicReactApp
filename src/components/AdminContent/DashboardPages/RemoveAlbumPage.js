@@ -25,14 +25,14 @@ const RemoveAlbumForm = ({ serverKey }) => {
         authBody.password = inputs[2].value;
         let successfullAuth = false;
 
-        axios.post('http://localhost:4002/authenticate', authBody)
+        axios.post('/authenticate', authBody)
             .then(res => {
                 if(res.status === 200)   {
                     successfullAuth = true;
                 }
 
                 if(successfullAuth) {
-                    axios.delete(`http://localhost:4002/albums/${albumToDelete}`)
+                    axios.delete(`/albums/${albumToDelete}`)
                         .then(res => {
                             alert(res.data);
                             inputs.forEach(input => input.value = '');
