@@ -42,6 +42,7 @@ function App() {
           <Route path="about" element={<><NavBar titleLinkName='music-player' /><AboutContent /></>} />
           <Route path="music-player" element={<><NavBar titleLinkName='covers-player' /><PlayerContent /></>} />
           <Route path="covers-player" element={<><NavBar titleLinkName='about' /><CoversContent /></>} />
+          <Route path="admin" exact element={<Navigate to="/admin/login" replace />} />
           <Route path="admin" element={<AdminContent authed={authed} login={login} logout={logout} />} >
             <Route path="login" element={<LoginBox />} />
             <Route path="dashboard" element={<RequireAuth children={<Dashboard />} />}>
