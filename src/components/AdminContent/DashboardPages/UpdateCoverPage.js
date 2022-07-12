@@ -36,6 +36,10 @@ const UpdateCoverForm = ({ serverKey }) => {
             updateBody.audio_url = inputs[3].value;
         }
 
+        if(inputs[4].value !== "") {
+            updateBody.display_order = inputs[4].value;
+        }
+
         let blankRequest = true;
         inputs.forEach((input, index) => {
             if((index > 0) && (input.value !== '')) {
@@ -67,6 +71,7 @@ const UpdateCoverForm = ({ serverKey }) => {
             <input placeholder="NEW COVER NAME (OPTIONAL)" type="text" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
             <input placeholder="NEW IMAGE URL (OPTIONAL)" type="text" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
             <input placeholder="NEW AUDIO URL (OPTIONAL)" type="text" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
+            <input placeholder="NEW DISPLAY ORDER (OPTIONAL)" type="text" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
             <button className="bg-black border-white border-[4px] w-[100px] rounded-xl font-extrabold text-white">SUBMIT</button>
         </form>
     )

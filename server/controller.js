@@ -48,8 +48,8 @@ module.exports = {
 
     getCoversForDisplay: (req, res) => {
         sequelize.query(`
-            SELECT image_url, cover_name, audio_url, cover_id FROM covers
-            ORDER BY cover_id`)
+            SELECT image_url, cover_name, audio_url, cover_id, display_order FROM covers
+            ORDER BY display_order`)
         .then(dbRes => {
             res.status(200).send(dbRes[0]);
         })
@@ -539,6 +539,7 @@ module.exports = {
         let cover_name;
         let image_url;
         let audio_url;
+        let display_order;
         if(req.body.serverKey === '') {
             res.status(401).send('You are not authorized to make this request');
             return;
@@ -547,18 +548,21 @@ module.exports = {
         compareKey = req.body.serverKey;
 
         if(req.body.cover_name === '') {
-            res.status(400).send('A cover_name must be included in your request');
+            res.status(400).send('A cover name must be included in your request');
             return;
         } else if (req.body.image_url === '') {
-            res.status(400).send('An image_url must be included in your request');
+            res.status(400).send('An image url must be included in your request');
             return;
+        } else if (req.body.display_order === '') {
+            res.status(400).send('A display order must be included in your request')
         } else if (req.body.audio_url === '') {
-            res.status(400).send('An audio_url must be included in your request');
+            res.status(400).send('An audio url must be included in your request');
             return;
         } else {
             cover_name = req.body.cover_name;
             image_url = req.body.image_url;
             audio_url = req.body.audio_url;
+            display_order = req.body.display_order;
         }
 
         if(cover_name.includes(';') || image_url.includes(';') || audio_url.includes(';')) {
@@ -572,11 +576,11 @@ module.exports = {
         .then(dbRes => {
             if(typeof dbRes[0][0].access_key !== 'undefined') {
                 sequelize.query(`
-                    INSERT INTO covers (image_url, audio_url, cover_name, total_plays)
+                    INSERT INTO covers (image_url, audio_url, cover_name, total_plays, display_order)
                     VALUES
-                        ('${image_url}', '${audio_url}', '${cover_name}', 0);`)
+                        ('${image_url}', '${audio_url}', '${cover_name}', 0, ${display_order});`)
                 .then(() => {
-                    res.status(200).send('New record succesfully created. Go to "Get Play Count" in nav to view.');
+                    res.status(200).send('New record succesfully created. Go to "View Covers" in nav to view.');
                 })
                 .catch(err => console.log(err));
             } else {
@@ -591,7 +595,8 @@ module.exports = {
 
     getAllCovers: (req, res) => {
         sequelize.query(`
-            SELECT * FROM covers`)
+            SELECT * FROM covers
+            ORDER BY display_order`)
         .then(dbRes => {
             res.status(200).send(dbRes[0]);
         })
@@ -611,7 +616,11 @@ module.exports = {
 
         let valuesInOrder = [];
         columnsToUpdate.forEach(column => {
-            valuesInOrder.push((`'${req.body[column]}'`));
+            if (column === 'display_order') {
+                valuesInOrder.push((Number(req.body[column])));
+            } else {
+                valuesInOrder.push((`'${req.body[column]}'`));
+            }
         });
 
         let updateValues = valuesInOrder.join(", ");

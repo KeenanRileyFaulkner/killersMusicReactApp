@@ -15,7 +15,7 @@ const CoversPlayCountPage = () => {
 const TableHeader = () => {
     const cols = ['IMAGE', 'COVER_ID', 'URL', 'NAME', 'TOTAL PLAYS' ];
     return (
-        <header className="grid grid-cols-5 border-b-[2px] border-gray-800 text-[#121212] font-semibold font-work-sans items-center">
+        <header className="grid grid-cols-6 border-b-[2px] border-gray-800 text-[#121212] font-semibold font-work-sans items-center">
             {cols.map((col, index) => {
                 if(index < cols.length - 1) {
                     return <TableCol colName={cols[index]} border={true} key={cols[index]} />
@@ -53,7 +53,9 @@ const EntriesContainer = () => {
     let display;
     if(typeof entriesArr !== 'undefined') {
         display = entriesArr.map((cover) => {
-                    return <TableEntry imageURL={cover.image_url} coverID={cover.cover_id} audioURL={cover.audio_url} name={cover.cover_name} playCount={cover.total_plays} key={cover.cover_name} />
+                    return (
+                        <TableEntry imageURL={cover.image_url} coverID={cover.cover_id} audioURL={cover.audio_url} name={cover.cover_name} playCount={cover.total_plays} displayOrder={cover.display_order} key={cover.cover_name} />
+                    );
                   });
     } else {
         display = <div></div>
@@ -66,9 +68,9 @@ const EntriesContainer = () => {
     );
 }
 
-const TableEntry = ({ imageURL, coverID, audioURL, name, playCount }) => {
+const TableEntry = ({ imageURL, coverID, audioURL, name, playCount, displayOrder }) => {
     return (
-        <div className="grid grid-cols-5 h-[120px] w-[100%] text-[8pt] text-gray-400 border-b-[2px] border-gray-800">
+        <div className="grid grid-cols-6 h-[120px] w-[100%] text-[8pt] text-gray-400 border-b-[2px] border-gray-800">
             <section className="flex centerItems">
                 <img src={imageURL} className='h-[100px] w-[100px]' />
             </section>
@@ -83,6 +85,9 @@ const TableEntry = ({ imageURL, coverID, audioURL, name, playCount }) => {
             </section>
             <section className="flex centerItems">
                 <h2>{playCount}</h2>
+            </section>
+            <section className="flex centerItems">
+                <h2>{displayOrder}</h2>
             </section>
         </div>
     )

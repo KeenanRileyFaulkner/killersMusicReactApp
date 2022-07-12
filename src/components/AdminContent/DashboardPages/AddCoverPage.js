@@ -23,6 +23,7 @@ const AddCoverForm = ({ serverKey }) => {
         reqBody.cover_name = inputs[0].value;
         reqBody.image_url = inputs[1].value;
         reqBody.audio_url = inputs[2].value;
+        reqBody.display_order = inputs[3].value;
 
         axios.post('/covers', reqBody)
             .then(res => {
@@ -41,6 +42,7 @@ const AddCoverForm = ({ serverKey }) => {
             <input placeholder="COVER NAME" type="text" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
             <input placeholder="IMAGE URL" type="text" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
             <input placeholder="AUDIO URL" type="text" className="h-[30px] w-[90%] pl-3 font-extrabold rounded-lg"/>
+            <input placeholder="DISPLAY ORDER" type="text" className='h-[30px] w-[90%] pl-3 font-extrabold rounded-lg' />
             <button className="bg-black border-white border-[4px] w-[100px] rounded-xl font-extrabold text-white">SUBMIT</button>
         </form>
     )

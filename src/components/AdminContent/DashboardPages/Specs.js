@@ -20,7 +20,7 @@ const Specs = () => {
                     <br />
                     THE COMBINED BACKGROUND AND COVER ART SHOULD BE HOSTED PUBLICLY AND UPLOADED TO THE DATABASE THROUGH 
                     THE "ADD ALBUM" OR "ADD COVER" PAGE UNDER "IMAGE URL". IF USING GOOGLE DRIVE FOR HOSTING, USE THE FORMAT {" "}
-                    <span className="text-[#f7f781] underline">https://drive.google.com/thumbnail?id={"{ID}"}</span> WHERE {`{ID} `}
+                    <span className="text-[#f7f781] underline">https://drive.google.com/thumbnail?id={`{ID}`}</span> WHERE {`{ID} `}
                     IS REPLACED BY THE ID OF THE RESOURCE PROVIDED IN THE GOOGLE DRIVE SHARE LINK.
                 </p>
                 <h2 className="text-[18pt] font-extrabold mt-5">AUDIOS</h2>
