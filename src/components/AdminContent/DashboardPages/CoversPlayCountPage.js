@@ -13,7 +13,7 @@ const CoversPlayCountPage = () => {
 }
 
 const TableHeader = () => {
-    const cols = ['IMAGE', 'COVER_ID', 'URL', 'NAME', 'TOTAL PLAYS' ];
+    const cols = ['IMAGE', 'COVER_ID', 'URL', 'NAME', 'TOTAL PLAYS', 'DISPLAY ORDER'];
     return (
         <header className="grid grid-cols-6 border-b-[2px] border-gray-800 text-[#121212] font-semibold font-work-sans items-center">
             {cols.map((col, index) => {
