@@ -13,11 +13,12 @@ const AddAlbumPage = () => {
     );
 }
 
-const AddAlbumForm = ({ serverKey }) => {
+const AddAlbumForm = () => {
+    const {serverKey} = useOutletContext();
     const reqBody = {
         serverKey: serverKey
     }
-
+    
     const handleSubmit = e => {
         e.preventDefault();
         let inputs = document.querySelectorAll('input');
@@ -26,7 +27,6 @@ const AddAlbumForm = ({ serverKey }) => {
         reqBody.image_url = inputs[2].value;
         reqBody.display_order = inputs[3].value;
         reqBody.num_tracks = inputs[4].value;
-
         axios.post('/albums', reqBody)
             .then(res => {
                 alert(res.data);
