@@ -3,16 +3,16 @@ import { useOutletContext } from 'react-router-dom';
 import useDocumentTitle from '../../../hooks/useDocumentTitle';
 
 const AddCoverPage = () => {
-    const {serverKey} = useOutletContext();
     useDocumentTitle('Add Cover To DB -- Admin');
     return (
         <div className="centered-dash-page">
-            <AddCoverForm serverKey={serverKey} />
+            <AddCoverForm />
         </div>
     )
 }
 
-const AddCoverForm = ({ serverKey }) => {
+const AddCoverForm = () => {
+    const {serverKey} = useOutletContext();
     const reqBody = {
         serverKey: serverKey
     }

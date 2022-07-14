@@ -53,7 +53,7 @@ const AlbumsContainer = () => {
     let display;
     if(typeof albumsArr !== 'undefined') {
         display = albumsArr.map((album) => {
-                    return <Album artworkURL={album.image_url} name={album.album_name} year={album.release_year} numTracks={album.num_tracks} albumID={album.album_id} displayOrder={album.display_order} />
+                    return <Album artworkURL={album.image_url} name={album.album_name} year={album.release_year} numTracks={album.num_tracks} albumID={album.album_id} displayOrder={album.display_order} key={album.album_name} />
                   });
     } else {
         display = <div></div>

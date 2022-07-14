@@ -148,7 +148,7 @@ const AdminAccess = ({authed}) => {
     const checkLocationIsDash = () => {
         const lc = location.pathname;
 
-        if(lc === '/about' || lc === '/music-player' || lc === '/covers' || lc === '/admin') {
+        if(lc === '/about' || lc === '/music-player' || lc === '/covers-player' || lc === '/admin') {
             return false;
         } else {
             return true;

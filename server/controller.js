@@ -213,7 +213,7 @@ module.exports = {
             num_tracks = req.body.num_tracks;
         }
 
-        if(album_name.includes(';') || release_year.includes(';') || image_url.includes(';') || display_order.includes(';') || num_tracks.includes(';')){
+        if(album_name.includes(';') || release_year.includes(';') || image_url.includes(';') || display_order.includes(';')){
             res.status(400).send('Disallowed input ";". Try again.');
             return;
         }
@@ -348,7 +348,7 @@ module.exports = {
         })
         .catch((err) => {
             console.log(err);
-            res.status(400).send('There was a problem deleting the album from the database.');
+            res.status(400).send("There was a problem deleting the album from the database. Make sure all songs are deleted first.");
         });
     },
 
@@ -541,7 +541,7 @@ module.exports = {
         let audio_url;
         let display_order;
         if(req.body.serverKey === '') {
-            res.status(401).send('You are not authorized to make this request');
+            res.status(401).send('You are not authorized to make this request because you do not have the key.');
             return;
         }
 
@@ -584,12 +584,12 @@ module.exports = {
                 })
                 .catch(err => console.log(err));
             } else {
-                res.status(401).send('You are not authorized to make this request');
+                res.status(401).send('You are not authorized to make this request because the key is undefined.');
             }
         })
         .catch(err => {
             console.log(err);
-            res.status(401).send('You are not authorized to make this request');
+            res.status(401).send('You are not authorized to make this request. The key you sent could not be found in the database.');
         });
     },
 

@@ -53,7 +53,7 @@ const SongsContainer = () => {
     let display;
     if(typeof songsArr !== 'undefined') {
         display = songsArr.map((song) => {
-                    return <Song name={song.song_name} album={song.album_name} audioURL={song.url} songID={song.song_id} />
+                    return <Song name={song.song_name} album={song.album_name} audioURL={song.url} songID={song.song_id} key={song.song_name} />
                   });
     } else {
         display = <div></div>

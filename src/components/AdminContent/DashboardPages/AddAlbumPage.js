@@ -3,12 +3,10 @@ import { useOutletContext } from 'react-router-dom';
 import useDocumentTitle from '../../../hooks/useDocumentTitle';
 
 const AddAlbumPage = () => {
-    const {serverKey} = useOutletContext;
-
     useDocumentTitle('Add Album To DB -- Admin');
     return(
         <div className="centered-dash-page">
-            <AddAlbumForm serverKey={serverKey} />
+            <AddAlbumForm />
         </div>
     );
 }
@@ -27,6 +25,7 @@ const AddAlbumForm = () => {
         reqBody.image_url = inputs[2].value;
         reqBody.display_order = inputs[3].value;
         reqBody.num_tracks = inputs[4].value;
+
         axios.post('/albums', reqBody)
             .then(res => {
                 alert(res.data);
