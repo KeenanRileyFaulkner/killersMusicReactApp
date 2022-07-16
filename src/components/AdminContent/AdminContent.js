@@ -47,7 +47,7 @@ export const LoginBox = () => {
         let inputs = document.querySelectorAll('input');
         if(inputs[0].value === 'admin' || inputs[1].value === 'admin') {
             login().then(res => {
-                passKeyUp(res.data);
+                passKeyUp('');
                 navigate(state?.path || "/admin/dashboard");
             });
         } else {
